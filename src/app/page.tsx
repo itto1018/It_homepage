@@ -1,56 +1,78 @@
 import Image from "next/image";
-import { Card } from "@/components/Card";
-import LinkCard from "@/components/LinkCard";
+import ServiceModalCard from "@/components/ServiceModalCard";
+import SocialLinkIcon from "@/components/SocialLinkIcon";
+import MenuLinkCard from "@/components/MenuLinkCard";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="justify-items-center gap-16 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
+      <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
         {/* top */}
-        <div className="flex flex-col gap-[20px] w-full my-10">
-          <div className="text-8xl font-bold mb-4">
-            <h1 className="text-start pb-4">
-              Welcome to
-            </h1>
-            <h2 className="text-end">
-              It Page
-            </h2>
+        <div className="my-10 flex w-full flex-col gap-[20px]">
+          <div className="mb-4 text-8xl font-bold">
+            <h1 className="pb-4 text-start">Welcome to</h1>
+            <h2 className="text-end">It Page</h2>
           </div>
-          <article className="text-2xl text-gray-600">It（イット）のポートフォリオサイトです</article>
+          <article className="text-2xl text-gray-600">
+            It（イット）のポートフォリオサイトです
+          </article>
         </div>
         {/* Menu */}
         <div className="flex flex-col items-center">
           <h2 className="text-5xl font-bold">Menu</h2>
         </div>
-        <div className="flex flex-col my-4 gap-10 w-full">
-          <LinkCard title = "Profile" discript="Itのプロフィール" />
-          <LinkCard title = "Link" discript="ブログ・SNSのリンク" />
-          <LinkCard title = "Works" discript="開発物" />
+        <div className="my-4 flex w-full flex-col gap-10">
+          <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
+          <MenuLinkCard title="Link" discript="ブログ・SNSのリンク" url="/" />
+          <MenuLinkCard title="Works" discript="開発物" url="/" />
         </div>
         {/* Services */}
         <div className="flex flex-col items-center">
           <h2 className="text-5xl font-bold">Services</h2>
         </div>
-        <div className="flex my-4 gap-10">
-          <title>Services</title>
-          <Card title = "ダッシュボード開発" discript="Tableauを用いたダッシュボードの作成や改善支援" />
-          <Card title = "データ分析" discript="PythonやRを用いた統計分析" />
-          <Card title = "Webページ作成" discript="スクリプト言語を用いたフロントエンド開発" />
+        <div className="my-4 flex gap-10">
+          <ServiceModalCard
+            title="データ基盤構築"
+            discript="DWHの基盤構築・SQLクエリの作成"
+          />
+          <ServiceModalCard
+            title="Webサイト開発"
+            discript="Next.jsを用いたフロントエンド開発"
+          />
+          <ServiceModalCard
+            title="データ分析"
+            discript="PythonやRを用いた統計分析"
+          />
+          <ServiceModalCard
+            title="ダッシュボード開発"
+            discript="Tableauを用いたダッシュボードの作成や改善支援"
+          />
         </div>
-        <div>
-          <title>Skill Set</title>
-          <ul>
-            <li>統計検定2級</li>
-            <li>Tableau DATASaber</li>
-            <li>基本情報技術者試験</li>
-          </ul>
+        {/* Contact */}
+        <div className="flex flex-col items-center">
+          <h2 className="text-5xl font-bold">Contact</h2>
         </div>
-        <div>
-          <title>Contact</title>
-          <a href="">Twitter</a>
-          <a href="">GitHub</a>
-          <a href="">LinkedIn</a>
-          <a href="">Wantedly</a>
+        <div className="flex w-full gap-10">
+          <div className="flex w-3/5 items-center">
+            <p className="text-xl font-bold">
+              ご依頼・ご相談はこちらからお願いします
+            </p>
+            <p className="text-"></p>
+          </div>
+          <div className="my-4 flex gap-10">
+            <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
+            <SocialLinkIcon
+              type="Wantedly"
+              url={"https://www.wantedly.com/id/Itto_Okmr"}
+            />
+            <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
+            <SocialLinkIcon
+              type="LinkedIn"
+              url={
+                "https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"
+              }
+            />
+          </div>
         </div>
       </main>
     </div>

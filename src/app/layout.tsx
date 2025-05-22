@@ -5,21 +5,21 @@ import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
   title: "Itのホームページ",
-  description: "Itのホームページへようこそ",
+  description: "Itのホームページへようこそ"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -28,11 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-gray-100 h-12 row-start-1 flex gap-[24px] items-center justify-center">
-          <h1 className="text-[20px] font-bold items-left">It Page</h1>
+        <header className="row-start-1 flex h-12 items-center justify-center gap-[24px] bg-gray-100">
+          <h1 className="items-left text-[20px] font-bold">It Page</h1>
         </header>
         {children}
-        <footer className="bg-gray-100 h-12 row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <footer className="row-start-3 flex h-12 flex-wrap items-center justify-center gap-[24px] bg-gray-100">
           <p className="text-[16px] text-gray-600">
             © 2025 It All rights reserved.
           </p>
