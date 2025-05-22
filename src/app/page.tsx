@@ -8,26 +8,32 @@ export default function Home() {
     <div className="justify-items-center gap-16 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
       <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
         {/* top */}
-        <div className="my-10 flex w-full flex-col gap-[20px]">
+        <div className="my-10 px-30 flex w-full flex-col gap-[20px]">
           <div className="mb-4 text-8xl font-bold">
             <h1 className="pb-4 text-start">Welcome to</h1>
-            <h2 className="text-end">It Page</h2>
+            <h1 className="text-end">It Page</h1>
           </div>
           <article className="text-2xl text-gray-600">
-            It（イット）のポートフォリオサイトです
+            <p>
+              データ分析やWeb開発を行っているItのポートフォリオサイトです。
+              <br />
+              ご依頼・ご相談はお気軽にご連絡ください。
+            </p>
           </article>
         </div>
         {/* Menu */}
-        <div className="flex flex-col items-center">
-          <h2 className="text-5xl font-bold">Menu</h2>
-        </div>
-        <div className="my-4 flex w-full flex-col gap-10">
-          <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
-          <MenuLinkCard title="Link" discript="ブログ・SNSのリンク" url="/" />
-          <MenuLinkCard title="Works" discript="開発物" url="/" />
+        <div className="w-full">
+          <div className="flex flex-col items-start my-10">
+            <h2 className="text-6xl font-bold">Menu</h2>
+          </div>
+          <div className="my-5 flex w-full flex-col gap-5">
+            <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
+            <MenuLinkCard title="Link" discript="ブログ・SNSのリンク" url="/" />
+            <MenuLinkCard title="Works" discript="開発物" url="/" />
+          </div>
         </div>
         {/* Services */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-start">
           <h2 className="text-5xl font-bold">Services</h2>
         </div>
         <div className="my-4 flex gap-10">
@@ -57,7 +63,6 @@ export default function Home() {
             <p className="text-xl font-bold">
               ご依頼・ご相談はこちらからお願いします
             </p>
-            <p className="text-"></p>
           </div>
           <div className="my-4 flex gap-10">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />

@@ -28,7 +28,7 @@ export const MenuLinkCard: FC<Props> = (props) => {
         {icon}
       </div>
       <h1 className="w-40 text-4xl font-bold">{title}</h1>
-      <p>{discript}</p>
+      <p className="text-xl">{discript}</p>
     </a>
   );
 };
