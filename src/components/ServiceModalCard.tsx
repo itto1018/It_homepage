@@ -12,7 +12,7 @@ const iconMap = {
   データ基盤構築: <FaDatabase size={40} />,
   webサイト開発: <FaLaptopCode size={40} />,
   データ分析: <IoAnalyticsSharp size={40} />,
-  ダッシュボード開発: <TbFileAnalytics size={40} />
+  ダッシュボード開発: <TbFileAnalytics size={40} />,
 };
 
 export const ServiceModalCard: FC<Props> = (props) => {

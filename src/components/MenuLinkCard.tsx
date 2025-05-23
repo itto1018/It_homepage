@@ -11,7 +11,7 @@ export type Props = {
 const iconMap = {
   profile: <RiUser3Fill size={30} />,
   link: <FaRss size={30} />,
-  works: <FaLaptopCode size={30} />
+  works: <FaLaptopCode size={30} />,
 };
 
 export const MenuLinkCard: FC<Props> = (props) => {

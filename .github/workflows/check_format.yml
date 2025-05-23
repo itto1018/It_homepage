@@ -19,7 +19,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run Prettier
-        run: yarn format:check
+        run: yarn prettier --check "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}"
 
       - name: Report if any files are not formatted
         if: ${{ failure() }}

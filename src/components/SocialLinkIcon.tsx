@@ -13,7 +13,7 @@ const iconMap = {
   X: <FaXTwitter size={30} />,
   Wantedly: <SiWantedly size={30} />,
   Mail: <BiLogoGmail size={30} />,
-  LinkedIn: <FaLinkedinIn size={30} />
+  LinkedIn: <FaLinkedinIn size={30} />,
 };
 
 const SocialLinkCard: FC<Props> = (props) => {

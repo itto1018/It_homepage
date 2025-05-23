@@ -37,18 +37,9 @@ export default function Home() {
           <h2 className="text-5xl font-bold">Services</h2>
         </div>
         <div className="my-4 flex gap-10">
-          <ServiceModalCard
-            title="データ基盤構築"
-            discript="DWHの基盤構築・SQLクエリの作成"
-          />
-          <ServiceModalCard
-            title="Webサイト開発"
-            discript="Next.jsを用いたフロントエンド開発"
-          />
-          <ServiceModalCard
-            title="データ分析"
-            discript="PythonやRを用いた統計分析"
-          />
+          <ServiceModalCard title="データ基盤構築" discript="DWHの基盤構築・SQLクエリの作成" />
+          <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
+          <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
           <ServiceModalCard
             title="ダッシュボード開発"
             discript="Tableauを用いたダッシュボードの作成や改善支援"
@@ -60,22 +51,15 @@ export default function Home() {
         </div>
         <div className="flex w-full gap-10">
           <div className="flex w-3/5 items-center">
-            <p className="text-xl font-bold">
-              ご依頼・ご相談はこちらからお願いします
-            </p>
+            <p className="text-xl font-bold">ご依頼・ご相談はこちらからお願いします</p>
           </div>
           <div className="my-4 flex gap-10">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
-            <SocialLinkIcon
-              type="Wantedly"
-              url={"https://www.wantedly.com/id/Itto_Okmr"}
-            />
+            <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
             <SocialLinkIcon
               type="LinkedIn"
-              url={
-                "https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"
-              }
+              url={"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"}
             />
           </div>
         </div>
