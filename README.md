@@ -88,49 +88,108 @@ const Example = () => (
 
 ## Prettier 設定
 
-本プロジェクトでは、コード整形ツールとして [Prettier](https://prettier.io/) と [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) を利用しています。  
-Tailwind CSSのクラス順序も自動で整形されます。
-
-### インストール方法
-
-```bash
-yarn add -D prettier prettier-plugin-tailwindcss
-```
+本プロジェクトでは、コード整形ツールとして [Prettier](https://prettier.io/) を利用しています。
 
 ### 設定ファイル
 
-`prettier.config.ts` にて以下のように設定しています。
+`.prettierrc`にて以下のように設定しています:
 
-```ts
-import { type Config } from "prettier";
-
-const config: Config = {
-  trailingComma: "none",
-  plugins: ["prettier-plugin-tailwindcss"]
-};
-
-export default config;
+```json
+{
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "jsxSingleQuote": false,
+  "bracketSameLine": false
+}
 ```
 
-### 使い方
+### 除外設定
 
-- **コマンドラインで全ファイルを整形**
-  ```bash
-  npx prettier --write .
-  ```
-- **VS Code拡張機能**  
-  「Prettier - Code formatter」をインストールし、保存時に自動整形できます。
+`.prettierignore`にて以下のファイルを除外しています:
 
-- **npmスクリプト例**
-  ```json
-  "scripts": {
-    "format": "prettier --write ."
-  }
-  ```
-  実行方法:
-  ```bash
-  npm run format
-  # または
-  yarn format
-  ```
+```plaintext
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build
+dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+```
+
+### コマンド
+
+```bash
+# フォーマットの実行
+yarn format
+
+# フォーマットチェックのみ
+yarn format:check
+
+# フォーマットとESLint修正の実行
+yarn format:fix
+```
+
+---
+# Github Rules
+
+## 1. ブランチ運用
+- main: 本番環境用のブランチ
+- develop: 開発用のブランチ
+- feature/*: 機能追加用のブランチ
+- fix/*: バグ修正用のブランチ
+
+## 2. コミットメッセージ
+以下のプレフィックスを使用:
+- feat: 新機能
+- fix: バグ修正
+- docs: ドキュメントのみの変更
+- style: コードの動作に影響しない変更（空白、フォーマット等）
+- refactor: リファクタリング
+- test: テストコード
+- chore: ビルドプロセスやツールの変更
+
+## 3. プルリクエスト
+- レビュワーを必ず指定
+- Prettierによるフォーマットチェックを通過
+- ESLintのチェックを通過
+- 機能単位での小さな変更を推奨
+
+## 4. Issue管理
+- テンプレートに従って記載
+- ラベルを適切に設定
+- Projectsボードで進捗管理
+
+参考リソース:
+- [Issueの詳細な管理方法](https://qiita.com/takahirocook/items/6ac94e5dc6536bd2272c)
+- [GitHubのラベル設計について](https://penguin-coffeebreak.com/archives/444)
+
 ---

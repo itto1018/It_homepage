@@ -28,8 +28,7 @@ export default function Home() {
           </div>
           <div className="my-5 flex w-full flex-col gap-5">
             <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
-            <MenuLinkCard title="Link" discript="ブログ・SNSのリンク" url="/" />
-            <MenuLinkCard title="Works" discript="開発物" url="/" />
+            <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
           </div>
         </div>
         {/* Services */}
