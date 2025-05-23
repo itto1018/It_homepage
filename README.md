@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ディレクトリ構成
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+  app/              # ページコンポーネント
+  components/       # 再利用可能なUIコンポーネント
+  styles/           # グローバルスタイルやTailwind設定
+public/             # 静的ファイル
+prettier.config.ts  # Prettier設定
+...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 開発・ビルド・Lint コマンド
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 開発サーバー起動  
+  ```bash
+  yarn dev
+  ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 本番ビルド  
+  ```bash
+  yarn build
+  ```
 
-## Learn More
+- Lint（ESLint）  
+  ```bash
+  yarn lint
+  ```
 
-To learn more about Next.js, take a look at the following resources:
+- コード整形（Prettier）  
+  ```bash
+  yarn format
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 環境変数
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+必要に応じて `.env.local` ファイルを作成し、APIキーや環境ごとの設定を記述してください。
 
-## Deploy on Vercel
+例:
+```
+NEXT_PUBLIC_API_URL=https://api.example.com
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Version(2025/04/27)
+- Node.js v23.11.0
+- yarn 1.22.22
+
+## Package
+- react-icons
+
+## Plugin
+- prettier
+
+---
+
+## react-icons 設定
+
+本プロジェクトでは、アイコン表示のために [react-icons](https://react-icons.github.io/react-icons/) を利用しています。
+
+### インストール方法
+
+```bash
+yarn add react-icons
+```
+
+### 使い方
+
+- 必要なアイコンのみを個別にインポートして利用します。
+
+例:
+```tsx
+import { FaLaptopCode } from "react-icons/fa";
+import { RiUser3Fill } from "react-icons/ri";
+
+const Example = () => (
+  <div>
+    <FaLaptopCode size={30} />
+    <RiUser3Fill size={30} />
+  </div>
+);
+```
+
+- 複数のアイコンセット（FontAwesome, Material, RemixIconなど）が利用可能です。
+
+---
+
+## Prettier 設定
+
+本プロジェクトでは、コード整形ツールとして [Prettier](https://prettier.io/) と [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) を利用しています。  
+Tailwind CSSのクラス順序も自動で整形されます。
+
+### インストール方法
+
+```bash
+yarn add -D prettier prettier-plugin-tailwindcss
+```
+
+### 設定ファイル
+
+`prettier.config.ts` にて以下のように設定しています。
+
+```ts
+import { type Config } from "prettier";
+
+const config: Config = {
+  trailingComma: "none",
+  plugins: ["prettier-plugin-tailwindcss"]
+};
+
+export default config;
+```
+
+### 使い方
+
+- **コマンドラインで全ファイルを整形**
+  ```bash
+  npx prettier --write .
+  ```
+- **VS Code拡張機能**  
+  「Prettier - Code formatter」をインストールし、保存時に自動整形できます。
+
+- **npmスクリプト例**
+  ```json
+  "scripts": {
+    "format": "prettier --write ."
+  }
+  ```
+  実行方法:
+  ```bash
+  npm run format
+  # または
+  yarn format
+  ```
+---
