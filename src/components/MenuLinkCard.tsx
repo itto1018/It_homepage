@@ -14,7 +14,7 @@ const iconMap = {
   works: <FaLaptopCode size={30} />,
 };
 
-export const MenuLinkCard: FC<Props> = (props) => {
+export const MenuLinkCard: FC<Props> = props => {
   const { title, discript, url } = props;
   const icon = iconMap[title.toLowerCase() as keyof typeof iconMap];
 

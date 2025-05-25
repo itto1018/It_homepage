@@ -16,7 +16,7 @@ const iconMap = {
   LinkedIn: <FaLinkedinIn size={30} />,
 };
 
-const SocialLinkCard: FC<Props> = (props) => {
+const SocialLinkCard: FC<Props> = props => {
   const { type, url } = props;
   const icon = iconMap[type];
 

@@ -15,7 +15,7 @@ const iconMap = {
   ダッシュボード開発: <TbFileAnalytics size={40} />,
 };
 
-export const ServiceModalCard: FC<Props> = (props) => {
+export const ServiceModalCard: FC<Props> = props => {
   const { title, discript } = props;
   const icon = iconMap[title.toLowerCase() as keyof typeof iconMap];
 
