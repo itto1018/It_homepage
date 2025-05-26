@@ -9,9 +9,8 @@ export type Props = {
 };
 
 const iconMap = {
-  profile: <RiUser3Fill size={30} />,
-  link: <FaRss size={30} />,
-  works: <FaLaptopCode size={30} />,
+  profile: <RiUser3Fill className="w-5 h-5 md:w-8 md:h-8" />,
+  works: <FaLaptopCode className="w-5 h-5 md:w-8 md:h-8" />,
 };
 
 export const MenuLinkCard: FC<Props> = props => {
@@ -24,11 +23,11 @@ export const MenuLinkCard: FC<Props> = props => {
       href={url}
       aria-label={title}
     >
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300">
+      <div className="p-2 md:p-4 flex items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300">
         {icon}
       </div>
-      <h1 className="w-40 text-4xl font-bold">{title}</h1>
-      <p className="text-xl">{discript}</p>
+      <h1 className="w-2/6 text-2xl md:text-4xl font-bold">{title}</h1>
+      <p className="w-3/6 text-base md:text-lg">{discript}</p>
     </a>
   );
 };
