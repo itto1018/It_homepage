@@ -10,10 +10,10 @@ export type Props = {
 };
 
 const iconMap = {
-  X: <FaXTwitter size={30} />,
-  Wantedly: <SiWantedly size={30} />,
-  Mail: <BiLogoGmail size={30} />,
-  LinkedIn: <FaLinkedinIn size={30} />,
+  X: <FaXTwitter className="w-6 h-6 md:w-8 md:h-8" />,
+  Wantedly: <SiWantedly className="w-6 h-6 md:w-8 md:h-8" />,
+  Mail: <BiLogoGmail className="w-6 h-6 md:w-8 md:h-8" />,
+  LinkedIn: <FaLinkedinIn className="w-6 h-6 md:w-8 md:h-8" />,
 };
 
 const SocialLinkCard: FC<Props> = props => {
@@ -25,7 +25,7 @@ const SocialLinkCard: FC<Props> = props => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300"
+      className="mb-2 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300"
       aria-label={type}
     >
       {icon}

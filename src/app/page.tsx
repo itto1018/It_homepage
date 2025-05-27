@@ -5,7 +5,7 @@ import MenuLinkCard from "@/components/MenuLinkCard";
 
 export default function Home() {
   return (
-    <div className="justify-items-center gap-5 px-5 py-5 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-30 lg:py-10">
+    <div className="justify-items-center gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
       <main className="row-start-2 flex flex-col gap-2 items-start lg:gap-7">
         {/* top */}
         <div className="flex flex-col gap-5 px-0 py-5 lg:py-10 lg:px-5">
@@ -25,6 +25,9 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <h2 className="text-3xl font-bold lg:text-5xl">Menu</h2>
         </div>
+        <div className="pb-5">
+          <p className="text-sm text-gray-600 lg:text-xl">ご依頼・ご相談はこちらからお願いします</p>
+        </div>
         <div className="my-5 flex w-full flex-col gap-8 md:gap-10">
           <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
           <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
@@ -32,6 +35,20 @@ export default function Home() {
         {/* Services */}
         <div className="flex flex-col items-start">
           <h2 className="text-3xl font-bold lg:text-5xl">Services</h2>
+        </div>
+        <div className="pb-5">
+          <p className="text-sm text-gray-600 lg:text-xl">
+            技術スタックを活かしたサービスを提供できます。
+            <br />
+            詳細は
+            <a
+              href="/"
+              className="text-gray-800 hover:text-blue-600 underline-offset-4 hover:underline"
+            >
+              Profile
+            </a>
+            をご覧ください。
+          </p>
         </div>
         <div className="my-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-between gap-5">
           <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
@@ -48,11 +65,11 @@ export default function Home() {
         </div>
         <div className="flex w-full flex-col items-start lg:flex-row lg:justify-between lg:items-center">
           <div className="pb-5 lg:pb-0">
-            <p className="text-sm font-bold text-gray-600 lg:text-xl">
+            <p className="text-sm text-gray-600 lg:text-xl">
               ご依頼・ご相談はこちらからお願いします
             </p>
           </div>
-          <div className="flex my-5 w-full gap-4 lg:w-auto lg:gap-6">
+          <div className="flex w-full space-x-6 lg:w-auto justify-evenly content-center">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
