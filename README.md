@@ -12,22 +12,25 @@ prettier.config.ts  # Prettier設定
 
 ## 開発・ビルド・Lint コマンド
 
-- 開発サーバー起動  
+- 開発サーバー起動
+
   ```bash
   yarn dev
   ```
 
-- 本番ビルド  
+- 本番ビルド
+
   ```bash
   yarn build
   ```
 
-- Lint（ESLint）  
+- Lint（ESLint）
+
   ```bash
   yarn lint
   ```
 
-- コード整形（Prettier）  
+- コード整形（Prettier）
   ```bash
   yarn format
   ```
@@ -37,6 +40,7 @@ prettier.config.ts  # Prettier設定
 必要に応じて `.env.local` ファイルを作成し、APIキーや環境ごとの設定を記述してください。
 
 例:
+
 ```
 NEXT_PUBLIC_API_URL=https://api.example.com
 ```
@@ -44,13 +48,16 @@ NEXT_PUBLIC_API_URL=https://api.example.com
 ---
 
 ## Version(2025/04/27)
+
 - Node.js v23.11.0
 - yarn 1.22.22
 
 ## Package
+
 - react-icons
 
 ## Plugin
+
 - prettier
 
 ---
@@ -70,6 +77,7 @@ yarn add react-icons
 - 必要なアイコンのみを個別にインポートして利用します。
 
 例:
+
 ```tsx
 import { FaLaptopCode } from "react-icons/fa";
 import { RiUser3Fill } from "react-icons/ri";
@@ -159,16 +167,20 @@ yarn format:fix
 ```
 
 ---
+
 # Github Rules
 
 ## 1. ブランチ運用
+
 - main: 本番環境用のブランチ
 - develop: 開発用のブランチ
-- feature/*: 機能追加用のブランチ
-- fix/*: バグ修正用のブランチ
+- feature/\*: 機能追加用のブランチ
+- fix/\*: バグ修正用のブランチ
 
 ## 2. コミットメッセージ
+
 以下のプレフィックスを使用:
+
 - feat: 新機能
 - fix: バグ修正
 - docs: ドキュメントのみの変更
@@ -178,17 +190,20 @@ yarn format:fix
 - chore: ビルドプロセスやツールの変更
 
 ## 3. プルリクエスト
+
 - レビュワーを必ず指定
 - Prettierによるフォーマットチェックを通過
 - ESLintのチェックを通過
 - 機能単位での小さな変更を推奨
 
 ## 4. Issue管理
+
 - テンプレートに従って記載
 - ラベルを適切に設定
 - Projectsボードで進捗管理
 
 参考リソース:
+
 - [Issueの詳細な管理方法](https://qiita.com/takahirocook/items/6ac94e5dc6536bd2272c)
 - [GitHubのラベル設計について](https://penguin-coffeebreak.com/archives/444)
 

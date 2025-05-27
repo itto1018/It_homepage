@@ -25,7 +25,7 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <h2 className="text-3xl font-bold lg:text-5xl">Menu</h2>
         </div>
-        <div className="my-5 flex w-full flex-col gap-5">
+        <div className="my-5 flex w-full flex-col gap-8 md:gap-10">
           <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
           <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
         </div>
@@ -33,13 +33,13 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <h2 className="text-3xl font-bold lg:text-5xl">Services</h2>
         </div>
-        <div className="my-4 grid grid-cols-2 gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
-          <ServiceModalCard title="データ基盤構築" discript="DWHの基盤構築・SQLクエリの作成" />
+        <div className="my-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-between gap-5">
+          <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
           <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
           <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
           <ServiceModalCard
             title="ダッシュボード開発"
-            discript="Tableauを用いたダッシュボードの作成や改善支援"
+            discript="Tableauを用いたダッシュボード開発"
           />
         </div>
         {/* Contact */}
@@ -52,7 +52,7 @@ export default function Home() {
               ご依頼・ご相談はこちらからお願いします
             </p>
           </div>
-          <div className="flex w-full gap-4 lg:w-auto lg:gap-6">
+          <div className="flex my-5 w-full gap-4 lg:w-auto lg:gap-6">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
