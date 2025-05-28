@@ -9,16 +9,12 @@ export default function Home() {
       <main className="w-4/5 row-start-2 flex flex-col gap-2 items-start lg:gap-7">
         {/* top */}
         <div className="flex flex-col gap-5 py-5 lg:py-10 lg:px-5">
-          <div className="mb-2 text-5xl sm:text-6xl font-bold text-start lg:mb-4 lg:text-8xl">
+          <div className="mb-2 text-5xl sm:text-6xl md:text-7xl font-bold text-start lg:mb-4 lg:text-8xl">
             <h1 className="pb-2 sm:pb-3 lg:pb-4">Welcome to</h1>
             <h1>It Page</h1>
           </div>
-          <article className="text-xs text-gray-600 lg:text-2xl">
-            <p>
-              データ分析やWeb開発を行っているItのポートフォリオサイトです。
-              <br />
-              ご依頼・ご相談はお気軽にご連絡ください。
-            </p>
+          <article className="text-xs md:text-base text-gray-600 lg:text-2xl">
+            <p>データ分析やWeb開発を中心に活動しているIt（イット）です。</p>
           </article>
         </div>
         {/* Menu */}
