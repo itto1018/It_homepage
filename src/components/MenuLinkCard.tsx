@@ -19,15 +19,15 @@ export const MenuLinkCard: FC<Props> = props => {
 
   return (
     <a
-      className="flex w-full transform items-center gap-4 rounded-lg bg-white p-6 shadow-md transition hover:scale-105 hover:bg-gray-100 hover:shadow-xl"
+      className="flex w-full transform items-center gap-4 rounded-lg bg-white p-4 md:p-5 lg:p-6 shadow-md transition hover:scale-105 hover:bg-gray-100 hover:shadow-xl"
       href={url}
       aria-label={title}
     >
       <div className="p-2 md:p-4 flex items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300">
         {icon}
       </div>
-      <h1 className="w-2/6 text-2xl md:text-4xl font-bold">{title}</h1>
-      <p className="w-3/6 text-base md:text-lg text-gray-600">{discript}</p>
+      <h2 className="w-2/6 text-2xl md:text-3xl lg:text-4xl font-bold">{title}</h2>
+      <p className="w-4/6 text-xs sm:text-sm md:text-lg text-gray-600">{discript}</p>
     </a>
   );
 };

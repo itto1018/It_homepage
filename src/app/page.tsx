@@ -5,12 +5,12 @@ import MenuLinkCard from "@/components/MenuLinkCard";
 
 export default function Home() {
   return (
-    <div className="justify-items-center gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
-      <main className="row-start-2 flex flex-col gap-2 items-start lg:gap-7">
+    <div className="justify-items-center max-w-full gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
+      <main className="w-4/5 row-start-2 flex flex-col gap-2 items-start lg:gap-7">
         {/* top */}
-        <div className="flex flex-col gap-5 px-0 py-5 lg:py-10 lg:px-5">
-          <div className="mb-2 text-5xl font-bold text-start lg:mb-4 lg:text-8xl">
-            <h1 className="pb-2 lg:pb-4">Welcome to</h1>
+        <div className="flex flex-col gap-5 py-5 lg:py-10 lg:px-5">
+          <div className="mb-2 text-5xl sm:text-6xl font-bold text-start lg:mb-4 lg:text-8xl">
+            <h1 className="pb-2 sm:pb-3 lg:pb-4">Welcome to</h1>
             <h1>It Page</h1>
           </div>
           <article className="text-xs text-gray-600 lg:text-2xl">
@@ -23,20 +23,20 @@ export default function Home() {
         </div>
         {/* Menu */}
         <div className="flex flex-col items-start">
-          <h2 className="text-3xl font-bold lg:text-5xl">Menu</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Menu</h2>
         </div>
-        <div className="pb-5">
+        <div className="pb-2">
           <p className="text-sm text-gray-600 lg:text-xl">ご依頼・ご相談はこちらからお願いします</p>
         </div>
-        <div className="my-5 flex w-full flex-col gap-8 md:gap-10">
+        <div className="my-5 flex w-full flex-col gap-4 md:gap-6">
           <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
           <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
         </div>
         {/* Services */}
         <div className="flex flex-col items-start">
-          <h2 className="text-3xl font-bold lg:text-5xl">Services</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold lg:text-5xl">Services</h2>
         </div>
-        <div className="pb-5">
+        <div className="pb-2">
           <p className="text-sm text-gray-600 lg:text-xl">
             技術スタックを活かしたサービスを提供できます。
             <br />
@@ -50,7 +50,7 @@ export default function Home() {
             をご覧ください。
           </p>
         </div>
-        <div className="my-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-between gap-5">
+        <div className="my-5 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 sm:gap-x-4 sm:gap-y-6 place-items-center justify-items-center">
           <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
           <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
           <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
@@ -61,15 +61,15 @@ export default function Home() {
         </div>
         {/* Contact */}
         <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-bold lg:text-5xl">Contact</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact</h2>
         </div>
         <div className="flex w-full flex-col items-start lg:flex-row lg:justify-between lg:items-center">
-          <div className="pb-5 lg:pb-0">
+          <div className="pb-2 lg:pb-0">
             <p className="text-sm text-gray-600 lg:text-xl">
               ご依頼・ご相談はこちらからお願いします
             </p>
           </div>
-          <div className="flex w-full space-x-6 lg:w-auto justify-evenly content-center">
+          <div className="flex my-5 w-full space-x-6 lg:w-auto justify-evenly content-center">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
