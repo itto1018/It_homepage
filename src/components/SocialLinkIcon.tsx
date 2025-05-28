@@ -25,7 +25,7 @@ const SocialLinkCard: FC<Props> = props => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="mb-2 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300"
+      className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-gray-200 transition hover:bg-gray-300"
       aria-label={type}
     >
       {icon}

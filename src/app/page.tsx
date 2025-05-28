@@ -28,7 +28,7 @@ export default function Home() {
         <div className="pb-2">
           <p className="text-sm text-gray-600 lg:text-xl">ご依頼・ご相談はこちらからお願いします</p>
         </div>
-        <div className="my-5 flex w-full flex-col gap-4 md:gap-6">
+        <div className="mb-12 md:mb-15 flex w-full flex-col gap-4 md:gap-6">
           <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
           <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
             をご覧ください。
           </p>
         </div>
-        <div className="my-5 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 sm:gap-x-4 sm:gap-y-6 place-items-center justify-items-center">
+        <div className="mb-12 md:mb-15 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 sm:gap-x-4 sm:gap-y-6 place-items-center justify-items-center">
           <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
           <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
           <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
@@ -63,13 +63,12 @@ export default function Home() {
         <div className="flex flex-col items-center">
           <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact</h2>
         </div>
-        <div className="flex w-full flex-col items-start lg:flex-row lg:justify-between lg:items-center">
-          <div className="pb-2 lg:pb-0">
-            <p className="text-sm text-gray-600 lg:text-xl">
-              ご依頼・ご相談はこちらからお願いします
-            </p>
-          </div>
-          <div className="flex my-5 w-full space-x-6 lg:w-auto justify-evenly content-center">
+        <div className="flex w-full flex-col items-start sm:flex-row sm:justify-between sm:items-center">
+          <p className="text-sm text-gray-600 lg:text-xl">
+            ご相談等はこちらからお願いします！
+            <br />
+          </p>
+          <div className="flex my-4 sm:my-0 w-full gap-4 sm:w-auto justify-between sm:justify-start">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
