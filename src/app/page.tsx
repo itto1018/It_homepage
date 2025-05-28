@@ -5,54 +5,66 @@ import MenuLinkCard from "@/components/MenuLinkCard";
 
 export default function Home() {
   return (
-    <div className="justify-items-center gap-16 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
+    <div className="justify-items-center max-w-full gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
+      <main className="w-4/5 row-start-2 flex flex-col gap-2 items-start lg:gap-7">
         {/* top */}
-        <div className="my-10 px-30 flex w-full flex-col gap-[20px]">
-          <div className="mb-4 text-8xl font-bold">
-            <h1 className="pb-4 text-start">Welcome to</h1>
-            <h1 className="text-end">It Page</h1>
+        <div className="flex flex-col gap-5 py-5 lg:py-10 lg:px-5">
+          <div className="mb-2 text-5xl sm:text-6xl md:text-7xl font-bold text-start lg:mb-4 lg:text-8xl">
+            <h1 className="pb-2 sm:pb-3 lg:pb-4">Welcome to</h1>
+            <h1>It Page</h1>
           </div>
-          <article className="text-2xl text-gray-600">
-            <p>
-              データ分析やWeb開発を行っているItのポートフォリオサイトです。
-              <br />
-              ご依頼・ご相談はお気軽にご連絡ください。
-            </p>
+          <article className="text-xs md:text-base text-gray-600 lg:text-2xl">
+            <p>データ分析やWeb開発を中心に活動しているIt（イット）です。</p>
           </article>
         </div>
         {/* Menu */}
-        <div className="w-full">
-          <div className="flex flex-col items-start my-10">
-            <h2 className="text-6xl font-bold">Menu</h2>
-          </div>
-          <div className="my-5 flex w-full flex-col gap-5">
-            <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
-            <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
-          </div>
+        <div className="flex flex-col items-start">
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Menu</h2>
+        </div>
+        <div className="pb-2">
+          <p className="text-sm text-gray-600 lg:text-xl">ご依頼・ご相談はこちらからお願いします</p>
+        </div>
+        <div className="mb-12 md:mb-15 flex w-full flex-col gap-4 md:gap-6">
+          <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
+          <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
         </div>
         {/* Services */}
         <div className="flex flex-col items-start">
-          <h2 className="text-5xl font-bold">Services</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold lg:text-5xl">Services</h2>
         </div>
-        <div className="my-4 flex gap-10">
-          <ServiceModalCard title="データ基盤構築" discript="DWHの基盤構築・SQLクエリの作成" />
+        <div className="pb-2">
+          <p className="text-sm text-gray-600 lg:text-xl">
+            技術スタックを活かしたサービスを提供できます。
+            <br />
+            詳細は
+            <a
+              href="/"
+              className="text-gray-800 hover:text-blue-600 underline-offset-4 hover:underline"
+            >
+              Profile
+            </a>
+            をご覧ください。
+          </p>
+        </div>
+        <div className="mb-12 md:mb-15 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 sm:gap-x-4 sm:gap-y-6 place-items-center justify-items-center">
+          <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
           <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
           <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
           <ServiceModalCard
             title="ダッシュボード開発"
-            discript="Tableauを用いたダッシュボードの作成や改善支援"
+            discript="Tableauを用いたダッシュボード開発"
           />
         </div>
         {/* Contact */}
         <div className="flex flex-col items-center">
-          <h2 className="text-5xl font-bold">Contact</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact</h2>
         </div>
-        <div className="flex w-full gap-10">
-          <div className="flex w-3/5 items-center">
-            <p className="text-xl font-bold">ご依頼・ご相談はこちらからお願いします</p>
-          </div>
-          <div className="my-4 flex gap-10">
+        <div className="flex w-full flex-col items-start sm:flex-row sm:justify-between sm:items-center">
+          <p className="text-sm text-gray-600 lg:text-xl">
+            ご相談等はこちらからお願いします！
+            <br />
+          </p>
+          <div className="flex my-4 sm:my-0 w-full gap-4 sm:w-auto justify-between sm:justify-start">
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
