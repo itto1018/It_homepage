@@ -1,7 +1,12 @@
 import Image from "next/image";
-import ServiceModalCard from "@/components/ServiceModalCard";
 import SocialLinkIcon from "@/components/SocialLinkIcon";
 import MenuLinkCard from "@/components/MenuLinkCard";
+import { FaDatabase, FaLaptopCode, FaHtml5, FaCss3Alt, FaPython, FaNodeJs, FaAws } from "react-icons/fa";
+import { IoAnalyticsSharp } from "react-icons/io5";
+import { TbFileAnalytics } from "react-icons/tb";
+import { ServiceCard } from "@/components/ServiceCard";
+import { SiPostgresql, SiSnowflake, SiAmazonredshift, SiDbt, SiNextdotjs } from "react-icons/si";
+import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
 
 export default function Home() {
   return (
@@ -32,28 +37,10 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <h2 className="text-3xl sm:text-4xl font-bold lg:text-5xl">Services</h2>
         </div>
-        <div className="pb-2">
-          <p className="text-sm text-gray-600 lg:text-xl">
-            技術スタックを活かしたサービスを提供できます。
-            <br />
-            詳細は
-            <a
-              href="/"
-              className="text-gray-800 hover:text-blue-600 underline-offset-4 hover:underline"
-            >
-              Profile
-            </a>
-            をご覧ください。
-          </p>
-        </div>
-        <div className="mb-12 md:mb-15 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 sm:gap-x-4 sm:gap-y-6 place-items-center justify-items-center">
-          <ServiceModalCard title="データ基盤構築" discript="DBの基盤構築, SQLクエリの作成" />
-          <ServiceModalCard title="Webサイト開発" discript="Next.jsを用いたフロントエンド開発" />
-          <ServiceModalCard title="データ分析" discript="PythonやRを用いた統計分析" />
-          <ServiceModalCard
-            title="ダッシュボード開発"
-            discript="Tableauを用いたダッシュボード開発"
-          />
+        <div className="mb-12 md:mb-15 w-full grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
+          <ServiceCard title="データ基盤構築" Icon={FaDatabase} items={["データ基盤設計", "SQLクエリ最適化", "データパイプライン構築"]} />
+          <ServiceCard title="Webサイト開発" Icon={FaLaptopCode} items={["要件定義", "開発・テスト", "運用・保守"]} />
+          <ServiceCard title="データ分析・可視化" Icon={IoAnalyticsSharp} items={["要件定義", "ダッシュボード開発", "統計分析・機械学習"]} />
         </div>
         {/* Contact */}
         <div className="flex flex-col items-center">
@@ -68,10 +55,7 @@ export default function Home() {
             <SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
             <SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
             <SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
-            <SocialLinkIcon
-              type="LinkedIn"
-              url={"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"}
-            />
+            <SocialLinkIcon type="LinkedIn" url={"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"} />
           </div>
         </div>
       </main>
