@@ -1,0 +1,93 @@
+import { IconType } from "react-icons";
+import { FaHtml5, FaCss3Alt, FaPython, FaNodeJs, FaAws, FaRProject, FaGithub, FaLinux } from "react-icons/fa";
+import { SiPostgresql, SiSnowflake, SiAmazonredshift, SiDbt, SiNextdotjs, SiTableau, SiMysql, SiRuby, SiRubyonrails } from "react-icons/si";
+import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
+import { BsFiletypeSql } from "react-icons/bs";
+
+type TechStack = {
+  Icon: IconType;
+  color: string;
+  name: string;
+};
+
+type Props = {
+  title: string;
+  Icon: IconType;
+  items: string[];
+};
+
+const getTechStacks = (title: string): TechStack[] => {
+  switch (title) {
+    case "データ基盤構築":
+      return [
+        { Icon: FaAws, color: "text-[#FF9900]", name: "AWS" },
+        { Icon: SiAmazonredshift, color: "text-[#2088FF]", name: "Redshift" },
+        { Icon: SiSnowflake, color: "text-[#29B5E8]", name: "Snowflake" },
+        { Icon: SiDbt, color: "text-[#FF694A]", name: "dbt" },
+        { Icon: FaLinux, color: "text-black", name: "Linux" },
+        { Icon: FaGithub, color: "text-black", name: "GitHub" },
+      ];
+    case "Webサイト開発":
+      return [
+        { Icon: FaHtml5, color: "text-orange-500", name: "HTML" },
+        { Icon: FaCss3Alt, color: "text-blue-500", name: "CSS" },
+        {
+          Icon: BiLogoJavascript,
+          color: "text-yellow-400",
+          name: "JavaScript",
+        },
+        { Icon: BiLogoTypescript, color: "text-blue-600", name: "TypeScript" },
+        { Icon: SiNextdotjs, color: "text-black", name: "Next.js" },
+        { Icon: FaNodeJs, color: "text-green-600", name: "Node.js" },
+        { Icon: FaPython, color: "text-[#306998]", name: "Python" },
+        { Icon: SiRuby, color: "text-[#CC342D]", name: "Ruby" },
+        { Icon: SiRubyonrails, color: "text-[#CC0000]", name: "Ruby on Rails" },
+        { Icon: FaGithub, color: "text-black", name: "GitHub" },
+      ];
+    case "データ分析・可視化":
+      return [
+        { Icon: BsFiletypeSql, color: "text-blue-600", name: "SQL" },
+        { Icon: SiPostgresql, color: "text-[#336791]", name: "PostgreSQL" },
+        { Icon: SiMysql, color: "text-[#4479A1]", name: "MySQL" },
+        { Icon: SiTableau, color: "text-[#1C94E0]", name: "Tableau" },
+        { Icon: FaPython, color: "text-[#FFD43B]", name: "Python" },
+        { Icon: FaRProject, color: "text-[#276DC3]", name: "R" },
+      ];
+    default:
+      return [];
+  }
+};
+
+export const ServiceCard = ({ title, Icon, items }: Props) => {
+  const techStacks = getTechStacks(title);
+
+  return (
+    <div className="flex flex-col bg-gradient-to-br from-white to-blue-50 p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100">
+      <div className="flex items-center gap-3 sm:gap-4 mb-6">
+        <div className="p-2 sm:p-3 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 shadow-inner">
+          <Icon className="h-4 w-4 sm:h-6 sm:w-6 text-blue-600" />
+        </div>
+        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{title}</h3>
+      </div>
+      <ul className="space-y-3 mb-3 ml-3 sm:mb-6 sm:ml-5 xl:ml-5 text-gray-600 lg:flex lg:flex-wrap lg:space-y-0 gap-y-3 lg:gap-x-8 xl:gap-y-0 xl:flex-col xl:space-y-3">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-center gap-2 sm:gap-3 transition-colors duration-200">
+            <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 lg:h-3 lg:w-3 rounded-full bg-blue-400"></div>
+            <p className="text-sm sm:text-base lg:text-lg">{item}</p>
+          </li>
+        ))}
+      </ul>
+      {techStacks.length > 0 && (
+        <div className="mt-auto pt-4 h-15 sm:h-10 xl:h-20 border-t border-gray-200">
+          <div className="flex gap-2 sm:gap-3 lg:gap-4 flex-wrap lg:max-w-full items-center">
+            {techStacks.map((tech, index) => (
+              <div key={index} className="relative">
+                <tech.Icon className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
