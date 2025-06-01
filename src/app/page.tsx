@@ -7,6 +7,7 @@ import { TbFileAnalytics } from "react-icons/tb";
 import { ServiceCard } from "@/components/ServiceCard";
 import { SiPostgresql, SiSnowflake, SiAmazonredshift, SiDbt, SiNextdotjs } from "react-icons/si";
 import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
+import { ProfileSection } from "@/components/ProfileSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
             <p>データ分析やWeb開発を中心に活動しているIt（イット）です。</p>
           </article>
         </div>
+
         {/* Menu */}
         <div className="flex flex-col items-start">
           <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Menu</h2>
@@ -33,6 +35,12 @@ export default function Home() {
           <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
           <MenuLinkCard title="Works" discript="これまでに作成した作品集" url="/" />
         </div>
+
+        {/* Profile */}
+        <div className="mb-12 md:mb-15 w-full flex flex-col items-start">
+          <ProfileSection />
+        </div>
+
         {/* Services */}
         <div className="flex flex-col items-start">
           <h2 className="text-3xl sm:text-4xl font-bold lg:text-5xl">Services</h2>
@@ -42,6 +50,7 @@ export default function Home() {
           <ServiceCard title="Webサイト開発" Icon={FaLaptopCode} items={["要件定義", "開発・テスト", "運用・保守"]} />
           <ServiceCard title="データ分析・可視化" Icon={IoAnalyticsSharp} items={["要件定義", "ダッシュボード開発", "統計分析・機械学習"]} />
         </div>
+
         {/* Contact */}
         <div className="flex flex-col items-center">
           <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact</h2>
