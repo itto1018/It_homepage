@@ -1,49 +1,62 @@
+# It Homepage
+
+私のポートフォリオサイトです。
+
+## 技術スタック
+
+- Next.js 15.3
+- TypeScript
+- Tailwind CSS
+- React Icons
+
+## 開発環境のセットアップ
+
+```bash
+# リポジトリのクローン
+git clone https://github.com/your-username/it_homepage.git
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
+```
+
+## 機能
+
+### 公開ページ
+- プロフィール表示
+- スキルセット表示
+- 経歴表示
+- 作品集表示（予定）
+
+### 管理者ページ
+- ログイン機能 (/admin/login)
+- プロフィール編集（予定）
+- 作品集管理（予定）
+
 ## ディレクトリ構成
 
 ```
 src/
-  app/              # ページコンポーネント
-  components/       # 再利用可能なUIコンポーネント
-  styles/           # グローバルスタイルやTailwind設定
-public/             # 静的ファイル
-prettier.config.ts  # Prettier設定
-...
+├── app/
+│   ├── page.tsx           # メインページ
+│   └── admin/
+│       └── login/        # 管理者ログインページ
+├── components/           # 共通コンポーネント
+├── styles/              # スタイル関連
+└── types/               # 型定義
 ```
-
-## 開発・ビルド・Lint コマンド
-
-- 開発サーバー起動
-
-  ```bash
-  yarn dev
-  ```
-
-- 本番ビルド
-
-  ```bash
-  yarn build
-  ```
-
-- Lint（ESLint）
-
-  ```bash
-  yarn lint
-  ```
-
-- コード整形（Prettier）
-  ```bash
-  yarn format
-  ```
 
 ## 環境変数
 
-必要に応じて `.env.local` ファイルを作成し、APIキーや環境ごとの設定を記述してください。
-
-例:
-
+```env
+NEXT_PUBLIC_API_URL=     # API接続先URL
 ```
-NEXT_PUBLIC_API_URL=https://api.example.com
-```
+
+## ライセンス
+
+MIT License
 
 ---
 
