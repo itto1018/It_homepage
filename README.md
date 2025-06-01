@@ -221,3 +221,54 @@ yarn format:fix
 - [GitHubのラベル設計について](https://penguin-coffeebreak.com/archives/444)
 
 ---
+
+## Auth.js (認証) 設定
+
+本プロジェクトでは、認証機能のために [Auth.js](https://authjs.dev/) を利用しています。
+
+### インストール
+
+```bash
+npm install next-auth@beta
+```
+
+### 環境変数の設定
+
+`.env.local`に以下の環境変数を設定する必要があります：
+
+```env
+AUTH_GOOGLE_ID=your-google-client-id
+AUTH_GOOGLE_SECRET=your-google-client-secret
+AUTH_SECRET=your-secret-key
+AUTH_URL=http://localhost:3000
+```
+
+### Google Cloud Consoleの設定
+
+1. [Google Cloud Console](https://console.cloud.google.com/) にアクセス
+2. プロジェクトを作成または選択
+3. OAuth同意画面を設定
+4. 認証情報でOAuthクライアントIDを作成
+5. 承認済みのリダイレクトURIに以下を追加：
+   - http://localhost:3000/api/auth/callback/google
+   - https://your-domain.com/api/auth/callback/google（本番環境用）
+
+### 主な機能
+
+- Googleアカウントでのログイン
+- 管理者専用ページの保護
+- セッション管理
+
+### 実装例
+
+```typescript
+// ログイン状態の確認
+const session = await auth();
+if (!session) {
+    redirect("/admin/login");
+}
+```
+
+参考リソース:
+- [Auth.js 公式ドキュメント](https://authjs.dev/)
+- [Next.js 15 に Auth.js (Next Auth v5) 認証を導入](https://zenn.dev/takna/articles/authjs-and-nextjs15)

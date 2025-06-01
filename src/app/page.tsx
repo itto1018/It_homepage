@@ -1,12 +1,8 @@
-import Image from "next/image";
 import SocialLinkIcon from "@/components/SocialLinkIcon";
 import MenuLinkCard from "@/components/MenuLinkCard";
-import { FaDatabase, FaLaptopCode, FaHtml5, FaCss3Alt, FaPython, FaNodeJs, FaAws } from "react-icons/fa";
+import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 import { IoAnalyticsSharp } from "react-icons/io5";
-import { TbFileAnalytics } from "react-icons/tb";
 import { ServiceCard } from "@/components/ServiceCard";
-import { SiPostgresql, SiSnowflake, SiAmazonredshift, SiDbt, SiNextdotjs } from "react-icons/si";
-import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
 import { ProfileSection } from "@/components/ProfileSection";
 
 export default function Home() {
