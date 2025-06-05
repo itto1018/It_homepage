@@ -1,27 +1,14 @@
-export interface Career {
-  period: string;
-  description: string;
-}
-
-export interface ProfileInput {
-  id?: string;
-  name: string;
-  nickname?: string;
-  bio?: string;
-  imageUrl?: string | null;
-  careers?: Career[];
-}
-
-// サーバーサイドのデータ型
 export interface Profile {
-  id?: string;
   name: string;
   nickname: string;
   bio: string;
-  imageUrl?: string;
+  imageUrl: string | null;
   careers: Career[];
-  createdAt?: Date;
-  updatedAt?: Date;
+}
+
+export interface Career {
+  period: string;
+  description: string;
 }
 
 export const PROFILE_CONSTRAINTS = {

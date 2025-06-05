@@ -1,6 +1,5 @@
-import db from "./client";
-import { collection, getDocs } from "firebase/firestore";
-import { storage } from "./client";
+import { db, storage } from "./client";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import type { Profile } from "@/types/profile";
 import { auth } from "@/auth";
@@ -9,10 +8,17 @@ export const getProfile = async (): Promise<Profile[]> => {
   try {
     const querySnapshot = await getDocs(collection(db, "profiles"));
 
-    return querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as Profile[];
+    return querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        name: data.name,
+        nickname: data.nickname,
+        bio: data.bio,
+        imageUrl: data.imageUrl,
+        careers: data.careers,
+      } as Profile;
+    });
   } catch (error) {
     console.error("Error fetching profiles:", error);
     throw error;
@@ -75,3 +81,18 @@ export const checkAuthState = async (): Promise<boolean> => {
   );
   return !!session;
 };
+
+export async function getPublicProfile(): Promise<Profile | null> {
+  try {
+    const docRef = doc(db, "profiles", "main");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data() as Profile;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    throw error;
+  }
+}
