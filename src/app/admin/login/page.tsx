@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { useSearchParams, useRouter, redirect } from "next/navigation";
+import { useSearchParams, redirect } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 
 export default function LoginPage() {
