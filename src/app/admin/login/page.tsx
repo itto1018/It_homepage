@@ -35,21 +35,31 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4">
-      <div className="max-w-md w-full">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">管理者ログイン</h1>
-          <p className="text-gray-600">管理画面にアクセスするにはログインが必要です</p>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4">
+      <div className="w-full max-w-md">
+        <div className="mb-10 text-center">
+          <h1 className="mb-2 text-3xl font-bold text-gray-900">
+            管理者ログイン
+          </h1>
+          <p className="text-gray-600">
+            管理画面にアクセスするにはログインが必要です
+          </p>
         </div>
 
-        {getErrorMessage(error) && <div className="mb-4 p-4 text-sm text-red-700 bg-red-100 rounded-lg">{getErrorMessage(error)}</div>}
+        {getErrorMessage(error) && (
+          <div className="mb-4 rounded-lg bg-red-100 p-4 text-sm text-red-700">
+            {getErrorMessage(error)}
+          </div>
+        )}
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition-colors hover:cursor-pointer"
+          className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-3 shadow-sm transition-colors hover:cursor-pointer hover:bg-gray-50"
         >
           <FaGoogle className="h-5 w-5 text-red-500" />
-          <span className="text-gray-700 font-medium">Googleアカウントでログイン</span>
+          <span className="font-medium text-gray-700">
+            Googleアカウントでログイン
+          </span>
         </button>
       </div>
     </div>

@@ -1,6 +1,25 @@
 import { IconType } from "react-icons";
-import { FaHtml5, FaCss3Alt, FaPython, FaNodeJs, FaAws, FaRProject, FaGithub, FaLinux } from "react-icons/fa";
-import { SiPostgresql, SiSnowflake, SiAmazonredshift, SiDbt, SiNextdotjs, SiTableau, SiMysql, SiRuby, SiRubyonrails } from "react-icons/si";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaPython,
+  FaNodeJs,
+  FaAws,
+  FaRProject,
+  FaGithub,
+  FaLinux,
+} from "react-icons/fa";
+import {
+  SiPostgresql,
+  SiSnowflake,
+  SiAmazonredshift,
+  SiDbt,
+  SiNextdotjs,
+  SiTableau,
+  SiMysql,
+  SiRuby,
+  SiRubyonrails,
+} from "react-icons/si";
 import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
 import { BsFiletypeSql } from "react-icons/bs";
 
@@ -62,27 +81,32 @@ export const ServiceCard = ({ title, Icon, items }: Props) => {
   const techStacks = getTechStacks(title);
 
   return (
-    <div className="flex flex-col bg-gradient-to-br from-white to-blue-50 p-6 rounded-lg shadow-lg transition-all duration-300 border border-gray-100">
-      <div className="flex items-center gap-3 sm:gap-4 mb-6">
-        <div className="p-2 sm:p-3 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 shadow-inner">
-          <Icon className="h-4 w-4 sm:h-6 sm:w-6 text-blue-600" />
+    <div className="flex flex-col rounded-lg border border-gray-100 bg-gradient-to-br from-white to-blue-50 p-6 shadow-lg transition-all duration-300">
+      <div className="mb-6 flex items-center gap-3 sm:gap-4">
+        <div className="rounded-full bg-gradient-to-br from-blue-100 to-blue-50 p-2 shadow-inner sm:p-3">
+          <Icon className="h-4 w-4 text-blue-600 sm:h-6 sm:w-6" />
         </div>
-        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{title}</h3>
+        <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{title}</h3>
       </div>
-      <ul className="space-y-3 mb-3 ml-3 sm:mb-6 sm:ml-5 xl:ml-5 text-gray-600 lg:flex lg:flex-wrap lg:space-y-0 gap-y-3 lg:gap-x-8 xl:gap-y-0 xl:flex-col xl:space-y-3">
+      <ul className="mb-3 ml-3 space-y-3 gap-y-3 text-gray-600 sm:mb-6 sm:ml-5 lg:flex lg:flex-wrap lg:space-y-0 lg:gap-x-8 xl:ml-5 xl:flex-col xl:space-y-3 xl:gap-y-0">
         {items.map((item, index) => (
-          <li key={index} className="flex items-center gap-2 sm:gap-3 transition-colors duration-200">
-            <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 lg:h-3 lg:w-3 rounded-full bg-blue-400"></div>
+          <li
+            key={index}
+            className="flex items-center gap-2 transition-colors duration-200 sm:gap-3"
+          >
+            <div className="h-1.5 w-1.5 rounded-full bg-blue-400 sm:h-2 sm:w-2 lg:h-3 lg:w-3"></div>
             <p className="text-sm sm:text-base lg:text-lg">{item}</p>
           </li>
         ))}
       </ul>
       {techStacks.length > 0 && (
-        <div className="mt-auto pt-4 h-15 sm:h-10 xl:h-20 border-t border-gray-200">
-          <div className="flex gap-2 sm:gap-3 lg:gap-4 flex-wrap lg:max-w-full items-center">
+        <div className="mt-auto h-15 border-t border-gray-200 pt-4 sm:h-10 xl:h-20">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:max-w-full lg:gap-4">
             {techStacks.map((tech, index) => (
               <div key={index} className="relative">
-                <tech.Icon className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color}`} />
+                <tech.Icon
+                  className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color}`}
+                />
               </div>
             ))}
           </div>

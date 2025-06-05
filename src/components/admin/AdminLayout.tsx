@@ -10,8 +10,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 
   if (status === "loading") {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -27,32 +27,26 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
             <div className="flex items-center">
               <Link href="/admin" className="text-xl font-bold text-gray-900">
                 It Admin
               </Link>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">{session.user?.email}</span>
+              <span className="text-sm text-gray-600">
+                {session.user?.email}
+              </span>
               <Link
                 href="/"
-                className="px-3 py-1.5 text-sm text-gray-600 rounded-md
-                            transition-all duration-200 ease-in-out
-                            hover:bg-grey-50 hover:text-gray-500 hover:shadow-sm
-                            active:bg-grey-100 active:text-grey-700
-                            focus:outline-none focus:ring-2 focus:ring-grey-900 focus:ring-opacity-50 hover:cursor-pointer"
+                className="hover:bg-grey-50 active:bg-grey-100 active:text-grey-700 focus:ring-grey-900 focus:ring-opacity-50 rounded-md px-3 py-1.5 text-sm text-gray-600 transition-all duration-200 ease-in-out hover:cursor-pointer hover:text-gray-500 hover:shadow-sm focus:ring-2 focus:outline-none"
               >
                 表示画面
               </Link>
               <button
                 onClick={handleSignOut}
-                className="px-3 py-1.5 text-sm text-gray-600 rounded-md
-                            transition-all duration-200 ease-in-out
-                            hover:bg-red-50 hover:text-red-600 hover:shadow-sm
-                            active:bg-red-100 active:text-red-700
-                            focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 hover:cursor-pointer"
+                className="focus:ring-opacity-50 rounded-md px-3 py-1.5 text-sm text-gray-600 transition-all duration-200 ease-in-out hover:cursor-pointer hover:bg-red-50 hover:text-red-600 hover:shadow-sm focus:ring-2 focus:ring-red-500 focus:outline-none active:bg-red-100 active:text-red-700"
               >
                 ログアウト
               </button>
@@ -62,9 +56,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* メインコンテンツ */}
-      <main className="flex-1 p-6">
-        {children}
-      </main>
+      <main className="flex-1 p-6">{children}</main>
       <Toaster
         position="top-center"
         reverseOrder={false}

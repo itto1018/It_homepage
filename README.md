@@ -315,7 +315,8 @@ const firebaseConfig = {
 };
 
 // Firebase初期化
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app =
+  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const db = getFirestore(app);
 
 export { app, db };
@@ -330,13 +331,13 @@ import { collection, getDocs } from "firebase/firestore";
 const fetchWorks = async () => {
   const worksRef = collection(db, "works");
   const snapshot = await getDocs(worksRef);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
 // データの追加
 import { addDoc } from "firebase/firestore";
 
-const addWork = async work => {
+const addWork = async (work) => {
   const worksRef = collection(db, "works");
   await addDoc(worksRef, work);
 };
