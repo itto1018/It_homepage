@@ -13,9 +13,15 @@ export interface ProfileInput {
 }
 
 // サーバーサイドのデータ型
-export interface Profile extends ProfileInput {
-  createdAt: Date;
-  updatedAt: Date;
+export interface Profile {
+  id?: string;
+  name: string;
+  nickname: string;
+  bio: string;
+  imageUrl?: string;
+  careers: Career[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const PROFILE_CONSTRAINTS = {
@@ -35,4 +41,4 @@ export const PROFILE_CONSTRAINTS = {
       maxLength: 50,
     },
   },
-}
+};

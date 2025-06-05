@@ -305,8 +305,8 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
 
 ```typescript
 // firebase.config.ts
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -325,19 +325,19 @@ export { app, db };
 
 ```typescript
 // データの取得
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from "firebase/firestore";
 
 const fetchWorks = async () => {
-  const worksRef = collection(db, 'works');
+  const worksRef = collection(db, "works");
   const snapshot = await getDocs(worksRef);
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
 // データの追加
-import { addDoc } from 'firebase/firestore';
+import { addDoc } from "firebase/firestore";
 
-const addWork = async (work) => {
-  const worksRef = collection(db, 'works');
+const addWork = async work => {
+  const worksRef = collection(db, "works");
   await addDoc(worksRef, work);
 };
 ```
@@ -355,7 +355,7 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth != null && request.auth.token.email == 'admin@example.com';
     }
-    
+
     // 作品データは読み取り可、書き込みは管理者のみ
     match /works/{document=**} {
       allow read: if true;
