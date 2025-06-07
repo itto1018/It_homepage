@@ -36,7 +36,7 @@ export const ProfileSection = () => {
   return (
     <div id="profile-section" className="w-full">
       <div className="max-w-7xl mx-auto">
-        <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg transition-shadow duration-300">
           <div className="flex flex-col gap-8 lg:gap-12">
             {/* プロフィール画像部分 */}
             <div className="flex items-center justify-center">
@@ -46,7 +46,7 @@ export const ProfileSection = () => {
                   alt="Profile Image"
                   fill
                   sizes="(max-width: 768px) 144px, (max-width: 1024px) 192px, 256px"
-                  className="rounded-full object-cover shadow-lg ring-4 ring-[#00a497]/10 transition-transform duration-300 group-hover:scale-105"
+                  className="rounded-full object-cover shadow-lg ring-4 ring-[#00a497]/10 transition-transform duration-300"
                   priority
                 />
               </div>
@@ -79,7 +79,7 @@ export const ProfileSection = () => {
                   {profile?.careers?.map((career, index) => (
                     <div
                       key={index}
-                      className="rounded-lg bg-[#00a497]/5 p-4 hover:bg-[#00a497]/10 transition-colors duration-200 border border-[#00a497]/10"
+                      className="rounded-lg bg-[#00a497]/5 p-4 transition-colors duration-200 border border-[#00a497]/10"
                     >
                       <p className="text-sm font-medium text-[#00a497] sm:text-base mb-1">
                         {career.period}
