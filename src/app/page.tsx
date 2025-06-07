@@ -30,8 +30,8 @@ export default function Home() {
         </div>
 
         {/* コンテンツセクション */}
-        <div className="container mx-auto px-5 py-10 lg:px-10 lg:py-15">
-          <div className="mx-auto max-w-4xl flex flex-col items-center gap-2 lg:gap-7">
+        <div className="w-4/5 mx-auto px-5 py-10 lg:px-10 lg:py-15">
+          <div className="flex flex-col items-center gap-2 lg:gap-7">
             {/* Profile */}
             <div
               id="profile-title"

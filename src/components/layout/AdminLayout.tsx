@@ -9,7 +9,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
     <AuthGuard>
       <div className="min-h-screen bg-gray-50">
         <Sidebar />
-        <div className="pl-64"> {/* サイドバーの幅分のパディング */}
+        <div className="pl-64">
           <main className="flex-1 p-6">{children}</main>
         </div>
         <Toaster
