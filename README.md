@@ -1,48 +1,59 @@
+# It Homepage
+
+私のポートフォリオサイトです。
+
+## 技術スタック
+
+- Next.js 15.3
+- TypeScript
+- Tailwind CSS
+- React Icons
+
+## 開発環境のセットアップ
+
+```bash
+# リポジトリのクローン
+git clone https://github.com/your-username/it_homepage.git
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
+```
+
+## 機能
+
+### 公開ページ
+
+- プロフィール表示
+- スキルセット表示
+- 経歴表示
+- 作品集表示（予定）
+
+### 管理者ページ
+
+- ログイン機能 (/admin/login)
+- プロフィール編集（予定）
+- 作品集管理（予定）
+
 ## ディレクトリ構成
 
 ```
 src/
-  app/              # ページコンポーネント
-  components/       # 再利用可能なUIコンポーネント
-  styles/           # グローバルスタイルやTailwind設定
-public/             # 静的ファイル
-prettier.config.ts  # Prettier設定
-...
+├── app/
+│   ├── page.tsx           # メインページ
+│   └── admin/
+│       └── login/        # 管理者ログインページ
+├── components/           # 共通コンポーネント
+├── styles/              # スタイル関連
+└── types/               # 型定義
 ```
-
-## 開発・ビルド・Lint コマンド
-
-- 開発サーバー起動
-
-  ```bash
-  yarn dev
-  ```
-
-- 本番ビルド
-
-  ```bash
-  yarn build
-  ```
-
-- Lint（ESLint）
-
-  ```bash
-  yarn lint
-  ```
-
-- コード整形（Prettier）
-  ```bash
-  yarn format
-  ```
 
 ## 環境変数
 
-必要に応じて `.env.local` ファイルを作成し、APIキーや環境ごとの設定を記述してください。
-
-例:
-
-```
-NEXT_PUBLIC_API_URL=https://api.example.com
+```env
+NEXT_PUBLIC_API_URL=     # API接続先URL
 ```
 
 ---
@@ -208,3 +219,162 @@ yarn format:fix
 - [GitHubのラベル設計について](https://penguin-coffeebreak.com/archives/444)
 
 ---
+
+## Auth.js (認証) 設定
+
+本プロジェクトでは、認証機能のために [Auth.js](https://authjs.dev/) を利用しています。
+
+### インストール
+
+```bash
+npm install next-auth@beta
+```
+
+### 環境変数の設定
+
+`.env.local`に以下の環境変数を設定する必要があります：
+
+```env
+AUTH_GOOGLE_ID=your-google-client-id
+AUTH_GOOGLE_SECRET=your-google-client-secret
+AUTH_SECRET=your-secret-key
+AUTH_URL=http://localhost:3000
+```
+
+### Google Cloud Consoleの設定
+
+1. [Google Cloud Console](https://console.cloud.google.com/) にアクセス
+2. プロジェクトを作成または選択
+3. OAuth同意画面を設定
+4. 認証情報でOAuthクライアントIDを作成
+5. 承認済みのリダイレクトURIに以下を追加：
+   - http://localhost:3000/api/auth/callback/google
+   - https://your-domain.com/api/auth/callback/google（本番環境用）
+
+### 主な機能
+
+- Googleアカウントでのログイン
+- 管理者専用ページの保護
+- セッション管理
+
+### 実装例
+
+```typescript
+// ログイン状態の確認
+const session = await auth();
+if (!session) {
+  redirect("/admin/login");
+}
+```
+
+参考リソース:
+
+- [Auth.js 公式ドキュメント](https://authjs.dev/)
+- [Next.js 15 に Auth.js (Next Auth v5) 認証を導入](https://zenn.dev/takna/articles/authjs-and-nextjs15)
+
+---
+
+## Firebase/Firestore 設定
+
+本プロジェクトでは、バックエンドとして [Firebase](https://firebase.google.com/) と Firestore を利用しています。
+
+### インストール
+
+```bash
+npm install firebase firebase-admin
+```
+
+### 環境変数の設定
+
+`.env.local`に以下の環境変数を追加：
+
+```env
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_CLIENT_EMAIL=your-client-email
+FIREBASE_PRIVATE_KEY=your-private-key
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+```
+
+### Firebaseの初期設定
+
+```typescript
+// firebase.config.ts
+import { initializeApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+};
+
+// Firebase初期化
+const app =
+  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const db = getFirestore(app);
+
+export { app, db };
+```
+
+### Firestoreの使用例
+
+```typescript
+// データの取得
+import { collection, getDocs } from "firebase/firestore";
+
+const fetchWorks = async () => {
+  const worksRef = collection(db, "works");
+  const snapshot = await getDocs(worksRef);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
+// データの追加
+import { addDoc } from "firebase/firestore";
+
+const addWork = async (work) => {
+  const worksRef = collection(db, "works");
+  await addDoc(worksRef, work);
+};
+```
+
+### セキュリティルール
+
+Firestoreのセキュリティルール例：
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // プロフィールデータは読み取り可、書き込みは管理者のみ
+    match /profile/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.email == 'admin@example.com';
+    }
+
+    // 作品データは読み取り可、書き込みは管理者のみ
+    match /works/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.email == 'admin@example.com';
+    }
+  }
+}
+```
+
+### データ構造
+
+主なコレクション：
+
+```
+firestore/
+├── profile/           # プロフィール情報
+├── works/            # 作品情報
+└── skills/           # スキル情報
+```
+
+参考リソース：
+
+- [Firebase 公式ドキュメント](https://firebase.google.com/docs)
+- [Next.js with Firebase](https://firebase.google.com/docs/web/setup)
+- [Firestore セキュリティルール](https://firebase.google.com/docs/firestore/security/get-started)
