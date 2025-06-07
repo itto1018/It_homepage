@@ -1,10 +1,7 @@
 import SocialLinkIcon from "@/components/SocialLinkIcon";
-import MenuLinkCard from "@/components/MenuLinkCard";
-import { FaDatabase, FaLaptopCode } from "react-icons/fa";
-import { IoAnalyticsSharp } from "react-icons/io5";
-import { ServiceCard } from "@/components/ServiceCard";
 import { ProfileSection } from "@/components/ProfileSection";
 import Link from "next/link";
+import ServiceSection from "@/components/ServiceSection";
 
 export default function Home() {
   return (
@@ -33,24 +30,6 @@ export default function Home() {
             </article>
           </div>
 
-          {/* Menu */}
-          <div className="flex flex-col items-start">
-            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Menu</h2>
-          </div>
-          <div className="pb-2">
-            <p className="text-sm text-gray-600 lg:text-xl">
-              ご依頼・ご相談はこちらからお願いします
-            </p>
-          </div>
-          <div className="mb-12 flex w-full flex-col gap-4 md:mb-15 md:gap-6">
-            <MenuLinkCard title="Profile" discript="Itのプロフィール" url="/" />
-            <MenuLinkCard
-              title="Works"
-              discript="これまでに作成した作品集"
-              url="/"
-            />
-          </div>
-
           {/* Profile */}
           <div id="profile-title" className="flex flex-col items-start">
             <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
@@ -67,26 +46,8 @@ export default function Home() {
               Services
             </h2>
           </div>
-          <div className="mb-12 grid w-full grid-cols-1 gap-4 sm:gap-6 md:mb-15 xl:grid-cols-3">
-            <ServiceCard
-              title="データ基盤構築"
-              Icon={FaDatabase}
-              items={[
-                "データ基盤設計",
-                "SQLクエリ最適化",
-                "データパイプライン構築",
-              ]}
-            />
-            <ServiceCard
-              title="Webサイト開発"
-              Icon={FaLaptopCode}
-              items={["要件定義", "開発・テスト", "運用・保守"]}
-            />
-            <ServiceCard
-              title="データ分析・可視化"
-              Icon={IoAnalyticsSharp}
-              items={["要件定義", "ダッシュボード開発", "統計分析・機械学習"]}
-            />
+          <div className="mb-12 flex w-full flex-col items-start md:mb-15">
+            <ServiceSection />
           </div>
 
           {/* Contact */}
