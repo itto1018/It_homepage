@@ -29,10 +29,17 @@ type TechStack = {
   name: string;
 };
 
+type SkillLevel = {
+  name: string;
+  level: number;
+  description?: string; // スキルレベルの説明を追加
+};
+
 type Props = {
   title: string;
   Icon: IconType;
   items: string[];
+  skills: SkillLevel[]; // スキルレベルを追加
 };
 
 const getTechStacks = (title: string): TechStack[] => {
@@ -77,7 +84,7 @@ const getTechStacks = (title: string): TechStack[] => {
   }
 };
 
-export const ServiceCard = ({ title, Icon, items }: Props) => {
+export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
   const techStacks = getTechStacks(title);
 
   return (
@@ -99,6 +106,33 @@ export const ServiceCard = ({ title, Icon, items }: Props) => {
           </li>
         ))}
       </ul>
+  
+      {/* スキルレベルセクション */}
+      <div className="my-4 space-y-3">
+        {skills.map((skill, index) => (
+          <div key={index} className="space-y-1">
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>{skill.name}</span>
+              <span>{skill.description}</span>
+              <span className="text-[#00a497]">{skill.level}/5</span>
+            </div>
+            <div className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-1.5 flex-1 rounded-full ${
+                    i < skill.level
+                      ? 'bg-[#00a497]'
+                      : 'bg-gray-200'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      
       {techStacks.length > 0 && (
         <div className="mt-auto h-15 border-t border-[#00a497]/10 pt-4 sm:h-10 xl:h-20">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:max-w-full lg:gap-4">
