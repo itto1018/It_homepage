@@ -6,11 +6,6 @@ import { SkillLevelGuide } from "./SkillLevelGuide";
 
 const ServiceSection = () => {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <h2 className="text-2xl font-bold text-gray-800">サービス</h2>
-        <SkillLevelGuide />
-      </div>
       <div className="mb-12 grid w-full grid-cols-1 gap-4 sm:gap-6 md:mb-15 xl:grid-cols-3">
         <ServiceCard
           title="データ基盤構築"
@@ -44,7 +39,6 @@ const ServiceSection = () => {
           ]}
         />
       </div>
-    </div>
   );
 };
 

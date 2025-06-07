@@ -32,14 +32,14 @@ type TechStack = {
 type SkillLevel = {
   name: string;
   level: number;
-  description?: string; // スキルレベルの説明を追加
+  description?: string;
 };
 
 type Props = {
   title: string;
   Icon: IconType;
   items: string[];
-  skills: SkillLevel[]; // スキルレベルを追加
+  skills: SkillLevel[];
 };
 
 const getTechStacks = (title: string): TechStack[] => {

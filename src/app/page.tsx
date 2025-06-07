@@ -6,18 +6,43 @@ import ServiceSection from "@/components/ServiceSection";
 export default function Home() {
   return (
     <>
-      <header className="bg-white shadow">
+      <header className="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Link href="/admin" className="text-xl font-bold text-gray-900">
+              <Link
+                href="/admin"
+                className="text-xl font-bold text-gray-900 hover:text-[#00a497] transition-colors"
+              >
                 It.dev
               </Link>
+            </div>
+            <div>
+              <nav className="hidden md:flex space-x-4">
+                <Link
+                  href="#profile-title"
+                  className="text-gray-600 hover:text-[#00a497] transition-colors"
+                >
+                  Profile
+                </Link>
+                <Link
+                  href="#services-title"
+                  className="text-gray-600 hover:text-[#00a497] transition-colors"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="#contact-title"
+                  className="text-gray-600 hover:text-[#00a497] transition-colors"
+                >
+                  Contact
+                </Link>
+              </nav>
             </div>
           </div>
         </div>
       </header>
-      <main className="max-w-full justify-items-center gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
+      <main className="pt-16 max-w-full justify-items-center gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
         <div className="row-start-2 flex w-4/5 flex-col items-start gap-2 lg:gap-7">
           {/* top */}
           <div className="flex flex-col gap-5 py-5 lg:px-5 lg:py-10">
@@ -31,7 +56,7 @@ export default function Home() {
           </div>
 
           {/* Profile */}
-          <div id="profile-title" className="flex flex-col items-start">
+          <div id="profile-title" className="flex flex-col items-start my-4 scroll-mt-header">
             <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
               Profile
             </h2>
@@ -41,7 +66,7 @@ export default function Home() {
           </div>
 
           {/* Services */}
-          <div id="services-title" className="flex flex-col items-start">
+          <div id="services-title" className="flex w-full flex-col items-start my-4 scroll-mt-header">
             <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
               Services
             </h2>
@@ -51,8 +76,8 @@ export default function Home() {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col items-center">
-            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
+          <div id="contact-title" className="flex w-full flex-col items-start my-4 scroll-mt-header">
+            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
               Contact
             </h2>
           </div>
