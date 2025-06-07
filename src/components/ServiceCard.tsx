@@ -81,10 +81,10 @@ export const ServiceCard = ({ title, Icon, items }: Props) => {
   const techStacks = getTechStacks(title);
 
   return (
-    <div className="flex flex-col rounded-lg border border-gray-100 bg-gradient-to-br from-white to-blue-50 p-6 shadow-lg transition-all duration-300">
+    <div className="flex flex-col rounded-lg border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 shadow-lg transition-all duration-300">
       <div className="mb-6 flex items-center gap-3 sm:gap-4">
-        <div className="rounded-full bg-gradient-to-br from-blue-100 to-blue-50 p-2 shadow-inner sm:p-3">
-          <Icon className="h-4 w-4 text-blue-600 sm:h-6 sm:w-6" />
+        <div className="rounded-full bg-gradient-to-br from-[#00a497]/10 to-[#e5f4f3] p-2 shadow-inner sm:p-3">
+          <Icon className="h-4 w-4 text-[#00a497] sm:h-6 sm:w-6" />
         </div>
         <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{title}</h3>
       </div>
@@ -94,19 +94,25 @@ export const ServiceCard = ({ title, Icon, items }: Props) => {
             key={index}
             className="flex items-center gap-2 transition-colors duration-200 sm:gap-3"
           >
-            <div className="h-1.5 w-1.5 rounded-full bg-blue-400 sm:h-2 sm:w-2 lg:h-3 lg:w-3"></div>
+            <div className="h-1.5 w-1.5 rounded-full bg-[#00a497] sm:h-2 sm:w-2 lg:h-3 lg:w-3"></div>
             <p className="text-sm sm:text-base lg:text-lg">{item}</p>
           </li>
         ))}
       </ul>
       {techStacks.length > 0 && (
-        <div className="mt-auto h-15 border-t border-gray-200 pt-4 sm:h-10 xl:h-20">
+        <div className="mt-auto h-15 border-t border-[#00a497]/10 pt-4 sm:h-10 xl:h-20">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:max-w-full lg:gap-4">
             {techStacks.map((tech, index) => (
-              <div key={index} className="relative">
+              <div key={index} className="relative group">
                 <tech.Icon
-                  className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color}`}
+                  className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color} transition-transform duration-300 group-hover:scale-110`}
                 />
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block animate-fadeIn">
+                  <div className="bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                    {tech.name}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-800"></div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

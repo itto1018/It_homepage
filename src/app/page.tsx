@@ -58,7 +58,7 @@ export default function Home() {
 
           {/* Services */}
           <div className="flex flex-col items-start">
-            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
               Services
             </h2>
           </div>

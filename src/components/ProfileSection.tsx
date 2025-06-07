@@ -37,11 +37,11 @@ export const ProfileSection = () => {
     <div id="profile-section" className="w-full">
       <div className="max-w-7xl mx-auto">
         <div id="profile-title" className="mb-8 sm:mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
             Profile
           </h2>
         </div>
-        <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-blue-50 p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex flex-col gap-8 lg:gap-12">
             {/* プロフィール画像部分 */}
             <div className="flex items-center justify-center">
@@ -51,7 +51,7 @@ export const ProfileSection = () => {
                   alt="Profile Image"
                   fill
                   sizes="(max-width: 768px) 144px, (max-width: 1024px) 192px, 256px"
-                  className="rounded-full object-cover shadow-lg ring-4 ring-white transition-transform duration-300 group-hover:scale-105"
+                  className="rounded-full object-cover shadow-lg ring-4 ring-[#00a497]/10 transition-transform duration-300 group-hover:scale-105"
                   priority
                 />
               </div>
@@ -69,7 +69,7 @@ export const ProfileSection = () => {
               </div>
 
               {/* 自己紹介文 */}
-              <div className="mx-auto">
+              <div className="mx-auto max-w-2xl">
                 <p className="text-sm text-gray-600 sm:text-base lg:text-lg leading-relaxed">
                   {profile?.bio || ""}
                 </p>
@@ -77,16 +77,16 @@ export const ProfileSection = () => {
 
               {/* 経歴セクション */}
               <div className="max-w-3xl mx-auto">
-                <h4 className="text-lg font-semibold text-gray-800 sm:text-xl lg:text-2xl mb-4 text-center">
+                <h4 className="text-lg font-semibold text-[#00a497] sm:text-xl lg:text-2xl mb-4 text-center">
                   経歴
                 </h4>
                 <div className="space-y-4">
                   {profile?.careers?.map((career, index) => (
                     <div
                       key={index}
-                      className="rounded-lg bg-white/50 p-4 hover:bg-white/80 transition-colors duration-200"
+                      className="rounded-lg bg-[#00a497]/5 p-4 hover:bg-[#00a497]/10 transition-colors duration-200 border border-[#00a497]/10"
                     >
-                      <p className="text-sm font-medium text-blue-600 sm:text-base mb-1">
+                      <p className="text-sm font-medium text-[#00a497] sm:text-base mb-1">
                         {career.period}
                       </p>
                       <p className="text-sm text-gray-600 sm:text-base">
