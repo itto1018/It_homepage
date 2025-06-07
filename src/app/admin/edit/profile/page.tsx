@@ -204,27 +204,27 @@ export default function ProfilePage() {
           <span className="text-gray-900">プロフィール編集</span>
         </nav>
 
-        <div className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
-          <h1 className="mb-8 text-2xl font-bold text-gray-800">
+        <div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
+          <h1 className="mb-6 sm:mb-8 text-xl sm:text-2xl font-bold text-gray-800">
             プロフィール編集
           </h1>
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div id="profile-image" className="rounded-lg bg-gray-50 p-6">
-              <div className="flex items-center justify-between">
-                <div className="relative h-32 w-32 overflow-hidden rounded-full shadow-md ring-4 ring-white">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+            <div id="profile-image" className="rounded-lg bg-gray-50 p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="relative h-24 w-24 sm:h-32 sm:w-32 overflow-hidden rounded-full shadow-md ring-4 ring-white mx-auto sm:mx-0">
                   {imageUrl ? (
                     <Image
                       src={imageUrl}
                       alt="プロフィール画像"
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 96px, 128px"
                       className="object-cover"
                     />
                   ) : (
                     <div className="h-full w-full bg-blue-50" />
                   )}
                 </div>
-                <div>
+                <div className="text-center sm:text-left"> {/* テキストアライメントを調整 */}
                   <input
                     type="file"
                     accept="image/*"
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                   />
                   <label
                     htmlFor="profile-image-upload"
-                    className="mr-4 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
                   >
                     画像を選択
                   </label>
@@ -298,111 +298,64 @@ export default function ProfilePage() {
                 />
               </div>
 
-              <div>
-                <label className="mb-4 block text-sm font-medium text-gray-700">
-                  経歴
-                </label>
-                <div className="space-y-4">
-                  {careers.map((career, index) => (
-                    <div key={index} className="rounded-lg bg-gray-50 p-4">
-                      <div className="flex items-start gap-4">
-                        <div className="w-1/3">
-                          <input
-                            type="text"
-                            id={`career-period-${index}`}
-                            placeholder="2020 - 2024"
-                            value={career.period}
-                            onChange={(e) =>
-                              handleCareerChange(
-                                index,
-                                "period",
-                                e.target.value,
-                              )
-                            }
-                            className="block w-full rounded-md border-gray-300 bg-white p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                          />
+              {/* 経歴セクション */}
+              <div className="space-y-4">
+                {careers.map((career, index) => (
+                  <div key={index} className="rounded-lg bg-gray-50 p-4">
+                    <div className="flex flex-col sm:flex-row gap-4"> {/* レイアウトを調整 */}
+                      <div className="w-full sm:w-1/3">
+                        <input
+                          type="text"
+                          id={`career-period-${index}`}
+                          placeholder="2020 - 2024"
+                          value={career.period}
+                          onChange={(e) =>
+                            handleCareerChange(index, "period", e.target.value)
+                          }
+                          className="block w-full rounded-md border-gray-300 bg-white p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <input
+                          id={`career-description-${index}`}
+                          placeholder="経歴の詳細（50文字以内）"
+                          value={career.description}
+                          onChange={(e) =>
+                            handleCareerChange(
+                              index,
+                              "description",
+                              e.target.value,
+                            )
+                          }
+                          maxLength={50}
+                          className="block w-full rounded-md border-gray-300 bg-white p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        />
+                        <div className="mt-1 text-right text-sm text-gray-500">
+                          {career.description.length}/50
                         </div>
-                        <div className="flex-1">
-                          <input
-                            id={`career-description-${index}`}
-                            placeholder="経歴の詳細（50文字以内）"
-                            value={career.description}
-                            onChange={(e) =>
-                              handleCareerChange(
-                                index,
-                                "description",
-                                e.target.value,
-                              )
-                            }
-                            maxLength={50}
-                            className="block w-full rounded-md border-gray-300 bg-white p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                          />
-                          <div className="mt-1 text-right text-sm text-gray-500">
-                            {career.description.length}/50
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveCareer(index)}
-                          className="rounded-full p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-600"
-                          aria-label="削除"
-                        >
-                          <svg
-                            className="h-5 w-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
                       </div>
                     </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={handleAddCareer}
-                    className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                  </div>
+                ))}
+              </div>
+
+              {/* フッターのボタン */}
+              <div className="border-t border-gray-200 pt-6">
+                <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4"> {/* レイアウトを調整 */}
+                  <Link
+                    href="/admin"
+                    className="w-full sm:w-auto rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none text-center"
                   >
-                    <svg
-                      className="mr-2 h-5 w-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                    経歴を追加
+                    キャンセル
+                  </Link>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full sm:w-auto rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
+                  >
+                    {isLoading ? "保存中..." : "保存する"}
                   </button>
                 </div>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-200 pt-6">
-              <div className="flex items-center justify-between gap-4">
-                <Link
-                  href="/admin"
-                  className="rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none"
-                >
-                  キャンセル
-                </Link>
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
-                >
-                  {isLoading ? "保存中..." : "保存する"}
-                </button>
               </div>
             </div>
           </form>
