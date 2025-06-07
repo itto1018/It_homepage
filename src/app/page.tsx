@@ -1,47 +1,10 @@
 import SocialLinkIcon from "@/components/SocialLinkIcon";
 import { ProfileSection } from "@/components/ProfileSection";
-import Link from "next/link";
 import ServiceSection from "@/components/ServiceSection";
 
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Link
-                href="/admin"
-                className="text-xl font-bold text-gray-900 hover:text-[#00a497] transition-colors"
-              >
-                It.dev
-              </Link>
-            </div>
-            <div>
-              <nav className="hidden md:flex space-x-4">
-                <Link
-                  href="#profile-title"
-                  className="text-gray-600 hover:text-[#00a497] transition-colors"
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="#services-title"
-                  className="text-gray-600 hover:text-[#00a497] transition-colors"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="#contact-title"
-                  className="text-gray-600 hover:text-[#00a497] transition-colors"
-                >
-                  Contact
-                </Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
       <main className="pt-16 max-w-full justify-items-center gap-5 px-5 py-10 font-[family-name:var(--font-geist-sans)] lg:gap-10 lg:px-10 lg:py-15">
         <div className="row-start-2 flex w-4/5 flex-col items-start gap-2 lg:gap-7">
           {/* top */}
