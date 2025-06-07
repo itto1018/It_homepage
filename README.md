@@ -56,10 +56,6 @@ src/
 NEXT_PUBLIC_API_URL=     # API接続先URL
 ```
 
-## ライセンス
-
-MIT License
-
 ---
 
 ## Version(2025/04/27)
