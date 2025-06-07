@@ -209,7 +209,10 @@ export default function ProfilePage() {
             プロフィール編集
           </h1>
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
-            <div id="profile-image" className="rounded-lg bg-gray-50 p-4 sm:p-6">
+            <div
+              id="profile-image"
+              className="rounded-lg bg-gray-50 p-4 sm:p-6"
+            >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="relative h-24 w-24 sm:h-32 sm:w-32 overflow-hidden rounded-full shadow-md ring-4 ring-white mx-auto sm:mx-0">
                   {imageUrl ? (
@@ -224,7 +227,9 @@ export default function ProfilePage() {
                     <div className="h-full w-full bg-blue-50" />
                   )}
                 </div>
-                <div className="text-center sm:text-left"> {/* テキストアライメントを調整 */}
+                <div className="text-center sm:text-left">
+                  {" "}
+                  {/* テキストアライメントを調整 */}
                   <input
                     type="file"
                     accept="image/*"
@@ -302,7 +307,9 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 {careers.map((career, index) => (
                   <div key={index} className="rounded-lg bg-gray-50 p-4">
-                    <div className="flex flex-col sm:flex-row gap-4"> {/* レイアウトを調整 */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      {" "}
+                      {/* レイアウトを調整 */}
                       <div className="w-full sm:w-1/3">
                         <input
                           type="text"
@@ -341,7 +348,9 @@ export default function ProfilePage() {
 
               {/* フッターのボタン */}
               <div className="border-t border-gray-200 pt-6">
-                <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4"> {/* レイアウトを調整 */}
+                <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+                  {" "}
+                  {/* レイアウトを調整 */}
                   <Link
                     href="/admin"
                     className="w-full sm:w-auto rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none text-center"
