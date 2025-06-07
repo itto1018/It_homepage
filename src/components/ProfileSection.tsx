@@ -35,52 +35,65 @@ export const ProfileSection = () => {
 
   return (
     <div id="profile-section" className="w-full">
-      <div id="profile-title" className="mb-6 flex flex-col items-start">
-        <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Profile</h2>
-      </div>
-      <div className="rounded-lg border border-gray-100 bg-gradient-to-br from-white to-blue-50 p-6 shadow-lg">
-        <div className="flex flex-col gap-6 lg:gap-8">
-          <div className="flex items-center justify-center">
-            <div className="relative h-32 w-32 sm:h-48 sm:w-48 lg:h-64 lg:w-64">
-              <Image
-                src={profile?.imageUrl || "/images/profile.jpg"}
-                alt="Profile Image"
-                fill
-                className="rounded-full object-cover shadow-lg"
-                priority
-              />
+      <div className="max-w-7xl mx-auto">
+        <div id="profile-title" className="mb-8 sm:mb-12">
+          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            Profile
+          </h2>
+        </div>
+        <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-blue-50 p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex flex-col gap-8 lg:gap-12">
+            {/* プロフィール画像部分 */}
+            <div className="flex items-center justify-center">
+              <div className="relative h-36 w-36 sm:h-48 sm:w-48 lg:h-64 lg:w-64 group">
+                <Image
+                  src={profile?.imageUrl || "/images/profile.jpg"}
+                  alt="Profile Image"
+                  fill
+                  sizes="(max-width: 768px) 144px, (max-width: 1024px) 192px, 256px"
+                  className="rounded-full object-cover shadow-lg ring-4 ring-white transition-transform duration-300 group-hover:scale-105"
+                  priority
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex-1 space-y-6">
-            <div>
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800 sm:text-2xl lg:text-3xl">
+
+            {/* プロフィール情報部分 */}
+            <div className="flex-1 space-y-8">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl mb-2">
                   {profile?.nickname || ""}
                 </h3>
-                <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+                <p className="text-sm text-gray-600 sm:text-base lg:text-lg">
                   {profile?.name || ""}
                 </p>
               </div>
-              <div className="space-y-4">
-                <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+
+              {/* 自己紹介文 */}
+              <div className="mx-auto">
+                <p className="text-sm text-gray-600 sm:text-base lg:text-lg leading-relaxed">
                   {profile?.bio || ""}
                 </p>
-                <div>
-                  <h4 className="mb-2 text-sm font-semibold sm:text-base lg:text-lg">
-                    経歴
-                  </h4>
-                  <div className="space-y-2">
-                    {profile?.careers?.map((career, index) => (
-                      <div key={index}>
-                        <p className="text-xs font-medium sm:text-sm lg:text-base">
-                          {career.period}
-                        </p>
-                        <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-                          {career.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+              </div>
+
+              {/* 経歴セクション */}
+              <div className="max-w-3xl mx-auto">
+                <h4 className="text-lg font-semibold text-gray-800 sm:text-xl lg:text-2xl mb-4 text-center">
+                  経歴
+                </h4>
+                <div className="space-y-4">
+                  {profile?.careers?.map((career, index) => (
+                    <div
+                      key={index}
+                      className="rounded-lg bg-white/50 p-4 hover:bg-white/80 transition-colors duration-200"
+                    >
+                      <p className="text-sm font-medium text-blue-600 sm:text-base mb-1">
+                        {career.period}
+                      </p>
+                      <p className="text-sm text-gray-600 sm:text-base">
+                        {career.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
