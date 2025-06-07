@@ -52,12 +52,17 @@ export default function Home() {
           </div>
 
           {/* Profile */}
+          <div id="profile-title" className="flex flex-col items-start">
+            <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
+              Profile
+            </h2>
+          </div>
           <div className="mb-12 flex w-full flex-col items-start md:mb-15">
             <ProfileSection />
           </div>
 
           {/* Services */}
-          <div className="flex flex-col items-start">
+          <div id="services-title" className="flex flex-col items-start">
             <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
               Services
             </h2>

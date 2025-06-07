@@ -36,11 +36,6 @@ export const ProfileSection = () => {
   return (
     <div id="profile-section" className="w-full">
       <div className="max-w-7xl mx-auto">
-        <div id="profile-title" className="mb-8 sm:mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
-            Profile
-          </h2>
-        </div>
         <div className="rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex flex-col gap-8 lg:gap-12">
             {/* プロフィール画像部分 */}
