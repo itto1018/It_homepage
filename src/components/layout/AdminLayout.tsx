@@ -7,7 +7,7 @@ import { Sidebar } from "@/components/admin/Sidebar";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-gray-50">
+      <div className="h-screen bg-gray-50">
         <Sidebar />
         <div className="md:pl-64">
           <main className="py-5">{children}</main>

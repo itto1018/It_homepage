@@ -78,7 +78,7 @@ export const Sidebar = () => {
           </div>
 
           {/* フッター部分 */}
-          <div className="border-t border-[#00a497]/10 bg-gradient-to-r from-[#00a497]/5 to-transparent p-6">
+          <div className="border-t border-[#00a497]/10 bg-gradient-to-r from-[#00a497]/5 to-transparent p-6 pb-25">
             {/* パブリック画面へのリンク */}
             <Link
               href="/"

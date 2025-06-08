@@ -168,12 +168,7 @@ export default function EditProfilePage() {
       if (!response.ok) {
         throw new Error("保存に失敗しました");
       }
-
       toast.success("プロフィールを保存しました");
-      // 保存成功後、1秒待ってから管理者メニューに遷移
-      setTimeout(() => {
-        router.push("/admin");
-      }, 1000);
     } catch (error) {
       console.error(error);
       toast.error("エラーが発生しました");

@@ -9,7 +9,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="mt-auto bg-white border-t border-[#00a497]/10">
+    <footer className="h-15 relative z-10 bg-white border-t border-[#00a497]/10">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0">
           <div className="text-sm text-gray-400">
