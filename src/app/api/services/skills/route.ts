@@ -10,7 +10,7 @@ export async function PUT(request: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const { skills } = await request.json() as { skills: Skill[] };
+    const { skills } = (await request.json()) as { skills: Skill[] };
     await updateSkills(skills);
 
     return NextResponse.json({ message: "Skills updated successfully" });

@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 const Header = () => {
   return (
     <>
-        <header className="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow">
+      <header className="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -41,7 +41,7 @@ const Header = () => {
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

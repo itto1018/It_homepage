@@ -1,9 +1,5 @@
 import { db } from "./client";
-import {
-  doc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import type { Service } from "@/types/service";
 import type { Skill } from "@/types/serviceSkill";
 import { DEFAULT_SERVICES } from "@/constants/services";
@@ -38,11 +34,11 @@ export const updateSkills = async (skills: Skill[]): Promise<void> => {
     const skillsRef = doc(db, "skills", "default");
 
     // スキルの形式を確認
-    const formattedSkills = skills.map(skill => ({
+    const formattedSkills = skills.map((skill) => ({
       id: skill.id,
       serviceId: skill.serviceId,
       name: skill.name,
-      level: skill.level
+      level: skill.level,
     }));
 
     await setDoc(skillsRef, { skills: formattedSkills }, { merge: true });

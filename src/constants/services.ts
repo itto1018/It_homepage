@@ -17,5 +17,5 @@ export const DEFAULT_SERVICES: Service[] = [
     id: "data-analytics",
     title: "データ分析・可視化",
     items: ["要件定義", "ダッシュボード開発", "統計分析・機械学習"],
-  }
+  },
 ];

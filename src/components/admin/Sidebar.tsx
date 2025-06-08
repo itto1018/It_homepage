@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaHome, FaUser, FaClipboard, FaSignOutAlt, FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaHome,
+  FaUser,
+  FaClipboard,
+  FaSignOutAlt,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 import { signOut, useSession } from "next-auth/react";
 
 export const Sidebar = () => {
@@ -39,9 +45,11 @@ export const Sidebar = () => {
                           : "text-gray-600 hover:bg-[#00a497]/5 hover:text-[#00a497] hover:shadow-sm"
                       }`}
                     >
-                      <item.icon className={`mr-3 h-5 w-5 transition-transform duration-200 ${
-                        isActive ? "" : "group-hover:scale-110"
-                      }`} />
+                      <item.icon
+                        className={`mr-3 h-5 w-5 transition-transform duration-200 ${
+                          isActive ? "" : "group-hover:scale-110"
+                        }`}
+                      />
                       {item.name}
                     </Link>
                   </li>
