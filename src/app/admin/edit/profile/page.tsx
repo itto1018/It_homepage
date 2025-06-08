@@ -62,7 +62,7 @@ const validateProfile = (data: {
   return errors;
 };
 
-export default function ProfilePage() {
+export default function EditProfilePage() {
   const router = useRouter(); // 追加
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
@@ -310,7 +310,7 @@ export default function ProfilePage() {
                     <div className="flex flex-col sm:flex-row gap-4">
                       {" "}
                       {/* レイアウトを調整 */}
-                      <div className="w-full sm:w-1/3">
+                      <div className="w-full sm:w-1/5">
                         <input
                           type="text"
                           id={`career-period-${index}`}
@@ -323,7 +323,7 @@ export default function ProfilePage() {
                         />
                       </div>
                       <div className="flex-1">
-                        <input
+                        <textarea
                           id={`career-description-${index}`}
                           placeholder="経歴の詳細（50文字以内）"
                           value={career.description}

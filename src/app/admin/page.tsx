@@ -47,7 +47,7 @@ export default async function AdminPage() {
 
   return (
     <AdminLayout>
-      <div className="m-10 md:ml-80">
+      <div className="p-6 md:p-10"> {/* マージンをパディングに変更 */}
         <h1 className="mb-8 text-2xl font-bold text-gray-800">管理画面</h1>
         <div className="grid grid-cols-1 gap-8">
           {ADMIN_MENUS.map((menu) => (

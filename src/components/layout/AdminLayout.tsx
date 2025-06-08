@@ -2,14 +2,16 @@
 
 import { Toaster } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
-import { Sidebar } from "../admin/Sidebar";
+import { Sidebar } from "@/components/admin/Sidebar";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gray-50">
         <Sidebar />
-        <main className="flex">{children}</main>
+        <div className="md:pl-64">
+          <main className="py-5">{children}</main>
+        </div>
         <Toaster
           position="top-center"
           reverseOrder={false}
