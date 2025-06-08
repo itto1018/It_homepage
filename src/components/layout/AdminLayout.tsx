@@ -1,15 +1,17 @@
 "use client";
 
 import { Toaster } from "react-hot-toast";
-import { Header } from "./Header";
-import { AuthGuard } from "./AuthGuard";
+import { AuthGuard } from "../admin/AuthGuard";
+import { Sidebar } from "../admin/Sidebar";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gray-50">
-        <Header />
-        <main className="flex-1 p-6">{children}</main>
+        <Sidebar />
+        <div className="pl-64">
+          <main className="flex-1 p-6">{children}</main>
+        </div>
         <Toaster
           position="top-center"
           reverseOrder={false}

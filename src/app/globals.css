@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .scroll-mt-header {
+    scroll-margin-top: 5rem;
+  }
+}

@@ -4,6 +4,8 @@ import "../../app/globals.css";
 import React from "react";
 import AuthProvider from "@/components/auth/AuthProvider";
 import Link from "next/link";
+import { Footer } from "./Footer";
+import Header from "./Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,12 +28,16 @@ export interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <AuthProvider>{children}</AuthProvider>
-      </body>
-    </html>
+    <>
+      <Header />
+      <html lang="ja">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+          <AuthProvider>{children}</AuthProvider>
+        </body>
+      </html>
+      <Footer />
+    </>
   );
 }
