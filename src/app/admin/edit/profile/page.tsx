@@ -8,8 +8,8 @@ import { HiChevronRight } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import { PROFILE_CONSTRAINTS } from "@/types/profile";
 import { getProfile } from "@/lib/firebase/profile";
-import { uploadProfileImage } from "@/lib/storage/uploadImage";
-import { useRouter } from "next/navigation"; // 追加
+import { uploadProfileImage } from "@/lib/firebase/storage/uploadImage";
+import { useRouter } from "next/navigation";
 
 interface Career {
   period: string;

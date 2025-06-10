@@ -23,7 +23,7 @@ export const Sidebar = () => {
     { name: "ホーム", href: "/admin", icon: FaHome },
     { name: "プロフィール管理", href: "/admin/edit/profile", icon: FaUser },
     { name: "サービス管理", href: "/admin/edit/services", icon: FaClipboard },
-    { name: "作品集管理", href: "", icon: FaClipboard },
+    { name: "作品集管理", href: "/admin/edit/works", icon: FaClipboard },
   ];
 
   return (
