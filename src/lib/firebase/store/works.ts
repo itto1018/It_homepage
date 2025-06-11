@@ -7,8 +7,9 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import type { Works } from "@/types/works";
+import { deleteImage } from "../storage/works";
 
-// Firestoreから取得
+// Firestoreから取得（Read)
 export const getWorks = async (): Promise<Works[]> => {
   try {
     const worksRef = doc(db, "works", "default");
@@ -31,29 +32,7 @@ export const getWorks = async (): Promise<Works[]> => {
   }
 };
 
-// 作品情報を更新
-export const updateWorks = async (works: Works[]): Promise<void> => {
-  try {
-    const worksRef = doc(db, "works", "default");
-    const formattedWorks = works.map((work) => ({
-      ...work,
-      createdAt:
-        work.createdAt instanceof Date
-          ? Timestamp.fromDate(work.createdAt)
-          : serverTimestamp(),
-    }));
-
-    await setDoc(worksRef, {
-      works: formattedWorks,
-      updatedAt: serverTimestamp(),
-    });
-  } catch (error) {
-    console.error("Error updating works:", error);
-    throw new Error("作品情報の更新に失敗しました");
-  }
-};
-
-// 新規作品を追加
+// 新規作品を追加（Create)
 export const addWork = async (
   work: Omit<Works, "id" | "createdAt">,
 ): Promise<Works> => {
@@ -90,5 +69,57 @@ export const addWork = async (
   } catch (error) {
     console.error("Error adding work:", error);
     throw new Error("作品の追加に失敗しました");
+  }
+};
+
+
+// 作品情報を更新（Update）
+export const updateWorks = async (works: Works[]): Promise<void> => {
+  try {
+    const worksRef = doc(db, "works", "default");
+    const formattedWorks = works.map((work) => ({
+      ...work,
+      createdAt:
+        work.createdAt instanceof Date
+          ? Timestamp.fromDate(work.createdAt)
+          : serverTimestamp(),
+    }));
+
+    await setDoc(worksRef, {
+      works: formattedWorks,
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Error updating works:", error);
+    throw new Error("作品情報の更新に失敗しました");
+  }
+};
+
+// 作品を削除（Delete）
+export const deleteWork = async (workId: string): Promise<void> => {
+  try {
+    const worksRef = doc(db, "works", "default");
+    const docSnap = await getDoc(worksRef);
+
+    if (!docSnap.exists()) {
+      throw new Error("作品が見つかりません");
+    }
+
+    const currentWorks = docSnap.data().works || [];
+    const workToDelete = currentWorks.find((work: Works) => work.id === workId);
+    
+    if (workToDelete?.imageUrl) {
+      await deleteImage(workToDelete.imageUrl);
+    }
+
+    const updatedWorks = currentWorks.filter((work: Works) => work.id !== workId);
+
+    await setDoc(worksRef, {
+      works: updatedWorks,
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Error deleting work:", error);
+    throw new Error("作品の削除に失敗しました");
   }
 };

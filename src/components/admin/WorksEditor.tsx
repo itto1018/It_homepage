@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaPlus, FaEdit, FaTrash, FaUpload } from "react-icons/fa";
 import type { Works } from "@/types/works";
 import { uploadImage } from "@/lib/firebase/storage/works";
-import { getWorks, updateWorks } from "@/lib/firebase/store/works";
+import { getWorks, updateWorks, deleteWork } from "@/lib/firebase/store/works";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -101,7 +101,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 
     try {
       setIsLoading(true);
-      const imageUrl = await uploadImage(file);
+      const imageUrl = await uploadImage(file, workForm.id);
       setWorkForm({ ...workForm, imageUrl });
       toast.success("画像をアップロードしました");
     } catch (error) {
@@ -127,9 +127,20 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
   // 作品の削除を確定
   const handleConfirmDelete = async () => {
     if (!selectedWorkId) return;
-    handleDeleteWork(selectedWorkId);
-    setIsDeleteModalOpen(false);
-    setSelectedWorkId(null);
+
+    try {
+      setIsLoading(true);
+      await deleteWork(selectedWorkId);
+      handleDeleteWork(selectedWorkId);
+      toast.success("作品を削除しました");
+    } catch (error) {
+      console.error("Error deleting work:", error);
+      toast.error("作品の削除に失敗しました");
+    } finally {
+      setIsLoading(false);
+      setIsDeleteModalOpen(false);
+      setSelectedWorkId(null);
+    }
   };
 
   // モーダルのタイトルを動的に設定
