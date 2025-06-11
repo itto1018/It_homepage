@@ -26,6 +26,8 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		url: "",
 		createdAt: new Date(),
 	});
+	const [tempFile, setTempFile] = useState<File | null>(null);
+	const [tempImagePreview, setTempImagePreview] = useState<string | null>(null);
 
 	const [works, setWorks] = useState<Works[]>(() => {
 		// 初期データがある場合はそれを使用
@@ -99,25 +101,18 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			return;
 		}
 
-		try {
-			setIsLoading(true);
-			const imageUrl = await uploadImage(file, workForm.id);
-			setWorkForm({ ...workForm, imageUrl });
-			toast.success("画像をアップロードしました");
-		} catch (error) {
-			console.error("Error uploading image:", error);
-			toast.error("画像のアップロードに失敗しました");
-		} finally {
-			setIsLoading(false);
-		}
+		// ファイルを一時保存し、プレビューを表示
+		setTempFile(file);
+		const previewUrl = URL.createObjectURL(file);
+		setTempImagePreview(previewUrl);
 	};
 
 	//画像削除処理
-	const handleImageDelete = async () => {
-		if (!workForm.imageUrl) return;
+	const handleImageDelete = async (imageUrl: string) => {
+		if (imageUrl) return;
 		try {
 			setIsLoading(true);
-			await deleteImage(workForm.imageUrl);
+			await deleteImage(imageUrl);
 			setWorkForm({ ...workForm, imageUrl: null });
 			toast.success("画像を削除しました");
 		} catch (error) {
@@ -148,7 +143,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			setIsLoading(true);
 			await deleteWork(selectedWorkId);
 			// 画像の削除
-			const workToDelete = works.find((work) => work.id === selectedWorkId);
+			await handleImageDelete(selectedWorkId);
 			handleDeleteWork(selectedWorkId);
 			toast.success("作品を削除しました");
 		} catch (error) {
@@ -170,7 +165,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		if (isLoading) return;
 
 		// バリデーション
-		if (!workForm.title || !workForm.description || !workForm.imageUrl) {
+		if (!workForm.title || !workForm.description) {
 			toast.error("必須項目を入力してください");
 			return;
 		}
@@ -178,9 +173,17 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		try {
 			setIsLoading(true);
 			const workId = workForm.id || crypto.randomUUID();
+			
+			// 画像がある場合はアップロード
+			let imageUrl = workForm.imageUrl;
+			if (tempFile) {
+				imageUrl = await uploadImage(tempFile, workId);
+			}
+
 			const newWork = {
 				...workForm,
 				id: workId,
+				imageUrl,
 				createdAt: workForm.id ? workForm.createdAt : new Date(),
 			};
 
@@ -191,6 +194,11 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			await updateWorks(updatedWorks);
 			setWorks(updatedWorks);
 			toast.success("作品情報を保存しました");
+			setIsModalOpen(false);
+			
+			// リセット
+			setTempFile(null);
+			setTempImagePreview(null);
 		} catch (error) {
 			console.error("Error saving work:", error);
 			toast.error("作品情報の保存に失敗しました");
@@ -332,7 +340,16 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 										<FaUpload className="h-4 w-4" />
 										{isLoading ? "アップロード中..." : "アップロード"}
 									</button>
-									{workForm.imageUrl ? (
+									{tempImagePreview ? (
+										<div className="relative h-20 w-32">
+											<Image
+												src={tempImagePreview}
+												alt="プレビュー"
+												fill
+												className="rounded-md object-cover"
+											/>
+										</div>
+									) : workForm.imageUrl ? (
 										<div className="relative h-20 w-32">
 											<Image
 												src={workForm.imageUrl}
