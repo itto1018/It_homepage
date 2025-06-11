@@ -1,4 +1,4 @@
-import { db, storage } from "./client";
+import { db, storage } from "../client";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import type { Profile } from "@/types/profile";

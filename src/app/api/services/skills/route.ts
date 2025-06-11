@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { updateSkills } from "@/lib/firebase/services";
+import { updateSkills } from "@/lib/firebase/store/services";
 import { Skill } from "@/types/serviceSkill";
 import { auth } from "@/auth";
 

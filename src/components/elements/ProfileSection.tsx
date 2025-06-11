@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FaGithub, FaCode, FaChartLine, FaDatabase } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { getPublicProfile } from "@/lib/firebase/profile";
+import { getPublicProfile } from "@/lib/firebase/store/profile";
 import type { Profile } from "@/types/profile";
 
 export const ProfileSection = () => {
