@@ -7,10 +7,12 @@ import { Sidebar } from "@/components/admin/Sidebar";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<AuthGuard>
-			<div className="h-screen bg-gray-50">
-				<Sidebar />
-				<div className="md:pl-64">
-					<main className="py-5">{children}</main>
+			<div className="min-h-screen flex flex-col bg-gray-50">
+				<div className="flex flex-1">
+					<Sidebar />
+					<div className="flex-1 md:pl-64">
+						<main className="py-5">{children}</main>
+					</div>
 				</div>
 				<Toaster
 					position="top-center"

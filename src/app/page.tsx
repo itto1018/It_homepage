@@ -1,6 +1,7 @@
-import SocialLinkIcon from "@/components/SocialLinkIcon";
-import { ProfileSection } from "@/components/ProfileSection";
-import ServiceSection from "@/components/ServiceSection";
+import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
+import ProfileSection from "@/components/elements/ProfileSection";
+import ServiceSection from "@/components/elements/ServiceSection";
+import WorksSection from "@/components/elements/WorksSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -56,6 +57,19 @@ export default function Home() {
 						</div>
 						<div className="mb-12 w-full md:mb-15">
 							<ServiceSection />
+						</div>
+
+						{/* Works */}
+						<div
+							id="works-title"
+							className="flex flex-col items-center my-4 scroll-mt-header"
+						>
+							<h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
+								Works
+							</h2>
+						</div>
+						<div className="mb-12 w-full md:mb-15">
+							<WorksSection />
 						</div>
 
 						{/* Contact */}
