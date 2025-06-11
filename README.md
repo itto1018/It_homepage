@@ -94,10 +94,10 @@ import { FaLaptopCode } from "react-icons/fa";
 import { RiUser3Fill } from "react-icons/ri";
 
 const Example = () => (
-  <div>
-    <FaLaptopCode size={30} />
-    <RiUser3Fill size={30} />
-  </div>
+	<div>
+		<FaLaptopCode size={30} />
+		<RiUser3Fill size={30} />
+	</div>
 );
 ```
 
@@ -115,16 +115,16 @@ const Example = () => (
 
 ```json
 {
-  "semi": true,
-  "singleQuote": false,
-  "tabWidth": 2,
-  "printWidth": 100,
-  "trailingComma": "es5",
-  "bracketSpacing": true,
-  "arrowParens": "avoid",
-  "endOfLine": "lf",
-  "jsxSingleQuote": false,
-  "bracketSameLine": false
+	"semi": true,
+	"singleQuote": false,
+	"tabWidth": 2,
+	"printWidth": 100,
+	"trailingComma": "es5",
+	"bracketSpacing": true,
+	"arrowParens": "avoid",
+	"endOfLine": "lf",
+	"jsxSingleQuote": false,
+	"bracketSameLine": false
 }
 ```
 
@@ -263,7 +263,7 @@ AUTH_URL=http://localhost:3000
 // ログイン状態の確認
 const session = await auth();
 if (!session) {
-  redirect("/admin/login");
+	redirect("/admin/login");
 }
 ```
 
@@ -305,14 +305,14 @@ import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+	authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
 };
 
 // Firebase初期化
 const app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const db = getFirestore(app);
 
 export { app, db };
@@ -325,17 +325,17 @@ export { app, db };
 import { collection, getDocs } from "firebase/firestore";
 
 const fetchWorks = async () => {
-  const worksRef = collection(db, "works");
-  const snapshot = await getDocs(worksRef);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+	const worksRef = collection(db, "works");
+	const snapshot = await getDocs(worksRef);
+	return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
 // データの追加
 import { addDoc } from "firebase/firestore";
 
 const addWork = async (work) => {
-  const worksRef = collection(db, "works");
-  await addDoc(worksRef, work);
+	const worksRef = collection(db, "works");
+	await addDoc(worksRef, work);
 };
 ```
 
