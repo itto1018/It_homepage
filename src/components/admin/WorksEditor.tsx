@@ -213,7 +213,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			<div className="flex justify-end">
 				<button
 					onClick={() => setIsModalOpen(true)}
-					className="flex items-center gap-2 rounded-lg bg-[#00a497] px-4 py-2 text-white hover:bg-[#00a497]/90"
+					className="flex items-center gap-2 rounded-lg bg-[#00a497] px-4 py-2 text-white hover:bg-[#00a497]/90 cursor-pointer disabled:cursor-not-allowed"
 					disabled={isLoading}
 				>
 					<FaPlus className="h-4 w-4" />
@@ -246,19 +246,26 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 							<p className="mt-1 text-sm text-gray-600 line-clamp-2">
 								{work.description}
 							</p>
+							<p className="mt-4 text-sm text-gray-600 line-clamp-2">
+								作成日: {work.createdAt.toLocaleDateString("ja-JP", {
+									year: "numeric",
+									month: "2-digit",
+									day: "2-digit",
+								})}
+							</p>
 						</div>
 
 						{/* 編集・削除ボタン */}
 						<div className="absolute right-2 top-2 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
 							<button
 								onClick={() => handleEdit(work)}
-								className="rounded-full bg-white p-2 text-gray-600 shadow-md hover:text-[#00a497]"
+								className="rounded-full bg-white p-2 text-gray-600 shadow-md hover:text-[#00a497] cursor-pointer"
 							>
 								<FaEdit className="h-4 w-4" />
 							</button>
 							<button
 								onClick={() => handleDeleteModal(work.id)}
-								className="rounded-full bg-white p-2 text-gray-600 shadow-md hover:text-red-500"
+								className="rounded-full bg-white p-2 text-gray-600 shadow-md hover:text-red-500 cursor-pointer"
 							>
 								<FaTrash className="h-4 w-4" />
 							</button>
@@ -333,7 +340,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 									/>
 									<button
 										type="button"
-										className="flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50 disabled:opacity-50"
+										className="flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
 										onClick={() => fileInputRef.current?.click()}
 										disabled={isLoading}
 									>
@@ -366,14 +373,14 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 								<button
 									type="button"
 									onClick={() => setIsModalOpen(false)}
-									className="rounded-md px-4 py-2 text-gray-500 hover:bg-gray-50"
+									className="rounded-md px-4 py-2 text-gray-500 hover:bg-gray-50 cursor-pointer disabled:cursor-not-allowed"
 									disabled={isLoading}
 								>
 									キャンセル
 								</button>
 								<button
 									type="submit"
-									className="rounded-md bg-[#00a497] px-4 py-2 text-white hover:bg-[#00a497]/90 disabled:opacity-50"
+									className="rounded-md bg-[#00a497] px-4 py-2 text-white hover:bg-[#00a497]/90 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
 									disabled={isLoading}
 								>
 									{isLoading ? "保存中..." : "保存"}
