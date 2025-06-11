@@ -1,6 +1,6 @@
-import SocialLinkIcon from "@/components/SocialLinkIcon";
-import { ProfileSection } from "@/components/ProfileSection";
-import ServiceSection from "@/components/ServiceSection";
+import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
+import { ProfileSection } from "@/components/elements/ProfileSection";
+import ServiceSection from "@/components/elements/ServiceSection";
 import Image from "next/image";
 
 export default function Home() {

@@ -22,6 +22,7 @@ import {
 } from "react-icons/si";
 import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
 import { BsFiletypeSql } from "react-icons/bs";
+import { getSkillLevelDescription } from "@/types/serviceSkill";
 
 type TechStack = {
 	Icon: IconType;
@@ -31,7 +32,7 @@ type TechStack = {
 
 type SkillLevel = {
 	name: string;
-	level: number;
+	level: 1 | 2 | 3 | 4 | 5;
 	description?: string;
 };
 
@@ -111,9 +112,8 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 			<div className="my-4 space-y-3">
 				{skills.map((skill, index) => (
 					<div key={index} className="space-y-1">
-						<div className="flex justify-between text-sm text-gray-600">
+						<div className="flex justify-between text-sm font-bold text-gray-600">
 							<span>{skill.name}</span>
-							<span>{skill.description}</span>
 							<span className="text-[#00a497]">{skill.level}/5</span>
 						</div>
 						<div className="flex gap-0.5">
@@ -126,6 +126,7 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 								/>
 							))}
 						</div>
+						<p className="text-xs text-gray-600">{getSkillLevelDescription(skill.level)}</p>
 					</div>
 				))}
 			</div>

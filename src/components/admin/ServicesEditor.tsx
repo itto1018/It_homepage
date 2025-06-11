@@ -21,7 +21,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 	// サービスは定数から取得
 	const [services] = useState<Service[]>(DEFAULT_SERVICES);
 
-	// スキルはFirestoreから取得した初期値を使用
+	// スキルはFirestoreから取得した初期値を使用(Read)
 	const [skills, setSkills] = useState<Skill[]>(() => {
 		// 初期スキルがない場合は空配列を返す
 		if (!initialSkills) return [];
@@ -36,7 +36,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 		}));
 	});
 
-	// スキルの追加
+	// スキルの追加(Create)
 	const handleAddSkill = (serviceId: string) => {
 		const newSkill: Skill = {
 			id: crypto.randomUUID(),
@@ -48,12 +48,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 		setSkills([...skills, newSkill]);
 	};
 
-	// スキルの削除
-	const handleRemoveSkill = (serviceId: string, skillId: string) => {
-		setSkills(skills.filter((skill) => skill.id !== skillId));
-	};
-
-	// スキルの更新
+	// スキルの更新(Update)
 	const handleSkillChange = (
 		serviceId: string,
 		skillId: string,
@@ -71,6 +66,11 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 				};
 			})
 		);
+	};
+
+	// スキルの削除(Delete)
+	const handleRemoveSkill = (serviceId: string, skillId: string) => {
+		setSkills(skills.filter((skill) => skill.id !== skillId));
 	};
 
 	// 保存処理
