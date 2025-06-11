@@ -1,5 +1,5 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
-import { getServices, getSkills } from "@/lib/firebase/services";
+import { getServices, getSkills } from "@/lib/firebase/store/services";
 import { ServicesEditor } from "@/components/admin/ServicesEditor";
 import type { Service } from "@/types/service";
 import type { Skill } from "@/types/serviceSkill";

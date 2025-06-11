@@ -1,4 +1,4 @@
-import { db } from "./client";
+import { db } from "@/lib/firebase/client";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import type { Service } from "@/types/service";
 import type { Skill } from "@/types/serviceSkill";

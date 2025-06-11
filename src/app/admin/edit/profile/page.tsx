@@ -7,7 +7,7 @@ import Link from "next/link";
 import { HiChevronRight } from "react-icons/hi";
 import { toast } from "react-hot-toast";
 import { PROFILE_CONSTRAINTS } from "@/types/profile";
-import { getProfile } from "@/lib/firebase/profile";
+import { getProfile } from "@/lib/firebase/store/profile";
 import { uploadProfileImage } from "@/lib/firebase/storage/uploadImage";
 import { useRouter } from "next/navigation";
 
