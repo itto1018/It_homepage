@@ -1,5 +1,3 @@
-"use client";
-
 import { Toaster } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
 import { Sidebar } from "@/components/admin/Sidebar";
