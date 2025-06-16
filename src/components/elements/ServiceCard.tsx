@@ -126,7 +126,9 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 								/>
 							))}
 						</div>
-						<p className="text-xs text-gray-600">{getSkillLevelDescription(skill.level)}</p>
+						<p className="text-xs text-gray-600">
+							{getSkillLevelDescription(skill.level)}
+						</p>
 					</div>
 				))}
 			</div>

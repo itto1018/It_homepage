@@ -91,3 +91,5 @@ export const ProfileSection = () => {
 		</div>
 	);
 };
+
+export default ProfileSection;

@@ -22,7 +22,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		id: "",
 		title: "",
 		description: "",
-		imageUrl: null, // 空文字列から null に変更
+		imageUrl: null,
 		url: "",
 		createdAt: new Date(),
 	});
@@ -33,8 +33,10 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		// 初期データがある場合はそれを使用
 		return initialWorks || [];
 	});
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 9;
 
-	// 初期データの取得(Read)
+	// データの取得(Read)
 	const handleReadWorks = async () => {
 		try {
 			setIsLoading(true);
@@ -52,7 +54,6 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		}
 	};
 
-	// 初期データの読み込み
 	useEffect(() => {
 		handleReadWorks();
 	}, []);
@@ -173,7 +174,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		try {
 			setIsLoading(true);
 			const workId = workForm.id || crypto.randomUUID();
-			
+
 			// 画像がある場合はアップロード
 			let imageUrl = workForm.imageUrl;
 			if (tempFile) {
@@ -195,7 +196,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			setWorks(updatedWorks);
 			toast.success("作品情報を保存しました");
 			setIsModalOpen(false);
-			
+
 			// リセット
 			setTempFile(null);
 			setTempImagePreview(null);
@@ -206,6 +207,15 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			setIsLoading(false);
 		}
 	};
+
+	const getCurrentWorks = () => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return works.slice(startIndex, endIndex);
+	};
+
+	// 総ページ数を計算
+	const totalPages = Math.ceil(works.length / itemsPerPage);
 
 	return (
 		<div className="space-y-6">
@@ -223,7 +233,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 
 			{/* 作品一覧 */}
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{works.map((work) => (
+				{getCurrentWorks().map((work) => (
 					<div
 						key={work.id}
 						className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
@@ -231,7 +241,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 						{/* サムネイル画像 */}
 						<div className="relative aspect-video">
 							<Image
-								src={work.imageUrl || "/images/no-image.png"} // フォールバック画像を追加
+								src={work.imageUrl || "/images/no-image.png"}
 								alt={work.title || "No image"}
 								fill
 								className="object-cover"
@@ -247,7 +257,8 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 								{work.description}
 							</p>
 							<p className="mt-4 text-sm text-gray-600 line-clamp-2">
-								作成日: {work.createdAt.toLocaleDateString("ja-JP", {
+								投稿日:{" "}
+								{work.createdAt.toLocaleDateString("ja-JP", {
 									year: "numeric",
 									month: "2-digit",
 									day: "2-digit",
@@ -273,6 +284,31 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 					</div>
 				))}
 			</div>
+
+			{/* ページネーション */}
+			{totalPages > 1 && (
+				<div className="flex justify-center gap-2 mt-8">
+					<button
+						onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+						disabled={currentPage === 1}
+						className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+					>
+						前へ
+					</button>
+					<div className="flex items-center px-4">
+						{currentPage} / {totalPages}
+					</div>
+					<button
+						onClick={() =>
+							setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+						}
+						disabled={currentPage === totalPages}
+						className="px-4 py-2 border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+					>
+						次へ
+					</button>
+				</div>
+			)}
 
 			{/* 作品追加/編集モーダル */}
 			{isModalOpen && (
