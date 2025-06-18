@@ -1,4 +1,4 @@
-import { Service } from "@/types/service";
+import { Service } from "@/types/services";
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 import { IoAnalyticsSharp } from "react-icons/io5";
 

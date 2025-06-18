@@ -9,7 +9,7 @@ import { RxReload } from "react-icons/rx";
 import { DEFAULT_SERVICES } from "@/constants/services";
 import { getSkills } from "@/lib/firebase/store/services";
 
-import type { Service, Skill } from "@/types/service";
+import type { Service, Skill } from "@/types/services";
 
 interface Props {
 	initialSkills: Skill[];

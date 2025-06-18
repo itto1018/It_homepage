@@ -22,7 +22,7 @@ import {
 } from "react-icons/si";
 import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
 import { BsFiletypeSql } from "react-icons/bs";
-import { getSkillLevelDescription } from "@/types/service";
+import { getSkillLevelDescription } from "@/types/services";
 
 type TechStack = {
 	Icon: IconType;
