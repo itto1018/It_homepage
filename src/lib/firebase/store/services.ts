@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/client";
 import { DEFAULT_SERVICES } from "@/constants/services";
-import type { Service } from "@/types/services";
+import type { Service } from "@/types/service";
 import type { Skill } from "@/types/serviceSkill";
 
 // サービス一覧を取得（定数から取得）

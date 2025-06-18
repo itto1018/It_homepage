@@ -23,7 +23,7 @@ const Header = () => {
 						</div>
 						{isLandingPage && (
 							<div>
-								<nav className="hidden md:flex space-x-4">
+								<nav className="flex space-x-10">
 									<Link
 										href="#profile-title"
 										className="text-gray-600 hover:text-[#00a497] transition-colors"
@@ -35,12 +35,6 @@ const Header = () => {
 										className="text-gray-600 hover:text-[#00a497] transition-colors"
 									>
 										Services
-									</Link>
-									<Link
-										href="#contact-title"
-										className="text-gray-600 hover:text-[#00a497] transition-colors"
-									>
-										Contact
 									</Link>
 								</nav>
 							</div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Service } from "@/types/services";
+import { Service } from "@/types/service";
 import {
 	getSkillLevelDescription,
 	Skill,

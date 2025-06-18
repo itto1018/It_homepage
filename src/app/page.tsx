@@ -56,7 +56,7 @@ export default function Home() {
 							</h2>
 						</div>
 						<div className="mb-12 w-full md:mb-15">
-							<ServiceSection />
+							<ServiceSection initialSkills={[]} />
 						</div>
 
 						{/* Works */}
@@ -70,39 +70,6 @@ export default function Home() {
 						</div>
 						<div className="mb-12 w-full md:mb-15">
 							<WorksSection />
-						</div>
-
-						{/* Contact */}
-						<div
-							id="contact-title"
-							className="flex flex-col items-center my-4 scroll-mt-header"
-						>
-							<h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
-								Contact
-							</h2>
-						</div>
-						<div className="flex w-full flex-col items-center sm:flex-row sm:items-center sm:justify-between">
-							<p className="text-center text-sm text-gray-600 lg:text-xl">
-								ご相談等はこちらからお願いします！
-								<br />
-							</p>
-							<div className="my-4 flex w-full justify-center gap-4 sm:my-0 sm:w-auto">
-								<SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
-								<SocialLinkIcon
-									type="Wantedly"
-									url={"https://www.wantedly.com/id/Itto_Okmr"}
-								/>
-								<SocialLinkIcon
-									type="Mail"
-									url={"mailto:itto.mura@gmail.com"}
-								/>
-								<SocialLinkIcon
-									type="LinkedIn"
-									url={
-										"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"
-									}
-								/>
-							</div>
 						</div>
 					</div>
 				</div>
