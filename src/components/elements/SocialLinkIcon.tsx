@@ -1,23 +1,17 @@
 import React, { FC } from "react";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
-import { FaNoteSticky, FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import { SiWantedly } from "react-icons/si";
 
 export type Props = {
-	type: "X" | "Wantedly" | "Mail" | "LinkedIn" | "Note" | "GitHub";
+	type: "X" | "Wantedly" | "Mail" | "LinkedIn" | "GitHub";
 	url: string;
 };
 
 const iconMap = {
 	LinkedIn: (
 		<FaLinkedinIn className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
-	),
-	Mail: (
-		<BiLogoGmail className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
-	),
-	Note: (
-		<FaNoteSticky className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
 	),
 	Wantedly: (
 		<SiWantedly className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
@@ -26,6 +20,10 @@ const iconMap = {
 	GitHub: (
 		<FaGithub className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
 	),
+	Mail: (
+		<BiLogoGmail className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
+	),
+
 };
 
 const SocialLinkIcon: FC<Props> = (props) => {
