@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaGithub, FaCode, FaChartLine, FaDatabase } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getPublicProfile } from "@/lib/firebase/store/profile";
+import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
 import type { Profile } from "@/types/profile";
 
 export const ProfileSection = () => {
@@ -65,6 +66,19 @@ export const ProfileSection = () => {
 						<p className="text-sm text-gray-600 sm:text-base lg:text-lg leading-relaxed">
 							{profile?.bio || ""}
 						</p>
+					</div>
+					<div className="my-4 w-full sm:my-0 sm:w-auto">
+						<div className="flex flex-wrap justify-center gap-2">
+							<div className="flex gap-2">
+								<SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
+								<SocialLinkIcon type="GitHub" url="https://github.com/itto1018" />
+								<SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
+							</div>
+							<div className="flex gap-2">
+								<SocialLinkIcon type="LinkedIn" url={"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"} />
+								<SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className="lg:w-1/2 lg:border-l lg:border-[#00a497]/10 lg:pl-8">
