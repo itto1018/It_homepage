@@ -8,7 +8,7 @@ export default function Home() {
 	return (
 		<>
 			<main className="w-full">
-				{/* Hero Section */}
+				{/* トップセクション */}
 				<div className="relative w-full min-h-[50vh] md:min-h-[75vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden">
 					<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
 					<div className="relative z-10 flex flex-col items-center text-center px-5">
