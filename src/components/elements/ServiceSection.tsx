@@ -54,10 +54,13 @@ const ServiceSection: React.FC<Props> = ({ initialSkills }) => {
 						key={service.id}
 						title={service.title}
 						Icon={
-							service.id === "data-infrastructure" ? FaDatabase :
-							service.id === "web-development" ? FaLaptopCode :
-							service.id === "data-analytics" ? IoAnalyticsSharp :
-							RxReload
+							service.id === "data-infrastructure"
+								? FaDatabase
+								: service.id === "web-development"
+									? FaLaptopCode
+									: service.id === "data-analytics"
+										? IoAnalyticsSharp
+										: RxReload
 						}
 						items={service.items}
 						skills={serviceSkills}
