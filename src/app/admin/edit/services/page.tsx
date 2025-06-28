@@ -1,11 +1,10 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { getServices, getSkills } from "@/lib/firebase/store/services";
 import { ServicesEditor } from "@/components/admin/ServicesEditor";
-import type { Service } from "@/types/services";
-import type { Skill } from "@/types/serviceSkill";
 
 export default async function EditServicesPage() {
 	// サービスとスキルを並行で取得
+	const [services] = await Promise.all([getServices()]);
 	const [skills] = await Promise.all([getSkills()]);
 
 	return (
@@ -14,7 +13,7 @@ export default async function EditServicesPage() {
 				<h1 className="mb-8 text-2xl font-bold bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
 					サービス編集
 				</h1>
-				<ServicesEditor initialSkills={skills} />
+				<ServicesEditor initialServices={services} initialSkills={skills} />
 			</div>
 		</AdminLayout>
 	);
