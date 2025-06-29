@@ -6,22 +6,38 @@ import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 import { IoAnalyticsSharp } from "react-icons/io5";
 import { RxReload } from "react-icons/rx";
 
-import { DEFAULT_SERVICES } from "@/constants/services";
-import { getSkills } from "@/lib/firebase/store/services";
+import { getServices, getSkills } from "@/lib/firebase/store/services";
 
 import type { Service, Skill } from "@/types/services";
 
 interface Props {
+	initialServices: Service[];
 	initialSkills: Skill[];
 }
 
-const ServiceSection: React.FC<Props> = ({ initialSkills }) => {
+const ServiceSection: React.FC<Props> = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	// サービスは定数から取得
-	const [services] = useState<Service[]>(DEFAULT_SERVICES);
+	// サービスを取得(Read)
+	const [services, setServices] = useState<Service[]>([]);
+	useEffect(() => {
+		const fetchServices = async () => {
+			try {
+				const servicesData = await getServices();
+				if (servicesData) {
+					setServices(servicesData);
+				}
+			} catch (error) {
+				console.error("Error fetching services:", error);
+			} finally {
+				setIsLoading(false);
+			}
+		};
 
-	// スキルはFirestoreから取得(Read)
-	const [skills, setSkills] = useState<Skill[]>(initialSkills || []);
+		fetchServices();
+	}, []);
+
+	// スキルを取得(Read)
+	const [skills, setSkills] = useState<Skill[]>([]);
 	useEffect(() => {
 		const fetchSkills = async () => {
 			try {

@@ -41,7 +41,6 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// スキルの取得(Read)
 	const [skills, setSkills] = useState<Skill[]>(() => {
-		// 初期スキルがない場合は空配列を返す
 		if (!initialSkills) return [];
 
 		return initialSkills.map((skill) => ({
