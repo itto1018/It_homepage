@@ -23,7 +23,6 @@ const iconMap = {
 	Mail: (
 		<BiLogoGmail className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
 	),
-
 };
 
 const SocialLinkIcon: FC<Props> = (props) => {

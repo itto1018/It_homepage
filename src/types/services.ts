@@ -1,24 +1,16 @@
 type ServiceId = "data-infrastructure" | "web-development" | "data-analytics";
 
 export type Service = {
-	id: ServiceId;
+	id: string;
 	title: string;
-	type: "データ基盤構築" | "Webサイト開発" | "データ分析・可視化";
 	items: string[];
-	skills: {
-		name: string;
-		level: number;
-	}[];
-	createdAt: Date;
-	updatedAt: Date;
 };
 
 export interface Skill {
 	id: string;
 	serviceId: string;
-	category: string;
-	name: string;
 	level: SkillLevel;
+	name: string;
 }
 
 export type SkillLevel = 1 | 2 | 3 | 4 | 5;

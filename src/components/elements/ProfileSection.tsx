@@ -71,12 +71,26 @@ export const ProfileSection = () => {
 						<div className="flex flex-wrap justify-center gap-2">
 							<div className="flex gap-2">
 								<SocialLinkIcon type="X" url={"https://x.com/itto1018"} />
-								<SocialLinkIcon type="GitHub" url="https://github.com/itto1018" />
-								<SocialLinkIcon type="Wantedly" url={"https://www.wantedly.com/id/Itto_Okmr"} />
+								<SocialLinkIcon
+									type="GitHub"
+									url="https://github.com/itto1018"
+								/>
+								<SocialLinkIcon
+									type="Wantedly"
+									url={"https://www.wantedly.com/id/Itto_Okmr"}
+								/>
 							</div>
 							<div className="flex gap-2">
-								<SocialLinkIcon type="LinkedIn" url={"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"} />
-								<SocialLinkIcon type="Mail" url={"mailto:itto.mura@gmail.com"} />
+								<SocialLinkIcon
+									type="LinkedIn"
+									url={
+										"https://www.linkedin.com/in/%E4%B8%80%E5%A4%A7-%E5%A5%A5%E6%9D%91-8ba11225b/"
+									}
+								/>
+								<SocialLinkIcon
+									type="Mail"
+									url={"mailto:itto.mura@gmail.com"}
+								/>
 							</div>
 						</div>
 					</div>

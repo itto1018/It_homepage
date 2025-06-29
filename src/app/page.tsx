@@ -56,7 +56,7 @@ export default function Home() {
 							</h2>
 						</div>
 						<div className="mb-12 w-full md:mb-15">
-							<ServiceSection initialSkills={[]} />
+							<ServiceSection initialServices={[]} initialSkills={[]} />
 						</div>
 
 						{/* Works */}

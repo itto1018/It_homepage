@@ -2,37 +2,53 @@
 
 import { useState } from "react";
 import { Service } from "@/types/services";
-import {
-	getSkillLevelDescription,
-	Skill,
-	SkillLevel,
-} from "@/types/serviceSkill";
+import { getSkillLevelDescription, Skill, SkillLevel } from "@/types/services";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { DEFAULT_SERVICES } from "@/constants/services";
 
 interface Props {
+	initialServices: Service[] | null;
 	initialSkills: Skill[] | null;
 }
 
-export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
+export const ServicesEditor: React.FC<Props> = ({
+	initialServices,
+	initialSkills,
+}) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	// サービスは定数から取得
-	const [services] = useState<Service[]>(DEFAULT_SERVICES);
+	// サービス一覧を取得(Read)
+	const [services, setServices] = useState<Service[]>(() => {
+		if (!initialServices) return [];
+		return initialServices.map((service) => ({
+			...service,
+			id: service.id,
+			title: service.title,
+			items: service.items,
+		}));
+	});
 
-	// スキルはFirestoreから取得した初期値を使用(Read)
+	// サービスの追加(Create)
+	const handleAddService = () => {
+		const newService: Service = {
+			id: crypto.randomUUID(),
+			title: "",
+			items: [],
+		};
+
+		setServices([...services, newService]);
+	};
+
+	// スキルの取得(Read)
 	const [skills, setSkills] = useState<Skill[]>(() => {
-		// 初期スキルがない場合は空配列を返す
 		if (!initialSkills) return [];
 
-		// 既存のスキルデータを各サービスに紐付ける
 		return initialSkills.map((skill) => ({
 			...skill,
-			// サービスIDが不正な場合は修正
-			serviceId: DEFAULT_SERVICES.some((s) => s.id === skill.serviceId)
-				? skill.serviceId
-				: DEFAULT_SERVICES[0].id,
+			id: skill.id,
+			serviceId: skill.serviceId,
+			name: skill.name,
+			level: skill.level as SkillLevel,
 		}));
 	});
 
@@ -40,7 +56,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 	const handleAddSkill = (serviceId: string) => {
 		const newSkill: Skill = {
 			id: crypto.randomUUID(),
-			serviceId,
+			serviceId: serviceId,
 			name: "",
 			level: 1,
 		};
@@ -51,13 +67,13 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 	// スキルの更新(Update)
 	const handleSkillChange = (
 		serviceId: string,
-		skillId: string,
+		id: string,
 		field: "name" | "level",
 		value: string | number
 	) => {
 		setSkills(
 			skills.map((skill) => {
-				if (skill.id !== skillId) return skill;
+				if (skill.id !== id) return skill;
 
 				return {
 					...skill,
@@ -69,7 +85,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 	};
 
 	// スキルの削除(Delete)
-	const handleRemoveSkill = (serviceId: string, skillId: string) => {
+	const handleRemoveSkill = (skillId: string) => {
 		setSkills(skills.filter((skill) => skill.id !== skillId));
 	};
 
@@ -105,7 +121,6 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 				const serviceSkills = skills.filter(
 					(skill) => skill.serviceId === service.id
 				);
-
 				return (
 					<div
 						key={service.id}
@@ -160,7 +175,7 @@ export const ServicesEditor: React.FC<Props> = ({ initialSkills }) => {
 											))}
 										</select>
 										<button
-											onClick={() => handleRemoveSkill(service.id, skill.id)}
+											onClick={() => handleRemoveSkill(skill.id)}
 											className="rounded-lg p-2 text-red-500 hover:bg-red-50 disabled:opacity-50"
 											disabled={isLoading}
 										>

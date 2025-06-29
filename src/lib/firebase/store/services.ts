@@ -1,11 +1,48 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase/client";
-import { DEFAULT_SERVICES } from "@/constants/services";
+import { db } from "../client";
+import { collection, doc, getDocs, getDoc, setDoc } from "firebase/firestore";
 import type { Service, Skill } from "@/types/services";
 
-// サービス一覧を取得（定数から取得）
+// サービス一覧を取得
 export const getServices = async (): Promise<Service[]> => {
-	return DEFAULT_SERVICES;
+	try {
+		const servicesRef = doc(db, "services", "default");
+		const docSnap = await getDoc(servicesRef);
+
+		if (!docSnap.exists()) {
+			return [];
+		}
+
+		// 既存のデータから必要なフィールドのみを抽出
+		const data = docSnap.data();
+		const services = (data.services || []).map((service: any) => ({
+			id: service.serviceId || service.id,
+			title: service.title,
+			items: [],
+		}));
+		return services;
+	} catch (error) {
+		console.error("Error fetching services:", error);
+		return [];
+	}
+};
+
+// サービスを更新
+export const updateServices = async (services: Service[]): Promise<void> => {
+	try {
+		const servicesRef = doc(db, "services", "default");
+
+		// サービスの形式を確認
+		const formattedServices = services.map((service) => ({
+			serviceId: service.id,
+			title: service.title,
+			items: service.items,
+		}));
+
+		await setDoc(servicesRef, { services: formattedServices }, { merge: true });
+	} catch (error) {
+		console.error("Error updating services:", error);
+		throw new Error("サービス情報の更新に失敗しました");
+	}
 };
 
 // スキル一覧を取得（Firestoreから取得）
@@ -15,15 +52,20 @@ export const getSkills = async (): Promise<Skill[]> => {
 		const docSnap = await getDoc(skillsRef);
 
 		if (!docSnap.exists()) {
-			// スキルが存在しない場合は空配列を返す
-			await setDoc(skillsRef, { skills: [] });
 			return [];
 		}
 
-		return docSnap.data().skills as Skill[];
+		// 既存のデータから必要なフィールドのみを抽出
+		const data = docSnap.data();
+		return (data.skills || []).map((skill: any) => ({
+			id: skill.skillId || skill.id,
+			serviceId: skill.serviceId,
+			name: skill.name,
+			level: skill.level,
+		}));
 	} catch (error) {
 		console.error("Error fetching skills:", error);
-		throw new Error("スキル情報の取得に失敗しました");
+		return []; // エラー時は空配列を返す
 	}
 };
 
@@ -34,7 +76,7 @@ export const updateSkills = async (skills: Skill[]): Promise<void> => {
 
 		// スキルの形式を確認
 		const formattedSkills = skills.map((skill) => ({
-			id: skill.id,
+			skillId: skill.id,
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level,
@@ -46,3 +88,41 @@ export const updateSkills = async (skills: Skill[]): Promise<void> => {
 		throw new Error("スキル情報の更新に失敗しました");
 	}
 };
+
+// タイムスタンプ以外の全てのサービスを取得
+export async function getAllServices(): Promise<Service[]> {
+	const servicesRef = collection(db, "services");
+	const snapshot = await getDocs(servicesRef);
+
+	return snapshot.docs.map((doc) => {
+		const data = doc.data();
+		// 必要なデータのみを抽出
+		return {
+			id: doc.id,
+			title: data.title,
+			items:
+				data.items?.map((item: any) => ({
+					id: item.id,
+					name: item.name,
+					level: item.level,
+				})) || [],
+		};
+	});
+}
+
+// タイムスタンプ以外の全てのスキルを取得
+export async function getAllSkills(): Promise<Skill[]> {
+	const skillsRef = collection(db, "skills");
+	const snapshot = await getDocs(skillsRef);
+
+	return snapshot.docs.map((doc) => {
+		const data = doc.data();
+		// 必要なデータのみを抽出
+		return {
+			id: doc.id,
+			serviceId: data.serviceId,
+			name: data.name,
+			level: data.level,
+		};
+	});
+}
