@@ -74,7 +74,6 @@ export const ServicesEditor: React.FC<Props> = ({
 		setSkills(
 			skills.map((skill) => {
 				if (skill.skillId !== id) return skill;
-
 				return {
 					...skill,
 					[field]:
