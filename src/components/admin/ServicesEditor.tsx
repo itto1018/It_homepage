@@ -45,7 +45,7 @@ export const ServicesEditor: React.FC<Props> = ({
 
 		return initialSkills.map((skill) => ({
 			...skill,
-			id: skill.id,
+			skillId: skill.skillId,
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level as SkillLevel,
@@ -55,7 +55,7 @@ export const ServicesEditor: React.FC<Props> = ({
 	// スキルの追加(Create)
 	const handleAddSkill = (serviceId: string) => {
 		const newSkill: Skill = {
-			id: crypto.randomUUID(),
+			skillId: crypto.randomUUID(),
 			serviceId: serviceId,
 			name: "",
 			level: 1,
@@ -73,7 +73,7 @@ export const ServicesEditor: React.FC<Props> = ({
 	) => {
 		setSkills(
 			skills.map((skill) => {
-				if (skill.id !== id) return skill;
+				if (skill.skillId !== id) return skill;
 
 				return {
 					...skill,
@@ -86,7 +86,7 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// スキルの削除(Delete)
 	const handleRemoveSkill = (skillId: string) => {
-		setSkills(skills.filter((skill) => skill.id !== skillId));
+		setSkills(skills.filter((skill) => skill.skillId !== skillId));
 	};
 
 	// 保存処理
@@ -123,7 +123,7 @@ export const ServicesEditor: React.FC<Props> = ({
 				);
 				return (
 					<div
-						key={service.id}
+						key={`service-${service.id}`}
 						className="rounded-lg border border-[#00a497]/10 bg-white p-6 shadow-sm"
 					>
 						<h2 className="mb-4 text-xl font-semibold text-gray-800">
@@ -133,7 +133,7 @@ export const ServicesEditor: React.FC<Props> = ({
 							{/* スキル一覧を表示 */}
 							{serviceSkills.map((skill) => (
 								<div
-									key={`${service.id}-${skill.id}`}
+									key={`skill-${skill.skillId}`}
 									className="flex flex-col gap-2 rounded-lg border border-gray-100 p-4"
 								>
 									<div className="flex items-center gap-4">
@@ -143,7 +143,7 @@ export const ServicesEditor: React.FC<Props> = ({
 											onChange={(e) =>
 												handleSkillChange(
 													service.id,
-													skill.id,
+													skill.skillId,
 													"name",
 													e.target.value
 												)
@@ -157,7 +157,7 @@ export const ServicesEditor: React.FC<Props> = ({
 											onChange={(e) =>
 												handleSkillChange(
 													service.id,
-													skill.id,
+													skill.skillId,
 													"level",
 													e.target.value
 												)
@@ -167,7 +167,7 @@ export const ServicesEditor: React.FC<Props> = ({
 										>
 											{[1, 2, 3, 4, 5].map((level) => (
 												<option
-													key={`${service.id}-${skill.id}-${level}`}
+													key={`level-${level}-${skill.skillId}`}
 													value={level}
 												>
 													Lv{level}
@@ -175,7 +175,7 @@ export const ServicesEditor: React.FC<Props> = ({
 											))}
 										</select>
 										<button
-											onClick={() => handleRemoveSkill(skill.id)}
+											onClick={() => handleRemoveSkill(skill.skillId)}
 											className="rounded-lg p-2 text-red-500 hover:bg-red-50 disabled:opacity-50"
 											disabled={isLoading}
 										>

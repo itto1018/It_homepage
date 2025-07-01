@@ -15,9 +15,9 @@ export const getServices = async (): Promise<Service[]> => {
 		// 既存のデータから必要なフィールドのみを抽出
 		const data = docSnap.data();
 		const services = (data.services || []).map((service: any) => ({
-			id: service.serviceId || service.id,
+			id: service.id,
 			title: service.title,
-			items: [],
+			items: service.items,
 		}));
 		return services;
 	} catch (error) {
@@ -31,7 +31,6 @@ export const updateServices = async (services: Service[]): Promise<void> => {
 	try {
 		const servicesRef = doc(db, "services", "default");
 
-		// サービスの形式を確認
 		const formattedServices = services.map((service) => ({
 			serviceId: service.id,
 			title: service.title,
@@ -58,7 +57,7 @@ export const getSkills = async (): Promise<Skill[]> => {
 		// 既存のデータから必要なフィールドのみを抽出
 		const data = docSnap.data();
 		return (data.skills || []).map((skill: any) => ({
-			id: skill.skillId || skill.id,
+			id: skill.id,
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level,
@@ -76,7 +75,7 @@ export const updateSkills = async (skills: Skill[]): Promise<void> => {
 
 		// スキルの形式を確認
 		const formattedSkills = skills.map((skill) => ({
-			skillId: skill.id,
+			skillId: skill.skillId,
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level,
@@ -119,7 +118,7 @@ export async function getAllSkills(): Promise<Skill[]> {
 		const data = doc.data();
 		// 必要なデータのみを抽出
 		return {
-			id: doc.id,
+			skillId: doc.id,
 			serviceId: data.serviceId,
 			name: data.name,
 			level: data.level,
