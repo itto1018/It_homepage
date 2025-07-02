@@ -57,7 +57,7 @@ export const getSkills = async (): Promise<Skill[]> => {
 		// 既存のデータから必要なフィールドのみを抽出
 		const data = docSnap.data();
 		return (data.skills || []).map((skill: any) => ({
-			id: skill.id,
+			skillId: skill.skillId,
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level,
@@ -97,7 +97,7 @@ export async function getAllServices(): Promise<Service[]> {
 		const data = doc.data();
 		// 必要なデータのみを抽出
 		return {
-			id: doc.id,
+			id: data.id,
 			title: data.title,
 			items:
 				data.items?.map((item: any) => ({
@@ -118,7 +118,7 @@ export async function getAllSkills(): Promise<Skill[]> {
 		const data = doc.data();
 		// 必要なデータのみを抽出
 		return {
-			skillId: doc.id,
+			skillId: data.skillId,
 			serviceId: data.serviceId,
 			name: data.name,
 			level: data.level,

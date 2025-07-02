@@ -45,7 +45,7 @@ export const ServicesEditor: React.FC<Props> = ({
 
 		return initialSkills.map((skill) => ({
 			...skill,
-			skillId: skill.skillId,
+			skillId: skill.skillId || crypto.randomUUID(),
 			serviceId: skill.serviceId,
 			name: skill.name,
 			level: skill.level as SkillLevel,
