@@ -7,7 +7,7 @@ export type Service = {
 };
 
 export interface Skill {
-	id: string;
+	skillId: string;
 	serviceId: string;
 	level: SkillLevel;
 	name: string;
