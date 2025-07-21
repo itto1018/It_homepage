@@ -7,6 +7,7 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import router from "next/router";
 import Link from "next/link";
+import { auth } from "@/lib/firebase";
 
 interface Props {
 	initialServices: Service[] | null;
@@ -98,27 +99,41 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// 保存処理
 	const handleSubmit = async () => {
-		if (skills.some((skill) => !skill.name.trim())) {
-			toast.error("スキル名を入力してください");
-			return;
-		}
-
-		try {
-			setIsLoading(true);
-			await fetch("/api/services/skills", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ skills }),
-			});
-			toast.success("スキルを保存しました");
-		} catch (error) {
-			console.error("Error saving skills:", error);
-			toast.error("保存に失敗しました");
-		} finally {
-			setIsLoading(false);
-		}
+	  try {
+	    setIsLoading(true);
+	
+	    const currentUser = auth.currentUser;
+	    if (!currentUser) {
+	      toast.error("認証が必要です");
+	      return;
+	    }
+	
+	    const token = await currentUser.getIdToken();
+	    const headers = {
+	      "Content-Type": "application/json",
+	      "Authorization": `Bearer ${token}`,
+	    };
+	
+	    await Promise.all([
+	      fetch("/api/services/skills", {
+	        method: "PUT",
+	        headers,
+	        body: JSON.stringify({ skills }),
+	      }),
+	      fetch("/api/services/services", {
+	        method: "PUT",
+	        headers,
+	        body: JSON.stringify({ services }),
+	      }),
+	    ]);
+	
+	    toast.success("保存しました");
+	  } catch (error) {
+	    console.error("Error saving data:", error);
+	    toast.error("保存に失敗しました");
+	  } finally {
+	    setIsLoading(false);
+	  }
 	};
 
 	return (

@@ -12,12 +12,15 @@ import {
 	FaBars, // ハンバーガーメニューアイコン
 	FaTimes, // 閉じるアイコン
 } from "react-icons/fa";
-import { signOut, useSession } from "next-auth/react";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
+import { useAuth } from "@/components/auth/AuthProvider";
+
 
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();
-	const { data: session } = useSession();
+	const { user } = useAuth();
 
 	const navigation = [
 		{ name: "ホーム", href: "/admin", icon: FaHome },
@@ -25,6 +28,14 @@ export const Sidebar = () => {
 		{ name: "サービス管理", href: "/admin/edit/services", icon: FaClipboard },
 		{ name: "作品集管理", href: "/admin/edit/works", icon: FaClipboard },
 	];
+
+	const handleSignOut = async () => {
+    	try {
+    		await signOut(auth);
+    	} catch (error) {
+      	console.error("ログアウトエラー:", error);
+		}
+ 	};
 
 	return (
 		<>
@@ -93,14 +104,14 @@ export const Sidebar = () => {
 						{/* ユーザー情報 */}
 						<div className="border-t border-[#00a497]/10 pt-4 mb-4 flex items-center space-x-2">
 							<div className="h-8 w-8 rounded-full bg-[#00a497] text-white flex items-center justify-center">
-								{session?.user?.email?.[0]?.toUpperCase() || "U"}
+								{user?.email?.[0]?.toUpperCase() || "U"}
 							</div>
 							<span className="text-sm text-gray-600 font-medium">
-								{session?.user?.email}
+								{user?.email}
 							</span>
 						</div>
 						<button
-							onClick={() => signOut()}
+							onClick={handleSignOut}
 							className="flex w-full items-center rounded-lg px-4 py-3 text-sm font-medium text-gray-600 hover:bg-red-50 hover:text-red-500 transition-all duration-200 hover:cursor-pointer"
 						>
 							<FaSignOutAlt className="mr-3 h-5 w-5" />
