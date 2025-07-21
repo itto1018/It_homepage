@@ -12,7 +12,7 @@ export const ProfileSection = () => {
 
 	const [profile, setProfile] = useState<Profile | null>(null);
 	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
-	
+
 	useEffect(() => {
 		const fetchProfile = async () => {
 			try {
@@ -26,7 +26,7 @@ export const ProfileSection = () => {
 		};
 		fetchProfile();
 	}, []);
-	
+
 	useEffect(() => {
 		const fetchProfileLink = async () => {
 			try {
@@ -85,25 +85,19 @@ export const ProfileSection = () => {
 					<div className="my-4 w-full sm:my-0 sm:w-auto">
 						<div className="flex flex-wrap justify-center gap-2">
 							<div className="flex gap-2">
-								<SocialLinkIcon type="Twitter" url={profileLink?.twitter || ""} />
 								<SocialLinkIcon
-									type="GitHub"
-									url={profileLink?.github || ""}
+									type="Twitter"
+									url={profileLink?.twitter || ""}
 								/>
+								<SocialLinkIcon type="GitHub" url={profileLink?.github || ""} />
 								<SocialLinkIcon
 									type="Wantedly"
 									url={profileLink?.wantedly || ""}
 								/>
 							</div>
 							<div className="flex gap-2">
-								<SocialLinkIcon
-									type="Zenn"
-									url={profileLink?.zenn || ""}
-								/>
-								<SocialLinkIcon
-									type="Mail"
-									url={profileLink?.mail || ""}
-								/>
+								<SocialLinkIcon type="Zenn" url={profileLink?.zenn || ""} />
+								<SocialLinkIcon type="Mail" url={profileLink?.mail || ""} />
 							</div>
 						</div>
 					</div>

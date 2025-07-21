@@ -16,7 +16,6 @@ import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useAuth } from "@/components/auth/AuthProvider";
 
-
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const pathname = usePathname();
@@ -30,12 +29,12 @@ export const Sidebar = () => {
 	];
 
 	const handleSignOut = async () => {
-    	try {
-    		await signOut(auth);
-    	} catch (error) {
-      	console.error("ログアウトエラー:", error);
+		try {
+			await signOut(auth);
+		} catch (error) {
+			console.error("ログアウトエラー:", error);
 		}
- 	};
+	};
 
 	return (
 		<>

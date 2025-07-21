@@ -44,9 +44,7 @@ type Props = {
 	skills: SkillLevel[];
 };
 
-
 export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
-
 	return (
 		<div className="flex flex-col rounded-lg border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 shadow-lg transition-all duration-300">
 			<div className="mb-6 flex items-center gap-3 sm:gap-4">

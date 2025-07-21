@@ -1,14 +1,15 @@
-import { db, storage } from "../client";
+import { db, storage } from "@/lib/firebase/client";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import type { Profile, ProfileLink } from "@/types/profile";
-
+import { getCurrentUser } from "@/lib/firebase/auth";
 
 export const getProfile = async (): Promise<Profile> => {
 	try {
+		// プロフィールを取得
 		const docRef = doc(db, "profiles", "main");
 		const docSnap = await getDoc(docRef);
-		
+
 		if (!docSnap.exists()) {
 			throw new Error("プロフィールデータが見つかりません");
 		}
@@ -17,10 +18,10 @@ export const getProfile = async (): Promise<Profile> => {
 		const data = docSnap.data();
 		return {
 			name: data.name,
-      		nickname: data.nickname,
-      		bio: data.bio,
-      		imageUrl: data.imageUrl,
-      		careers: data.careers || [],
+			nickname: data.nickname,
+			bio: data.bio,
+			imageUrl: data.imageUrl,
+			careers: data.careers || [],
 		} as Profile;
 	} catch (error) {
 		console.error("Error fetching profiles:", error);
@@ -30,7 +31,7 @@ export const getProfile = async (): Promise<Profile> => {
 
 export const getProfileLink = async (): Promise<ProfileLink> => {
 	try {
-		const docRef = doc(db, "profiles", "link");		
+		const docRef = doc(db, "profiles", "link");
 		const docSnap = await getDoc(docRef);
 
 		if (!docSnap.exists()) {
@@ -46,7 +47,6 @@ export const getProfileLink = async (): Promise<ProfileLink> => {
 			zenn: data.zenn,
 			mail: data.mail,
 		} as ProfileLink;
-
 	} catch (error) {
 		console.error("Error fetching profile-link:", error);
 		throw error;
@@ -93,3 +93,6 @@ export const getProfileImageUrl = async (): Promise<string | null> => {
 		return null;
 	}
 };
+function getServerSession(authOptions: any) {
+	throw new Error("Function not implemented.");
+}

@@ -2,41 +2,44 @@
 
 import { error } from "console";
 import { auth } from "@/lib/firebase";
-import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup, User } from "firebase/auth";
+import {
+	onAuthStateChanged,
+	GoogleAuthProvider,
+	signInWithPopup,
+	User,
+} from "firebase/auth";
 import { useSearchParams, redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 export default function LoginPage() {
-
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const error = searchParams.get("error");
 	const [user, setUser] = useState<User | null>(null);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUser(user);
 				router.push("/admin");
-            } else {
-                setUser(null);
-            }
-        });
+			} else {
+				setUser(null);
+			}
+		});
 
-        return () => unsubscribe();
-    }, [router]);
-
+		return () => unsubscribe();
+	}, [router]);
 
 	const handleSignIn = async () => {
-        const provider = new GoogleAuthProvider();
-        try {
+		const provider = new GoogleAuthProvider();
+		try {
 			const result = await signInWithPopup(auth, provider);
-            await signInWithPopup(auth, provider);
-        } catch (error) {
-            console.error("ログインエラー: ", error);
-        }
-    };
+			await signInWithPopup(auth, provider);
+		} catch (error) {
+			console.error("ログインエラー: ", error);
+		}
+	};
 
 	const getErrorMessage = (error: string | null) => {
 		switch (error) {

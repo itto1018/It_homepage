@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import Link from "next/link";
@@ -42,21 +42,21 @@ const ADMIN_MENUS: AdminMenu[] = [
 export default function AdminPage() {
 	// サーバーサイドで認証チェック
 	const router = useRouter();
-	const { user, loading } = useAuth();	
+	const { user, loading } = useAuth();
 	// 認証状態をチェック
 	if (loading) {
-	  return (
-	    <AdminLayout>
-	      <div className="flex min-h-screen items-center justify-center">
-	        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
-	      </div>
-	    </AdminLayout>
-	  );
-	}	
+		return (
+			<AdminLayout>
+				<div className="flex min-h-screen items-center justify-center">
+					<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+				</div>
+			</AdminLayout>
+		);
+	}
 	// 未認証の場合はログインページへリダイレクト
 	if (!user) {
-	  router.replace("/admin/login");
-	  return null;
+		router.replace("/admin/login");
+		return null;
 	}
 
 	return (

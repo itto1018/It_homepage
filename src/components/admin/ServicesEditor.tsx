@@ -33,19 +33,19 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// サービスの更新(Update)
 	const handleServiceChange = (
-	  serviceId: string,
-	  field: "title" | "items",
-	  value: string | string[]
+		serviceId: string,
+		field: "title" | "items",
+		value: string | string[]
 	) => {
-	  setServices(
-	    services.map((service) => {
-	      if (service.id !== serviceId) return service;
-	      return {
-	        ...service,
-	        [field]: value,
-	      };
-	    })
-	  );
+		setServices(
+			services.map((service) => {
+				if (service.id !== serviceId) return service;
+				return {
+					...service,
+					[field]: value,
+				};
+			})
+		);
 	};
 
 	// スキルの取得(Read)
@@ -99,41 +99,41 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// 保存処理
 	const handleSubmit = async () => {
-	  try {
-	    setIsLoading(true);
-	
-	    const currentUser = auth.currentUser;
-	    if (!currentUser) {
-	      toast.error("認証が必要です");
-	      return;
-	    }
-	
-	    const token = await currentUser.getIdToken();
-	    const headers = {
-	      "Content-Type": "application/json",
-	      "Authorization": `Bearer ${token}`,
-	    };
-	
-	    await Promise.all([
-	      fetch("/api/services/skills", {
-	        method: "PUT",
-	        headers,
-	        body: JSON.stringify({ skills }),
-	      }),
-	      fetch("/api/services/services", {
-	        method: "PUT",
-	        headers,
-	        body: JSON.stringify({ services }),
-	      }),
-	    ]);
-	
-	    toast.success("保存しました");
-	  } catch (error) {
-	    console.error("Error saving data:", error);
-	    toast.error("保存に失敗しました");
-	  } finally {
-	    setIsLoading(false);
-	  }
+		try {
+			setIsLoading(true);
+
+			const currentUser = auth.currentUser;
+			if (!currentUser) {
+				toast.error("認証が必要です");
+				return;
+			}
+
+			const token = await currentUser.getIdToken();
+			const headers = {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			};
+
+			await Promise.all([
+				fetch("/api/services/skills", {
+					method: "PUT",
+					headers,
+					body: JSON.stringify({ skills }),
+				}),
+				fetch("/api/services/services", {
+					method: "PUT",
+					headers,
+					body: JSON.stringify({ services }),
+				}),
+			]);
+
+			toast.success("保存しました");
+		} catch (error) {
+			console.error("Error saving data:", error);
+			toast.error("保存に失敗しました");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -148,44 +148,44 @@ export const ServicesEditor: React.FC<Props> = ({
 						key={`service-${service.id}`}
 						className="rounded-lg border border-[#00a497]/10 bg-white p-6 shadow-sm"
 					>
-        				<div className="mb-6">
-        				  <label className="block text-sm font-medium text-gray-600 mb-2">
-        				    サービス名
-        				  </label>
-        				  <input
-        				    type="text"
-        				    value={service.title}
-        				    onChange={(e) =>
-        				      handleServiceChange(service.id, "title", e.target.value)
-        				    }
-        				    className="w-full text-xl font-semibold text-gray-800 px-4 py-2 rounded-lg border border-gray-200 focus:border-[#00a497] focus:ring-2 focus:ring-[#00a497]/20 transition-all duration-200"
-        				    placeholder="サービス名を入力"
-        				    disabled={isLoading}
-        				  />
-        				</div>
+						<div className="mb-6">
+							<label className="block text-sm font-medium text-gray-600 mb-2">
+								サービス名
+							</label>
+							<input
+								type="text"
+								value={service.title}
+								onChange={(e) =>
+									handleServiceChange(service.id, "title", e.target.value)
+								}
+								className="w-full text-xl font-semibold text-gray-800 px-4 py-2 rounded-lg border border-gray-200 focus:border-[#00a497] focus:ring-2 focus:ring-[#00a497]/20 transition-all duration-200"
+								placeholder="サービス名を入力"
+								disabled={isLoading}
+							/>
+						</div>
 						<div className="mb-8">
-				            <label className="block text-sm font-medium text-gray-600 mb-2">
-            				  サービス説明
-            				</label>
-          					<textarea
-          					  value={service.items.join("\n")}
-          					  onChange={(e) =>
-          					    handleServiceChange(
-          					      service.id,
-          					      "items",
-          					      e.target.value.split("\n").filter(item => item.trim())
-          					    )
-          					  }
-          					  className="w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-[#00a497] focus:ring-2 focus:ring-[#00a497]/20 transition-all duration-200"
-          					  placeholder="サービスの説明（各行が1つの項目になります）"
-          					  rows={3}
-          					  disabled={isLoading}
-          					/>
-          				</div>
+							<label className="block text-sm font-medium text-gray-600 mb-2">
+								サービス説明
+							</label>
+							<textarea
+								value={service.items.join("\n")}
+								onChange={(e) =>
+									handleServiceChange(
+										service.id,
+										"items",
+										e.target.value.split("\n").filter((item) => item.trim())
+									)
+								}
+								className="w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-[#00a497] focus:ring-2 focus:ring-[#00a497]/20 transition-all duration-200"
+								placeholder="サービスの説明（各行が1つの項目になります）"
+								rows={3}
+								disabled={isLoading}
+							/>
+						</div>
 						<div className="space-y-4">
-	            			<label className="block text-sm font-medium text-gray-600 mb-2">
-            				  スキル一覧
-            				</label>
+							<label className="block text-sm font-medium text-gray-600 mb-2">
+								スキル一覧
+							</label>
 							{serviceSkills.map((skill) => (
 								<div
 									key={`skill-${skill.skillId}`}
@@ -266,7 +266,7 @@ export const ServicesEditor: React.FC<Props> = ({
 					onClick={handleSubmit}
 					className="w-32 text-center rounded-lg bg-[#00a497] px-6 py-2 text-white hover:bg-[#00a497]/90 disabled:opacity-50 hover:cursor-pointer"
 					disabled={isLoading}
-					>
+				>
 					{isLoading ? "保存中..." : "保存"}
 				</button>
 			</div>
