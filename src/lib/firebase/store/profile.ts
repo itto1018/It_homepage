@@ -1,13 +1,13 @@
 import { db, storage } from "../client";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import type { Profile } from "@/types/profile";
+import type { Profile, ProfileLink } from "@/types/profile";
 
 
 export const getProfile = async (): Promise<Profile> => {
 	try {
-		const profilesRef = doc(db, "profiles", "main");
-		const docSnap = await getDoc(profilesRef);
+		const docRef = doc(db, "profiles", "main");
+		const docSnap = await getDoc(docRef);
 		
 		if (!docSnap.exists()) {
 			throw new Error("プロフィールデータが見つかりません");
@@ -28,20 +28,30 @@ export const getProfile = async (): Promise<Profile> => {
 	}
 };
 
-export async function getPublicProfile(): Promise<Profile | null> {
+export const getProfileLink = async (): Promise<ProfileLink> => {
 	try {
-		const docRef = doc(db, "profiles", "main");
+		const docRef = doc(db, "profiles", "link");		
 		const docSnap = await getDoc(docRef);
 
-		if (docSnap.exists()) {
-			return docSnap.data() as Profile;
+		if (!docSnap.exists()) {
+			throw new Error("プロフィールデータが見つかりません");
 		}
-		return null;
+
+		const data = docSnap.data();
+
+		return {
+			twitter: data.twitter,
+			github: data.github,
+			wantedly: data.wantedly,
+			zenn: data.zenn,
+			mail: data.mail,
+		} as ProfileLink;
+
 	} catch (error) {
-		console.error("Error fetching profile:", error);
+		console.error("Error fetching profile-link:", error);
 		throw error;
 	}
-}
+};
 
 // 画像をGCSにアップロードする関数
 export const uploadProfileImage = async (file: File): Promise<string> => {

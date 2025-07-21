@@ -29,3 +29,11 @@ export const PROFILE_CONSTRAINTS = {
 		},
 	},
 };
+
+export interface ProfileLink {
+	twitter: string;
+	github: string;
+	wantedly: string;
+	zenn: string;
+	mail: string;
+}
