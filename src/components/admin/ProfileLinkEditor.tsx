@@ -5,6 +5,7 @@ import { db } from "@/lib/firebase/client";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { ProfileLink } from "@/types/profile";
 import toast from "react-hot-toast";
+import { getAuth } from "firebase/auth";
 
 interface Props {
 	initialProfileLink: ProfileLink;
@@ -36,20 +37,27 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 
 	const handleEdit = async (key: string, newValue: string) => {
 		try {
+			const auth = getAuth();
+			const user = auth.currentUser;
+
+			if (!user) {
+				toast.error("認証が必要です");
+				return;
+			}
 			const updatedLinks = {
 				...links,
 				[key]: newValue,
 			};
 
-			const docRef = doc(db, "profile", "links");
+			const docRef = doc(db, "profiles", "link");
 			await updateDoc(docRef, updatedLinks);
 
 			setLinks(updatedLinks);
 			setEditingKey(null);
-			setMessage("更新しました");
+			toast.success("更新しました");
 		} catch (error) {
 			console.error("Error updating link:", error);
-			setMessage("更新に失敗しました");
+			toast.error("更新に失敗しました");
 		}
 	};
 
@@ -61,41 +69,47 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<div className="max-w-2xl mx-auto p-4">
+		<div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
 			<h2 className="text-2xl font-bold mb-6">SNSリンク編集</h2>
 
 			<div className="space-y-4">
 				{Object.entries(links).map(([key, value]) => (
-					<div key={key} className="border rounded-lg p-4 bg-white shadow-sm">
-						<div className="flex items-center justify-between">
-							<strong className="text-gray-700">{key}:</strong>
+					<div key={key} className="rounded-lg bg-gray-50 p-4 sm:p-6">
+						<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+							<strong className="w-24 text-gray-700 text-base font-bold">
+								{key}:
+							</strong>
 							{editingKey === key ? (
-								<div className="flex items-center gap-2">
+								<div className="flex flex-col sm:flex-row items-stretch gap-3 w-full">
 									<input
 										type="text"
 										value={editValue}
 										onChange={(e) => setEditValue(e.target.value)}
-										className="border rounded px-3 py-1 flex-1 min-w-[200px]"
+										className="flex-1 rounded-lg border-gray-300 p-2.5 shadow-sm transition-colors focus:border-blue-500 focus:ring-blue-500"
 									/>
-									<button
-										onClick={() => handleEdit(key, editValue)}
-										className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
-									>
-										保存
-									</button>
-									<button
-										onClick={() => setEditingKey(null)}
-										className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition-colors"
-									>
-										キャンセル
-									</button>
+									<div className="flex items-center gap-2">
+										<button
+											onClick={() => handleEdit(key, editValue)}
+											className="w-24 rounded-lg bg-blue-600 px-2 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
+										>
+											保存
+										</button>
+										<button
+											onClick={() => setEditingKey(null)}
+											className="w-24 rounded-lg border border-red-300 px-2 py-2.5 text-sm font-medium text-red-700 transition-colors hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
+										>
+											キャンセル
+										</button>
+									</div>
 								</div>
 							) : (
-								<div className="flex items-center gap-4">
-									<span className="text-gray-600">{value}</span>
+								<div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+									<span className="flex-1 text-gray-600 break-all">
+										{value}
+									</span>
 									<button
 										onClick={() => startEditing(key, value)}
-										className="bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 transition-colors"
+										className="w-24 rounded-lg border border-gray-300 px-2 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
 									>
 										編集
 									</button>

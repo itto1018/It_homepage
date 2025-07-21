@@ -233,6 +233,12 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 					</div>
 
 					{/* 経歴セクション */}
+					<label
+						htmlFor="bio"
+						className="mb-2 block text-sm font-medium text-gray-700"
+					>
+						経歴の詳細（50文字以内）
+					</label>
 					<div className="space-y-4">
 						{careers.map((career, index) => (
 							<div key={index} className="rounded-lg bg-gray-50 p-4">
@@ -278,14 +284,14 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 							{/* レイアウトを調整 */}
 							<Link
 								href="/admin"
-								className="w-full sm:w-auto rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none text-center"
+								className="w-full sm:w-auto rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none text-center cursor-pointer"
 							>
 								キャンセル
 							</Link>
 							<button
 								type="submit"
 								disabled={isLoading}
-								className="w-full sm:w-auto rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
+								className="w-full sm:w-auto rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50 cursor-pointer"
 							>
 								{isLoading ? "保存中..." : "保存する"}
 							</button>
