@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { FaGithub, FaCode, FaChartLine, FaDatabase } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getProfile, getProfileLink } from "@/lib/firebase/store/profile";
 import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
@@ -10,9 +9,8 @@ import type { Profile, ProfileLink } from "@/types/profile";
 export const ProfileSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
+	// プロフィールの状態
 	const [profile, setProfile] = useState<Profile | null>(null);
-	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
-
 	useEffect(() => {
 		const fetchProfile = async () => {
 			try {
@@ -26,7 +24,9 @@ export const ProfileSection = () => {
 		};
 		fetchProfile();
 	}, []);
-
+	
+	// プロフィールリンクの状態
+	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
 	useEffect(() => {
 		const fetchProfileLink = async () => {
 			try {
@@ -41,6 +41,7 @@ export const ProfileSection = () => {
 		fetchProfileLink();
 	}, []);
 
+	// ローディング中の表示
 	if (isLoading) {
 		return (
 			<div className="flex h-64 items-center justify-center">
@@ -110,9 +111,18 @@ export const ProfileSection = () => {
 						{profile?.careers?.map((career, index) => (
 							<div
 								key={index}
-								className="rounded-lg bg-[#00a497]/5 p-4 transition-colors duration-200 border border-[#00a497]/10"
+								className={`rounded-lg p-4 transition-all duration-300 border 
+									${career.period.includes('現在') 
+										? 'bg-[#00a497]/10 border-[#00a497]/20 animate-pulse-subtle shadow-lg' 
+										: 'bg-[#00a497]/5 border-[#00a497]/10'
+									}`}
 							>
-								<p className="text-sm font-bold text-gray-600 sm:text-base mb-1">
+								<p className={`text-sm font-bold sm:text-base mb-1 transition-colors duration-300
+									${career.period.includes('現在') 
+										? 'text-[#00a497] animate-bounce-subtle' 
+										: 'text-gray-600'
+									}`}
+								>
 									{career.period}
 								</p>
 								<p className="text-sm text-gray-600 sm:text-base">
