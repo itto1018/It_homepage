@@ -5,17 +5,18 @@ import { db } from "@/lib/firebase/client";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { ProfileLink } from "@/types/profile";
 import toast from "react-hot-toast";
-import { getAuth } from "firebase/auth";
+import { getCurrentUser } from "@/lib/firebase/auth";
+import { AdminLayout } from "../layout/AdminLayout";
 
 interface Props {
 	initialProfileLink: ProfileLink;
 }
 
 export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
-	const [links, setLinks] = useState(initialProfileLink);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const [message, setMessage] = useState("");
+	// SNSリンクの状態
+	const [links, setLinks] = useState(initialProfileLink);
 	const [editingKey, setEditingKey] = useState<string | null>(null);
 	const [editValue, setEditValue] = useState("");
 
@@ -35,11 +36,10 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 		fetchLinks();
 	}, [initialProfileLink]);
 
+	// SNSリンクの更新処理
 	const handleEdit = async (key: string, newValue: string) => {
 		try {
-			const auth = getAuth();
-			const user = auth.currentUser;
-
+			const user = getCurrentUser();
 			if (!user) {
 				toast.error("認証が必要です");
 				return;
@@ -66,12 +66,19 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 		setEditValue(value);
 	};
 
-	if (isLoading) return <div>Loading...</div>;
+	// ローディング画面
+	if (isLoading) {
+		return (
+			<AdminLayout>
+				<div className="flex h-64 items-center justify-center">
+					<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
+				</div>
+			</AdminLayout>
+		);
+	}
 
 	return (
 		<div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
-			<h2 className="text-2xl font-bold mb-6">SNSリンク編集</h2>
-
 			<div className="space-y-4">
 				{Object.entries(links).map(([key, value]) => (
 					<div key={key} className="rounded-lg bg-gray-50 p-4 sm:p-6">
@@ -85,6 +92,7 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 										type="text"
 										value={editValue}
 										onChange={(e) => setEditValue(e.target.value)}
+										autoComplete="url"
 										className="flex-1 rounded-lg border-gray-300 p-2.5 shadow-sm transition-colors focus:border-blue-500 focus:ring-blue-500"
 									/>
 									<div className="flex items-center gap-2">

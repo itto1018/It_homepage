@@ -1,9 +1,9 @@
 import { db, storage } from "@/lib/firebase/client";
 import { doc, getDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL } from "firebase/storage";
 import type { Profile, ProfileLink } from "@/types/profile";
-import { getCurrentUser } from "@/lib/firebase/auth";
 
+// プロフィールを取得する関数
 export const getProfile = async (): Promise<Profile> => {
 	try {
 		// プロフィールを取得
@@ -29,6 +29,7 @@ export const getProfile = async (): Promise<Profile> => {
 	}
 };
 
+// プロフィールリンクを取得する関数
 export const getProfileLink = async (): Promise<ProfileLink> => {
 	try {
 		const docRef = doc(db, "profiles", "link");
@@ -53,30 +54,6 @@ export const getProfileLink = async (): Promise<ProfileLink> => {
 	}
 };
 
-// 画像をGCSにアップロードする関数
-export const uploadProfileImage = async (file: File): Promise<string> => {
-	if (!file) {
-		throw new Error("ファイルが選択されていません");
-	}
-
-	try {
-		const storageRef = ref(
-			storage,
-			`it_homepage/profile/image/profile_image.jpg`
-		);
-
-		const metadata = {
-			contentType: file.type,
-		};
-
-		const snapshot = await uploadBytes(storageRef, file, metadata);
-		return await getDownloadURL(snapshot.ref);
-	} catch (error: any) {
-		console.error("Error uploading profile image:", error);
-		throw new Error(`アップロードエラー: ${error.message}`);
-	}
-};
-
 // プロフィール画像のURLを取得する関数
 export const getProfileImageUrl = async (): Promise<string | null> => {
 	try {
@@ -93,6 +70,3 @@ export const getProfileImageUrl = async (): Promise<string | null> => {
 		return null;
 	}
 };
-function getServerSession(authOptions: any) {
-	throw new Error("Function not implemented.");
-}
