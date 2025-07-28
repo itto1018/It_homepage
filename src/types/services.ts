@@ -1,5 +1,3 @@
-type ServiceId = "data-infrastructure" | "web-development" | "data-analytics";
-
 export type Service = {
 	id: string;
 	title: string;

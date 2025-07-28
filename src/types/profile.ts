@@ -2,13 +2,13 @@ export interface Profile {
 	name: string;
 	nickname: string;
 	bio: string;
-	imageUrl: string | null;
-	careers: Career[];
+	imageUrl?: string;
+	careers?: Career[];
 }
 
 export interface Career {
-	period: string;
 	description: string;
+	period: string;
 }
 
 export const PROFILE_CONSTRAINTS = {
@@ -29,3 +29,11 @@ export const PROFILE_CONSTRAINTS = {
 		},
 	},
 };
+
+export interface ProfileLink {
+	twitter: string;
+	github: string;
+	wantedly: string;
+	zenn: string;
+	mail: string;
+}

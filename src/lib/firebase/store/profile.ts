@@ -1,57 +1,56 @@
-import { db, storage } from "../client";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import type { Profile } from "@/types/profile";
-import { auth } from "@/auth";
+import { db, storage } from "@/lib/firebase/client";
+import { doc, getDoc } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
+import type { Profile, ProfileLink } from "@/types/profile";
 
-export const getProfile = async (): Promise<Profile[]> => {
+// プロフィールを取得する関数
+export const getProfile = async (): Promise<Profile> => {
 	try {
-		const querySnapshot = await getDocs(collection(db, "profiles"));
+		// プロフィールを取得
+		const docRef = doc(db, "profiles", "main");
+		const docSnap = await getDoc(docRef);
 
-		return querySnapshot.docs.map((doc) => {
-			const data = doc.data();
-			return {
-				id: doc.id,
-				name: data.name,
-				nickname: data.nickname,
-				bio: data.bio,
-				imageUrl: data.imageUrl,
-				careers: data.careers,
-			} as Profile;
-		});
+		if (!docSnap.exists()) {
+			throw new Error("プロフィールデータが見つかりません");
+		}
+
+		// 既存のデータから必要なフィールドのみを抽出
+		const data = docSnap.data();
+		return {
+			name: data.name,
+			nickname: data.nickname,
+			bio: data.bio,
+			imageUrl: data.imageUrl,
+			careers: data.careers || [],
+		} as Profile;
 	} catch (error) {
 		console.error("Error fetching profiles:", error);
 		throw error;
 	}
 };
 
-// 画像をGCSにアップロードする関数
-export const uploadProfileImage = async (file: File): Promise<string> => {
-	if (!file) {
-		throw new Error("ファイルが選択されていません");
-	}
-
-	// Auth.jsのセッションを確認
-	const session = await auth();
-	if (!session) {
-		throw new Error("認証されていません。ログインしてください。");
-	}
-
+// プロフィールリンクを取得する関数
+export const getProfileLink = async (): Promise<ProfileLink> => {
 	try {
-		const storageRef = ref(
-			storage,
-			`it_homepage/profile/image/profile_image.jpg`
-		);
+		const docRef = doc(db, "profiles", "link");
+		const docSnap = await getDoc(docRef);
 
-		const metadata = {
-			contentType: file.type,
-		};
+		if (!docSnap.exists()) {
+			throw new Error("プロフィールデータが見つかりません");
+		}
 
-		const snapshot = await uploadBytes(storageRef, file, metadata);
-		return await getDownloadURL(snapshot.ref);
-	} catch (error: any) {
-		console.error("Error uploading profile image:", error);
-		throw new Error(`アップロードエラー: ${error.message}`);
+		const data = docSnap.data();
+
+		return {
+			twitter: data.twitter,
+			github: data.github,
+			wantedly: data.wantedly,
+			zenn: data.zenn,
+			mail: data.mail,
+		} as ProfileLink;
+	} catch (error) {
+		console.error("Error fetching profile-link:", error);
+		throw error;
 	}
 };
 
@@ -71,28 +70,3 @@ export const getProfileImageUrl = async (): Promise<string | null> => {
 		return null;
 	}
 };
-
-// 認証状態を確認する関数
-export const checkAuthState = async (): Promise<boolean> => {
-	const session = await auth();
-	console.log(
-		"Current auth state:",
-		session ? "authenticated" : "not authenticated"
-	);
-	return !!session;
-};
-
-export async function getPublicProfile(): Promise<Profile | null> {
-	try {
-		const docRef = doc(db, "profiles", "main");
-		const docSnap = await getDoc(docRef);
-
-		if (docSnap.exists()) {
-			return docSnap.data() as Profile;
-		}
-		return null;
-	} catch (error) {
-		console.error("Error fetching profile:", error);
-		throw error;
-	}
-}

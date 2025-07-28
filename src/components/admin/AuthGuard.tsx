@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/components/auth/AuthProvider";
 import { redirect } from "next/navigation";
 
 interface AuthGuardProps {
@@ -8,9 +8,8 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-	const { status } = useSession();
-
-	if (status === "loading") {
+	const { user, loading } = useAuth();
+	if (loading) {
 		return (
 			<div className="flex min-h-screen items-center justify-center">
 				<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
@@ -18,7 +17,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 		);
 	}
 
-	if (status === "unauthenticated") {
+	if (!user) {
 		redirect("/admin/login");
 	}
 

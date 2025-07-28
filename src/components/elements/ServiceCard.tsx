@@ -44,51 +44,7 @@ type Props = {
 	skills: SkillLevel[];
 };
 
-const getTechStacks = (title: string): TechStack[] => {
-	switch (title) {
-		case "データ基盤構築":
-			return [
-				{ Icon: FaAws, color: "text-[#FF9900]", name: "AWS" },
-				{ Icon: SiAmazonredshift, color: "text-[#2088FF]", name: "Redshift" },
-				{ Icon: SiSnowflake, color: "text-[#29B5E8]", name: "Snowflake" },
-				{ Icon: SiDbt, color: "text-[#FF694A]", name: "dbt" },
-				{ Icon: FaLinux, color: "text-black", name: "Linux" },
-				{ Icon: FaGithub, color: "text-black", name: "GitHub" },
-			];
-		case "Webサイト開発":
-			return [
-				{ Icon: FaHtml5, color: "text-orange-500", name: "HTML" },
-				{ Icon: FaCss3Alt, color: "text-blue-500", name: "CSS" },
-				{
-					Icon: BiLogoJavascript,
-					color: "text-yellow-400",
-					name: "JavaScript",
-				},
-				{ Icon: BiLogoTypescript, color: "text-blue-600", name: "TypeScript" },
-				{ Icon: SiNextdotjs, color: "text-black", name: "Next.js" },
-				{ Icon: FaNodeJs, color: "text-green-600", name: "Node.js" },
-				{ Icon: FaPython, color: "text-[#306998]", name: "Python" },
-				{ Icon: SiRuby, color: "text-[#CC342D]", name: "Ruby" },
-				{ Icon: SiRubyonrails, color: "text-[#CC0000]", name: "Ruby on Rails" },
-				{ Icon: FaGithub, color: "text-black", name: "GitHub" },
-			];
-		case "データ分析・可視化":
-			return [
-				{ Icon: BsFiletypeSql, color: "text-blue-600", name: "SQL" },
-				{ Icon: SiPostgresql, color: "text-[#336791]", name: "PostgreSQL" },
-				{ Icon: SiMysql, color: "text-[#4479A1]", name: "MySQL" },
-				{ Icon: SiTableau, color: "text-[#1C94E0]", name: "Tableau" },
-				{ Icon: FaPython, color: "text-[#FFD43B]", name: "Python" },
-				{ Icon: FaRProject, color: "text-[#276DC3]", name: "R" },
-			];
-		default:
-			return [];
-	}
-};
-
 export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
-	const techStacks = getTechStacks(title);
-
 	return (
 		<div className="flex flex-col rounded-lg border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 shadow-lg transition-all duration-300">
 			<div className="mb-6 flex items-center gap-3 sm:gap-4">
@@ -133,26 +89,6 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 					</div>
 				))}
 			</div>
-
-			{techStacks.length > 0 && (
-				<div className="mt-auto h-15 border-t border-[#00a497]/10 pt-4 sm:h-10 xl:h-20">
-					<div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:max-w-full lg:gap-4">
-						{techStacks.map((tech, index) => (
-							<div key={index} className="relative group">
-								<tech.Icon
-									className={`h-5 w-5 sm:h-6 sm:w-6 xl:h-6 xl:w-6 ${tech.color} transition-transform duration-300 group-hover:scale-110`}
-								/>
-								<div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block animate-fadeIn">
-									<div className="bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-										{tech.name}
-										<div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-800"></div>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };

@@ -1,13 +1,45 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
-import { useSearchParams, redirect } from "next/navigation";
+import { error } from "console";
+import { auth } from "@/lib/firebase";
+import {
+	onAuthStateChanged,
+	GoogleAuthProvider,
+	signInWithPopup,
+	User,
+} from "firebase/auth";
+import { useSearchParams, redirect, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 export default function LoginPage() {
-	const { data: session } = useSession();
+	const router = useRouter();
 	const searchParams = useSearchParams();
 	const error = searchParams.get("error");
+	const [user, setUser] = useState<User | null>(null);
+
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setUser(user);
+				router.push("/admin");
+			} else {
+				setUser(null);
+			}
+		});
+
+		return () => unsubscribe();
+	}, [router]);
+
+	const handleSignIn = async () => {
+		const provider = new GoogleAuthProvider();
+		try {
+			const result = await signInWithPopup(auth, provider);
+			await signInWithPopup(auth, provider);
+		} catch (error) {
+			console.error("ログインエラー: ", error);
+		}
+	};
 
 	const getErrorMessage = (error: string | null) => {
 		switch (error) {
@@ -19,20 +51,6 @@ export default function LoginPage() {
 				return "";
 		}
 	};
-
-	const handleGoogleLogin = async () => {
-		try {
-			await signIn("google", {
-				callbackUrl: "/admin",
-			});
-		} catch (error) {
-			console.error("ログインエラー:", error);
-		}
-	};
-
-	if (session) {
-		redirect("/admin");
-	}
 
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4">
@@ -53,7 +71,7 @@ export default function LoginPage() {
 				)}
 
 				<button
-					onClick={handleGoogleLogin}
+					onClick={handleSignIn}
 					className="flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-3 shadow-sm transition-colors hover:cursor-pointer hover:bg-gray-50"
 				>
 					<FaGoogle className="h-5 w-5 text-red-500" />

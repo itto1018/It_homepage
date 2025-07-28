@@ -1,37 +1,37 @@
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { updateSkills } from "@/lib/firebase/store/services";
-import { Service, Skill } from "@/types/services";
-import { auth } from "@/auth";
-import { db } from "@/lib/firebase/client";
+import { Skill } from "@/types/services";
 import { serverTimestamp } from "firebase/firestore";
+import { authenticateRequest } from "@/middleware/authMiddleware";
 
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
 	try {
-		const session = await auth();
-		if (!session) {
-			return new NextResponse("Unauthorized", { status: 401 });
+		const isAuthenticated = await authenticateRequest(request);
+		if (!isAuthenticated) {
+			return new Response(JSON.stringify({ error: "Unauthorized" }), {
+				status: 401,
+			});
 		}
 
-		const { services } = (await request.json()) as { services: Service[] };
 		const { skills } = (await request.json()) as { skills: Skill[] };
-
-		const servicesWithTimestamp = services.map((service) => ({
-			...service,
-			updatedAt: serverTimestamp(),
-			...(service.id.startsWith("temp_") && { createdAt: serverTimestamp() }),
-		}));
 
 		const skillsWithTimestamp = skills.map((skill) => ({
 			...skill,
 			updatedAt: serverTimestamp(),
-			...(skill.id.startsWith("temp_") && { createdAt: serverTimestamp() }),
+			...(skill.skillId.startsWith("temp_") && {
+				createdAt: serverTimestamp(),
+			}),
 		}));
 
 		await updateSkills(skillsWithTimestamp);
 
-		return NextResponse.json({ message: "Skills updated successfully" });
+		return new Response(JSON.stringify({ message: "Success" }), {
+			status: 200,
+		});
 	} catch (error) {
 		console.error("Error updating skills:", error);
-		return new NextResponse("Internal Server Error", { status: 500 });
+		return new Response(JSON.stringify({ error: "Internal server error" }), {
+			status: 500,
+		});
 	}
 }

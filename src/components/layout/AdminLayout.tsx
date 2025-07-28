@@ -1,8 +1,31 @@
+"use client";
+
 import { Toaster } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
 import { Sidebar } from "@/components/admin/Sidebar";
+import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "@/lib/firebase/auth";
+import { useState, useEffect } from "react";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
+	const [isLoading, setIsLoading] = useState(true);
+	const router = useRouter();
+
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged((user) => {
+			if (!user) {
+				router.push("/auth/signin");
+			}
+			setIsLoading(false);
+		});
+
+		return () => unsubscribe();
+	}, [router]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<AuthGuard>
 			<div className="min-h-screen flex flex-col bg-gray-50">
