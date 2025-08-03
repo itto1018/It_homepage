@@ -18,9 +18,9 @@ interface AdminMenu {
 
 const ADMIN_MENUS: AdminMenu[] = [
 	{
-		id: "profile",
-		href: "/admin/edit/top-section",
-		title: "トップセクション編集",
+		id: "top",
+		href: "/admin/edit/top",
+		title: "トップページ管理",
 		description: "トップページの最上部の内容を編集",
 		icon: BsChatLeftTextFill,
 	},

@@ -2,8 +2,8 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // TopSection
-    match /top-section/{document=**} {
+    // Top
+    match /top/{document=**} {
       // 読み取りは全ユーザーに許可
       allow read: if true;
       // 書き込みは管理者のみ許可
