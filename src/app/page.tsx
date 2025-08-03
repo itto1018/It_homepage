@@ -1,6 +1,8 @@
+import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
 import ProfileSection from "@/components/elements/ProfileSection";
 import ServiceSection from "@/components/elements/ServiceSection";
 import WorksSection from "@/components/elements/WorksSection";
+import Image from "next/image";
 
 export default function Home() {
 	return (
@@ -20,8 +22,10 @@ export default function Home() {
 						<div className="w-4/5 mt-8 relative">
 							<div className="absolute -inset-1 bg-gradient-to-r from-[#00a497] to-[#45b7af] rounded-lg blur opacity-20"></div>
 							<article className="relative bg-white/80 backdrop-blur-sm rounded-lg px-6 py-4 text-gray-600 text-sm md:text-base lg:text-xl">
-								普段はデータエンジニアとして働きつつ、Webアプリケーション開発やデータサイエンスに興味のある{" "}
-								<span className="text-[#00a497] font-medium">It（イット）</span>{" "}
+								{" "}
+								<span className="text-[#00a497] font-medium">
+									It（イット）
+								</span>{" "}
 								です。
 							</article>
 						</div>

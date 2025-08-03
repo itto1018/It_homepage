@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaUser, FaClipboard, FaToolbox } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import { BsChatLeftTextFill } from "react-icons/bs";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 interface AdminMenu {
@@ -16,6 +17,13 @@ interface AdminMenu {
 }
 
 const ADMIN_MENUS: AdminMenu[] = [
+	{
+		id: "profile",
+		href: "/admin/edit/top-section",
+		title: "トップセクション編集",
+		description: "トップページの最上部の内容を編集",
+		icon: BsChatLeftTextFill,
+	},
 	{
 		id: "profile",
 		href: "/admin/edit/profile",

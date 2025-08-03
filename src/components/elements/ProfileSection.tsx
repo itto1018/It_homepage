@@ -24,7 +24,7 @@ export const ProfileSection = () => {
 		};
 		fetchProfile();
 	}, []);
-	
+
 	// プロフィールリンクの状態
 	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
 	useEffect(() => {
@@ -112,15 +112,18 @@ export const ProfileSection = () => {
 							<div
 								key={index}
 								className={`rounded-lg p-4 transition-all duration-300 border 
-									${career.period.includes('現在') 
-										? 'bg-[#00a497]/10 border-[#00a497]/20 animate-pulse-subtle shadow-lg' 
-										: 'bg-[#00a497]/5 border-[#00a497]/10'
+									${
+										career.period.includes("現在")
+											? "bg-[#00a497]/10 border-[#00a497]/20 animate-pulse-subtle shadow-lg"
+											: "bg-[#00a497]/5 border-[#00a497]/10"
 									}`}
 							>
-								<p className={`text-sm font-bold sm:text-base mb-1 transition-colors duration-300
-									${career.period.includes('現在') 
-										? 'text-[#00a497] animate-bounce-subtle' 
-										: 'text-gray-600'
+								<p
+									className={`text-sm font-bold sm:text-base mb-1 transition-colors duration-300
+									${
+										career.period.includes("現在")
+											? "text-[#00a497] animate-bounce-subtle"
+											: "text-gray-600"
 									}`}
 								>
 									{career.period}
