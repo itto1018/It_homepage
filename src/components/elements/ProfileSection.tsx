@@ -56,7 +56,6 @@ export const ProfileSection = () => {
 			className="w-full rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg transition-shadow duration-300"
 		>
 			<div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-				{/* プロフィール画像と基本情報 */}
 				<div className="flex-1 flex flex-col gap-8">
 					<div className="flex items-center justify-center">
 						<div className="relative h-36 w-36 sm:h-48 sm:w-48 lg:h-64 lg:w-64 group">

@@ -1,8 +1,7 @@
-import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
+import TopSection from "@/components/elements/TopSection";
 import ProfileSection from "@/components/elements/ProfileSection";
 import ServiceSection from "@/components/elements/ServiceSection";
 import WorksSection from "@/components/elements/WorksSection";
-import TopSection from "@/components/elements/TopSection";
 
 export default function Home() {
 	return (
