@@ -6,12 +6,14 @@ import { usePathname } from "next/navigation";
 import {
 	FaHome,
 	FaUser,
+	FaToolbox,
 	FaClipboard,
 	FaSignOutAlt,
 	FaExternalLinkAlt,
-	FaBars, // ハンバーガーメニューアイコン
-	FaTimes, // 閉じるアイコン
+	FaBars,
+	FaTimes,
 } from "react-icons/fa";
+import { BsChatLeftTextFill } from "react-icons/bs";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useAuth } from "@/components/auth/AuthProvider";
@@ -23,8 +25,13 @@ export const Sidebar = () => {
 
 	const navigation = [
 		{ name: "ホーム", href: "/admin", icon: FaHome },
+		{
+			name: "トップページ管理",
+			href: "/admin/edit/top",
+			icon: BsChatLeftTextFill,
+		},
 		{ name: "プロフィール管理", href: "/admin/edit/profile", icon: FaUser },
-		{ name: "サービス管理", href: "/admin/edit/services", icon: FaClipboard },
+		{ name: "サービス管理", href: "/admin/edit/services", icon: FaToolbox },
 		{ name: "作品集管理", href: "/admin/edit/works", icon: FaClipboard },
 	];
 

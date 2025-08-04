@@ -24,7 +24,7 @@ export const ProfileSection = () => {
 		};
 		fetchProfile();
 	}, []);
-	
+
 	// プロフィールリンクの状態
 	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
 	useEffect(() => {
@@ -56,7 +56,6 @@ export const ProfileSection = () => {
 			className="w-full rounded-2xl border border-gray-100 bg-gradient-to-br from-white to-[#e5f4f3] p-6 sm:p-8 lg:p-10 shadow-lg transition-shadow duration-300"
 		>
 			<div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-				{/* プロフィール画像と基本情報 */}
 				<div className="flex-1 flex flex-col gap-8">
 					<div className="flex items-center justify-center">
 						<div className="relative h-36 w-36 sm:h-48 sm:w-48 lg:h-64 lg:w-64 group">
@@ -112,15 +111,18 @@ export const ProfileSection = () => {
 							<div
 								key={index}
 								className={`rounded-lg p-4 transition-all duration-300 border 
-									${career.period.includes('現在') 
-										? 'bg-[#00a497]/10 border-[#00a497]/20 animate-pulse-subtle shadow-lg' 
-										: 'bg-[#00a497]/5 border-[#00a497]/10'
+									${
+										career.period.includes("現在")
+											? "bg-[#00a497]/10 border-[#00a497]/20 animate-pulse-subtle shadow-lg"
+											: "bg-[#00a497]/5 border-[#00a497]/10"
 									}`}
 							>
-								<p className={`text-sm font-bold sm:text-base mb-1 transition-colors duration-300
-									${career.period.includes('現在') 
-										? 'text-[#00a497] animate-bounce-subtle' 
-										: 'text-gray-600'
+								<p
+									className={`text-sm font-bold sm:text-base mb-1 transition-colors duration-300
+									${
+										career.period.includes("現在")
+											? "text-[#00a497] animate-bounce-subtle"
+											: "text-gray-600"
 									}`}
 								>
 									{career.period}

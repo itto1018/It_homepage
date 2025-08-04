@@ -1,3 +1,4 @@
+import TopSection from "@/components/elements/TopSection";
 import ProfileSection from "@/components/elements/ProfileSection";
 import ServiceSection from "@/components/elements/ServiceSection";
 import WorksSection from "@/components/elements/WorksSection";
@@ -7,25 +8,9 @@ export default function Home() {
 		<>
 			<main className="w-full">
 				{/* トップセクション */}
+				<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
 				<div className="relative w-full min-h-[50vh] md:min-h-[75vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden">
-					<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
-					<div className="relative z-10 flex flex-col items-center text-center px-5">
-						<h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5">
-							<span className="bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
-								Welcome to
-							</span>
-							<br />
-							<span className="mt-2 inline-block">It.dev</span>
-						</h1>
-						<div className="w-4/5 mt-8 relative">
-							<div className="absolute -inset-1 bg-gradient-to-r from-[#00a497] to-[#45b7af] rounded-lg blur opacity-20"></div>
-							<article className="relative bg-white/80 backdrop-blur-sm rounded-lg px-6 py-4 text-gray-600 text-sm md:text-base lg:text-xl">
-								普段はデータエンジニアとして働きつつ、Webアプリケーション開発やデータサイエンスに興味のある{" "}
-								<span className="text-[#00a497] font-medium">It（イット）</span>{" "}
-								です。
-							</article>
-						</div>
-					</div>
+					<TopSection />
 				</div>
 
 				{/* コンテンツセクション */}

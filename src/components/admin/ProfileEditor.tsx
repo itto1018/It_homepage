@@ -211,7 +211,7 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 						</div>
 					</div>
 
-					<div className="space-y-6">
+					<div id="profile-details" className="space-y-6">
 						<div>
 							<label
 								htmlFor="nickname"
@@ -320,7 +320,6 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 						<div className="border-t border-gray-200 pt-6">
 							<div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
 								{" "}
-								{/* レイアウトを調整 */}
 								<Link
 									href="/admin"
 									className="w-full sm:w-auto rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none text-center cursor-pointer"
