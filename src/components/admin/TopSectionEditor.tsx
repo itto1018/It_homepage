@@ -25,12 +25,12 @@ export const TopSectionEditor: React.FC<Props> = ({ initialTop }) => {
 		e.preventDefault();
 
 		// バリデーションチェック
-        if (content.length > MAX_LENGTH) {
-            toast.error(`メッセージは${MAX_LENGTH}文字以内で入力してください`);
-            return;
-        }
+		if (content.length > MAX_LENGTH) {
+			toast.error(`メッセージは${MAX_LENGTH}文字以内で入力してください`);
+			return;
+		}
 
-        setIsLoading(true);
+		setIsLoading(true);
 
 		try {
 			//firebase auth認証
@@ -90,12 +90,14 @@ export const TopSectionEditor: React.FC<Props> = ({ initialTop }) => {
 					<div className="flex justify-between items-center">
 						<p>
 							{" "}
-							<span className="text-[#00a497] font-medium">It（イット）</span>{" "}
+							<span className="text-[#00a497] font-medium">
+								It（イット）
+							</span>{" "}
 							です。
 						</p>
 						<div className="justify-end text-sm text-gray-500 text-right">
-                    	    {content.length}/{MAX_LENGTH}文字
-                    	</div>
+							{content.length}/{MAX_LENGTH}文字
+						</div>
 					</div>
 				</div>
 				<div className="border-t border-gray-200 pt-6">

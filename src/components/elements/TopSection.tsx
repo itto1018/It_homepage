@@ -31,7 +31,7 @@ const TopSection = () => {
 			</div>
 		);
 	}
-	
+
 	return (
 		<>
 			<div className="relative z-10 flex flex-col items-center text-center px-5">

@@ -12,18 +12,18 @@ export async function POST(request: Request) {
 
 		// バリデーション
 		if (!data.article) {
-            return NextResponse.json(
-                { error: "メッセージは必須です" },
-                { status: 400 }
-            );
-        }
-        
+			return NextResponse.json(
+				{ error: "メッセージは必須です" },
+				{ status: 400 }
+			);
+		}
+
 		if (data.article.length > MAX_LENGTH) {
-            return NextResponse.json(
-                { error: `メッセージは${MAX_LENGTH}文字以内で入力してください` },
-                { status: 400 }
-            );
-        }
+			return NextResponse.json(
+				{ error: `メッセージは${MAX_LENGTH}文字以内で入力してください` },
+				{ status: 400 }
+			);
+		}
 
 		// 更新日時を設定
 		const now = new Date();
