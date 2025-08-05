@@ -1,35 +1,5 @@
 import { IconType } from "react-icons";
-import {
-	FaHtml5,
-	FaCss3Alt,
-	FaPython,
-	FaNodeJs,
-	FaAws,
-	FaRProject,
-	FaGithub,
-	FaLinux,
-} from "react-icons/fa";
-import {
-	SiPostgresql,
-	SiSnowflake,
-	SiAmazonredshift,
-	SiDbt,
-	SiNextdotjs,
-	SiTableau,
-	SiMysql,
-	SiRuby,
-	SiRubyonrails,
-} from "react-icons/si";
-import { BiLogoTypescript, BiLogoJavascript } from "react-icons/bi";
-import { BsFiletypeSql } from "react-icons/bs";
 import { getSkillLevelDescription } from "@/types/services";
-import type { Service, Skill } from "@/types/services";
-
-type TechStack = {
-	Icon: IconType;
-	color: string;
-	name: string;
-};
 
 type SkillLevel = {
 	name: string;
