@@ -10,7 +10,7 @@ const TopSection = () => {
 	// トップセクションのデータ取得(Read)
 	const [top, setTop] = React.useState<Top | null>(null);
 	useEffect(() => {
-		const fetchProfile = async () => {
+		const fetchTop = async () => {
 			try {
 				const data = await getTop();
 				setTop(data);
@@ -20,7 +20,7 @@ const TopSection = () => {
 				setIsLoading(false);
 			}
 		};
-		fetchProfile();
+		fetchTop();
 	}, []);
 
 	// ローディング中の表示

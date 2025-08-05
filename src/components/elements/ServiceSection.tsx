@@ -17,41 +17,36 @@ interface Props {
 
 const ServiceSection: React.FC<Props> = () => {
 	const [isLoading, setIsLoading] = useState(true);
+
 	// サービスを取得(Read)
-	const [services, setServices] = useState<Service[]>([]);
+	const [services, setServices] = React.useState<Service[]>([]);
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
-				const servicesData = await getServices();
-				if (servicesData) {
-					setServices(servicesData);
-				}
+				const data = await getServices();
+				setServices(data);
 			} catch (error) {
-				console.error("Error fetching services:", error);
+				console.error("サービス情報取得エラー:", error);
 			} finally {
 				setIsLoading(false);
 			}
 		};
-
 		fetchServices();
 	}, []);
 
 	// スキルを取得(Read)
-	const [skills, setSkills] = useState<Skill[]>([]);
+	const [skills, setSkills] = React.useState<Skill[]>([]);
 	useEffect(() => {
 		const fetchSkills = async () => {
 			try {
-				const skillsData = await getSkills();
-				if (skillsData) {
-					setSkills(skillsData);
-				}
+				const data = await getSkills();
+				setSkills(data);
 			} catch (error) {
-				console.error("Error fetching skills:", error);
+				console.error("スキル情報取得エラー:", error);
 			} finally {
 				setIsLoading(false);
 			}
 		};
-
 		fetchSkills();
 	}, []);
 
