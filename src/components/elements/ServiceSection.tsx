@@ -50,6 +50,13 @@ const ServiceSection: React.FC<Props> = () => {
 		fetchSkills();
 	}, []);
 
+	// サービスの表示順
+	const serviceOrder = [
+		"data-infrastructure",
+		"web-development",
+		"data-analytics",
+	];
+
 	// ローディング中の表示
 	if (isLoading) {
 		return (
@@ -61,28 +68,34 @@ const ServiceSection: React.FC<Props> = () => {
 
 	return (
 		<div className="mb-12 grid w-full grid-cols-1 gap-4 sm:gap-6 md:mb-15 xl:grid-cols-3">
-			{services.map((service) => {
-				const serviceSkills = skills.filter(
-					(skill) => skill.serviceId === service.id
-				);
-				return (
-					<ServiceCard
-						key={service.id}
-						title={service.title}
-						Icon={
-							service.id === "data-infrastructure"
-								? FaDatabase
-								: service.id === "web-development"
-									? FaLaptopCode
-									: service.id === "data-analytics"
-										? IoAnalyticsSharp
-										: RxReload
-						}
-						items={service.items}
-						skills={serviceSkills}
-					/>
-				);
-			})}
+			{services
+				.sort((a, b) => {
+					const indexA = serviceOrder.indexOf(a.id);
+					const indexB = serviceOrder.indexOf(b.id);
+					return indexA - indexB;
+				})
+				.map((service) => {
+					const serviceSkills = skills.filter(
+						(skill) => skill.serviceId === service.id
+					);
+					return (
+						<ServiceCard
+							key={service.id}
+							title={service.title}
+							Icon={
+								service.id === "data-infrastructure"
+									? FaDatabase
+									: service.id === "web-development"
+										? FaLaptopCode
+										: service.id === "data-analytics"
+											? IoAnalyticsSharp
+											: RxReload
+							}
+							items={service.items}
+							skills={serviceSkills}
+						/>
+					);
+				})}
 		</div>
 	);
 };

@@ -2,8 +2,8 @@ import { IconType } from "react-icons";
 import { getSkillLevelDescription } from "@/types/services";
 
 type SkillLevel = {
-	name: string;
-	level: 1 | 2 | 3 | 4 | 5;
+	skillName: string;
+	skillLevel: 1 | 2 | 3 | 4 | 5;
 	description?: string;
 };
 
@@ -40,21 +40,21 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 				{skills.map((skill, index) => (
 					<div key={index} className="space-y-1">
 						<div className="flex justify-between text-sm font-bold text-gray-600">
-							<span>{skill.name}</span>
-							<span className="text-[#00a497]">{skill.level}/5</span>
+							<span>{skill.skillName}</span>
+							<span className="text-[#00a497]">{skill.skillLevel}/5</span>
 						</div>
 						<div className="flex gap-0.5">
 							{[...Array(5)].map((_, i) => (
 								<div
 									key={i}
 									className={`h-1.5 flex-1 rounded-full ${
-										i < skill.level ? "bg-[#00a497]" : "bg-gray-200"
+										i < skill.skillLevel ? "bg-[#00a497]" : "bg-gray-200"
 									}`}
 								/>
 							))}
 						</div>
 						<p className="text-xs text-gray-600">
-							{getSkillLevelDescription(skill.level)}
+							{getSkillLevelDescription(skill.skillLevel)}
 						</p>
 					</div>
 				))}

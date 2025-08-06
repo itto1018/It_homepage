@@ -1,37 +1,35 @@
-import { NextRequest } from "next/server";
-import { updateSkills } from "@/lib/firebase/store/services";
+import { NextRequest, NextResponse } from "next/server";
 import { Skill } from "@/types/services";
 import { serverTimestamp } from "firebase/firestore";
 import { authenticateRequest } from "@/middleware/authMiddleware";
+import { adminDb } from "@/lib/firebase/store/admin";
 
-export async function PUT(request: NextRequest) {
+export async function PUT(request: Request) {
 	try {
-		const isAuthenticated = await authenticateRequest(request);
-		if (!isAuthenticated) {
-			return new Response(JSON.stringify({ error: "Unauthorized" }), {
-				status: 401,
-			});
-		}
+		// リクエストボディからデータを取得
+		const data: Partial<Skill> = await request.json();
 
-		const { skills } = (await request.json()) as { skills: Skill[] };
+		// 更新日時と作成日時を設定
+		const now = new Date();
+		const skillData = {
+			...data,
+			skillId: data.skillId,
+			serviceId: data.serviceId,
+			name: data.name,
+			level: data.level,
+			updatedAt: now,
+			createdAt: now,
+		};
 
-		const skillsWithTimestamp = skills.map((skill) => ({
-			...skill,
-			updatedAt: serverTimestamp(),
-			...(skill.skillId.startsWith("temp_") && {
-				createdAt: serverTimestamp(),
-			}),
-		}));
+		const docRef = adminDb.collection("skills").doc("default");
+		await docRef.set(skillData, { merge: true });
 
-		await updateSkills(skillsWithTimestamp);
-
-		return new Response(JSON.stringify({ message: "Success" }), {
-			status: 200,
+		return NextResponse.json({
+			message: "保存しました",
+			data: skillData,
 		});
 	} catch (error) {
-		console.error("Error updating skills:", error);
-		return new Response(JSON.stringify({ error: "Internal server error" }), {
-			status: 500,
-		});
+		console.error("Error saving skill:", error);
+		return NextResponse.json({ error: "保存に失敗しました" }, { status: 500 });
 	}
 }

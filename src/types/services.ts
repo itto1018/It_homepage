@@ -7,8 +7,8 @@ export type Service = {
 export interface Skill {
 	skillId: string;
 	serviceId: string;
-	level: SkillLevel;
-	name: string;
+	skillLevel: SkillLevel;
+	skillName: string;
 }
 
 export type SkillLevel = 1 | 2 | 3 | 4 | 5;

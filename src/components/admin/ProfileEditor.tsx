@@ -120,7 +120,7 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 				}
 			}
 
-			// プロフィールデータを送信
+			// プロフィールデータを送信(Update)
 			const response = await fetch("/api/profile", {
 				method: "POST",
 				headers: {
