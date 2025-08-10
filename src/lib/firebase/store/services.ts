@@ -48,9 +48,9 @@ export const getSkills = async (): Promise<Skill[]> => {
 				serviceId: data.serviceId,
 				skillName: data.skillName,
 				skillLevel: data.skillLevel,
+				skillDescription: data.skillDescription || "",
 			};
 		});
-
 		return skills;
 	} catch (error) {
 		console.error("Error fetching skills:", error);

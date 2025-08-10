@@ -30,19 +30,24 @@ const Header = () => {
 						</div>
 						{isLandingPage && (
 							<nav className="flex space-x-10">
-								{['profile-title', 'services-title', 'works-title'].map((sectionId) => (
-									<Link
-										key={sectionId}
-										href="#"
-										onClick={(e) => {
-											e.preventDefault();
-											scrollToSection(sectionId);
-										}}
-										className='text-gray-600 hover:text-[#00a497] transition-colors'
-									>
-										{sectionId.replace("-title", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-									</Link>
-								))}
+								{["profile-title", "services-title", "works-title"].map(
+									(sectionId) => (
+										<Link
+											key={sectionId}
+											href="#"
+											onClick={(e) => {
+												e.preventDefault();
+												scrollToSection(sectionId);
+											}}
+											className="text-gray-600 hover:text-[#00a497] transition-colors"
+										>
+											{sectionId
+												.replace("-title", "")
+												.replace(/-/g, " ")
+												.replace(/\b\w/g, (c) => c.toUpperCase())}
+										</Link>
+									)
+								)}
 							</nav>
 						)}
 					</div>

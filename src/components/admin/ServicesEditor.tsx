@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Service } from "@/types/services";
-import { getSkillLevelDescription, Skill, SkillLevel } from "@/types/services";
+import { Skill } from "@/types/services";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -79,7 +79,7 @@ export const ServicesEditor: React.FC<Props> = ({
 	const handleSkillChange = (
 		serviceId: string,
 		skillId: string,
-		field: "name" | "level",
+		field: "name" | "level" | "description",
 		value: string | number
 	) => {
 		setSkills((prevSkills) =>
@@ -88,7 +88,11 @@ export const ServicesEditor: React.FC<Props> = ({
 				return {
 					...skill,
 					serviceId: serviceId,
-					[field === "name" ? "skillName" : "skillLevel"]:
+					[field === "name"
+						? "skillName"
+						: field === "level"
+							? "skillLevel"
+							: "skillDescription"]:
 						field === "level" ? Number(value) || 1 : value || "",
 				};
 			})
@@ -102,6 +106,7 @@ export const ServicesEditor: React.FC<Props> = ({
 			serviceId: serviceId,
 			skillName: "",
 			skillLevel: 1,
+			skillDescription: "",
 		};
 
 		setSkills([...skills, newSkill]);
@@ -152,6 +157,7 @@ export const ServicesEditor: React.FC<Props> = ({
 						serviceId: skill.serviceId,
 						skillName: skill.skillName,
 						skillLevel: Number(skill.skillLevel),
+						skillDescription: skill.skillDescription,
 					})),
 					deletedSkillIds: deletedSkillIds.filter((id) => id),
 				}),
@@ -276,7 +282,21 @@ export const ServicesEditor: React.FC<Props> = ({
 											</button>
 										</div>
 										<div className="text-sm text-gray-500 italic pl-2">
-											{getSkillLevelDescription(skill.skillLevel)}
+											<input
+												type="text"
+												value={skill.skillDescription || ""}
+												onChange={(e) =>
+													handleSkillChange(
+														service.id,
+														skill.skillId,
+														"description",
+														e.target.value
+													)
+												}
+												className="w-full rounded-lg border border-gray-200 px-4 py-2 text-sm italic"
+												placeholder="スキルレベルの説明を入力"
+												disabled={isLoading}
+											/>
 										</div>
 									</div>
 								))}

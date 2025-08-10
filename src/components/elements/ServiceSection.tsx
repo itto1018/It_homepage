@@ -78,6 +78,7 @@ const ServiceSection: React.FC<Props> = () => {
 					const serviceSkills = skills.filter(
 						(skill) => skill.serviceId === service.id
 					);
+					console.log("ServiceCard skills:", serviceSkills); // デバッグ用
 					return (
 						<ServiceCard
 							key={service.id}

@@ -14,7 +14,6 @@ export default function Home() {
 						<TopSection />
 					</div>
 				</div>
-				
 
 				{/* コンテンツセクション */}
 				<div className="w-4/5 mx-auto px-5 py-10 lg:px-10 lg:py-15">

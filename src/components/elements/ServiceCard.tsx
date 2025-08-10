@@ -1,10 +1,9 @@
 import { IconType } from "react-icons";
-import { getSkillLevelDescription } from "@/types/services";
 
 type SkillLevel = {
 	skillName: string;
 	skillLevel: 1 | 2 | 3 | 4 | 5;
-	description?: string;
+	skillDescription?: string;
 };
 
 type Props = {
@@ -53,9 +52,7 @@ export const ServiceCard = ({ title, Icon, items, skills }: Props) => {
 								/>
 							))}
 						</div>
-						<p className="text-xs text-gray-600">
-							{getSkillLevelDescription(skill.skillLevel)}
-						</p>
+						<p className="text-xs text-gray-600">{skill.skillDescription}</p>
 					</div>
 				))}
 			</div>
