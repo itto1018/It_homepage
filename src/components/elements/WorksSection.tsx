@@ -16,8 +16,8 @@ export const WorksSection = () => {
 			setIsLoading(true);
 			const worksData = await getWorks();
 			if (worksData) {
-				// 最新の3件のみを表示
-				setWorks(worksData.slice(0, 3));
+				// 最新の6件のみを表示
+				setWorks(worksData.slice(0, 6));
 			} else {
 				setWorks([]);
 			}

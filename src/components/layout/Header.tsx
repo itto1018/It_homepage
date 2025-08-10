@@ -4,6 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
+const scrollToSection = (sectionId: string) => {
+	const element = document.getElementById(sectionId);
+	if (element) {
+		element.scrollIntoView({ behavior: "smooth" });
+	}
+};
+
 const Header = () => {
 	const pathname = usePathname();
 	const isLandingPage = pathname === "/";
@@ -22,28 +29,21 @@ const Header = () => {
 							</Link>
 						</div>
 						{isLandingPage && (
-							<div>
-								<nav className="flex space-x-10">
+							<nav className="flex space-x-10">
+								{['profile-title', 'services-title', 'works-title'].map((sectionId) => (
 									<Link
-										href="#profile-title"
-										className="text-gray-600 hover:text-[#00a497] transition-colors"
+										key={sectionId}
+										href="#"
+										onClick={(e) => {
+											e.preventDefault();
+											scrollToSection(sectionId);
+										}}
+										className='text-gray-600 hover:text-[#00a497] transition-colors'
 									>
-										Profile
+										{sectionId.replace("-title", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
 									</Link>
-									<Link
-										href="#services-title"
-										className="text-gray-600 hover:text-[#00a497] transition-colors"
-									>
-										Services
-									</Link>
-									<Link
-										href="#works-title"
-										className="text-gray-600 hover:text-[#00a497] transition-colors"
-									>
-										Works
-									</Link>
-								</nav>
-							</div>
+								))}
+							</nav>
 						)}
 					</div>
 				</div>

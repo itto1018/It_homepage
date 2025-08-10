@@ -8,10 +8,13 @@ export default function Home() {
 		<>
 			<main className="w-full">
 				{/* トップセクション */}
-				<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
-				<div className="relative w-full min-h-[50vh] md:min-h-[75vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden">
-					<TopSection />
+				<div id="top-section">
+					<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
+					<div className="relative w-full min-h-[50vh] md:min-h-[75vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden">
+						<TopSection />
+					</div>
 				</div>
+				
 
 				{/* コンテンツセクション */}
 				<div className="w-4/5 mx-auto px-5 py-10 lg:px-10 lg:py-15">
@@ -19,7 +22,7 @@ export default function Home() {
 						{/* Profile */}
 						<div
 							id="profile-title"
-							className="flex flex-col items-center my-4 scroll-mt-header"
+							className="flex flex-col items-center my-4 scroll-mt-[100px]"
 						>
 							<h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
 								Profile
@@ -32,7 +35,7 @@ export default function Home() {
 						{/* Services */}
 						<div
 							id="services-title"
-							className="flex flex-col items-center my-4 scroll-mt-header"
+							className="flex flex-col items-center my-4 scroll-mt-[100px]"
 						>
 							<h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
 								Services
@@ -45,7 +48,7 @@ export default function Home() {
 						{/* Works */}
 						<div
 							id="works-title"
-							className="flex flex-col items-center my-4 scroll-mt-header"
+							className="flex flex-col items-center my-4 scroll-mt-[100px]"
 						>
 							<h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
 								Works
