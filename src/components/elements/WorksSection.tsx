@@ -16,8 +16,8 @@ export const WorksSection = () => {
 			setIsLoading(true);
 			const worksData = await getWorks();
 			if (worksData) {
-				// 最新の3件のみを表示
-				setWorks(worksData.slice(0, 3));
+				// 最新の6件のみを表示
+				setWorks(worksData.slice(0, 6));
 			} else {
 				setWorks([]);
 			}
@@ -59,6 +59,7 @@ export const WorksSection = () => {
 										src={work.imageUrl ?? "/images/no-image.png"}
 										alt={work.title}
 										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 										className="object-cover"
 									/>
 								</div>

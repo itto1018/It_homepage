@@ -4,8 +4,8 @@ import { ServicesEditor } from "@/components/admin/ServicesEditor";
 
 export default async function EditServicesPage() {
 	// サービスとスキルを並行で取得
-	const [services] = await Promise.all([getServices()]);
-	const [skills] = await Promise.all([getSkills()]);
+	const services = await getServices();
+	const skills = await getSkills();
 
 	return (
 		<AdminLayout>
