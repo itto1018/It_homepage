@@ -155,14 +155,12 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 
 	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	return (
 		<>
-			<div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
+			<div className="editor-container">
 				<form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
 					<div id="profile-image" className="rounded-lg bg-gray-50 p-4 sm:p-6">
 						<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

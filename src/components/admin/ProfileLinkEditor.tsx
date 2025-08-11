@@ -68,13 +68,11 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 
 	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	return (
-		<div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
+		<div className="editor-container">
 			<div className="space-y-4">
 				{Object.entries(links).map(([key, value]) => (
 					<div key={key} className="rounded-lg bg-gray-50 p-4 sm:p-6">

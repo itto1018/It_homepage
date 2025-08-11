@@ -1,6 +1,5 @@
 "use client";
 
-import { error } from "console";
 import { auth } from "@/lib/firebase";
 import {
 	onAuthStateChanged,
@@ -11,6 +10,8 @@ import {
 import { useSearchParams, redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { toast } from "react-hot-toast";
+import { FirebaseError } from "firebase/app";
 
 export default function LoginPage() {
 	const router = useRouter();
@@ -34,10 +35,23 @@ export default function LoginPage() {
 	const handleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
 		try {
-			const result = await signInWithPopup(auth, provider);
 			await signInWithPopup(auth, provider);
 		} catch (error) {
-			console.error("ログインエラー: ", error);
+			if (error instanceof FirebaseError) {
+				switch (error.code) {
+					case "auth/popup-closed-by-user":
+						toast.error("ログインがキャンセルされました。再度お試しください。");
+						break;
+					case "auth/popup-blocked":
+						toast.error(
+							"ポップアップがブロックされました。ブラウザの設定を確認してください。"
+						);
+						break;
+					default:
+						toast.error("ログインエラーが発生しました。");
+						console.error("ログインエラー:", error);
+				}
+			}
 		}
 	};
 

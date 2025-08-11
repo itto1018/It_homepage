@@ -55,13 +55,28 @@ export const WorksSection = () => {
 							>
 								{/* サムネイル画像 */}
 								<div className="relative aspect-video">
-									<Image
-										src={work.imageUrl ?? "/images/no-image.png"}
-										alt={work.title}
-										fill
-										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-										className="object-cover"
-									/>
+									{work.imageUrl ? (
+										<Image
+											src={work.imageUrl}
+											alt={work.title}
+											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+											className="object-cover"
+											onError={(e) => {
+												// エラー時にデフォルト画像を表示
+												const target = e.target as HTMLImageElement;
+												target.src = "/images/no-image.png";
+											}}
+										/>
+									) : (
+										<Image
+											src="/images/no-image.png"
+											alt="No image available"
+											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+											className="object-cover"
+										/>
+									)}
 								</div>
 
 								{/* 作品情報 */}

@@ -12,9 +12,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 	const { user, loading } = useAuth();
 	// ローディング中の表示
 	if (loading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	if (!user) {

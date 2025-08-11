@@ -177,9 +177,7 @@ export const ServicesEditor: React.FC<Props> = ({
 
 	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	return (

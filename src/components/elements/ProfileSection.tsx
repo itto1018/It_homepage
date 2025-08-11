@@ -44,9 +44,7 @@ export const ProfileSection = () => {
 
 	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	return (

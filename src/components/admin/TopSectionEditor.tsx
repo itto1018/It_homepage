@@ -64,9 +64,7 @@ export const TopSectionEditor: React.FC<Props> = ({ initialTop }) => {
 
 	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<Loading />
-		);
+		return <Loading />;
 	}
 
 	return (
