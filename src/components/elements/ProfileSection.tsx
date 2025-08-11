@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getProfile, getProfileLink } from "@/lib/firebase/store/profile";
 import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
 import type { Profile, ProfileLink } from "@/types/profile";
+import Loading from "@/components/elements/Loading";
 
 export const ProfileSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -44,9 +45,7 @@ export const ProfileSection = () => {
 	// ローディング中の表示
 	if (isLoading) {
 		return (
-			<div className="flex h-64 items-center justify-center">
-				<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-			</div>
+			<Loading />
 		);
 	}
 

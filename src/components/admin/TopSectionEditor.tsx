@@ -3,9 +3,9 @@
 import { Top } from "@/types/top";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AdminLayout } from "../layout/AdminLayout";
 import { getCurrentUser } from "@/lib/firebase/auth";
 import toast from "react-hot-toast";
+import Loading from "@/components/elements/Loading";
 
 interface Props {
 	initialTop: Top;
@@ -62,14 +62,10 @@ export const TopSectionEditor: React.FC<Props> = ({ initialTop }) => {
 		}
 	};
 
-	// ローディング画面
+	// ローディング中の表示
 	if (isLoading) {
 		return (
-			<AdminLayout>
-				<div className="flex h-64 items-center justify-center">
-					<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-				</div>
-			</AdminLayout>
+			<Loading />
 		);
 	}
 

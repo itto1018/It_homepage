@@ -9,6 +9,7 @@ import { RxReload } from "react-icons/rx";
 import { getServices, getSkills } from "@/lib/firebase/store/services";
 
 import type { Service, Skill } from "@/types/services";
+import Loading from "@/components/elements/Loading";
 
 interface Props {
 	initialServices: Service[];
@@ -60,9 +61,7 @@ const ServiceSection: React.FC<Props> = () => {
 	// ローディング中の表示
 	if (isLoading) {
 		return (
-			<div className="flex h-64 items-center justify-center">
-				<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-			</div>
+			<Loading />
 		);
 	}
 

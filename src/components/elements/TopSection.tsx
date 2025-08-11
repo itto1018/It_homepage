@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import type { Top } from "@/types/top";
 import { getTop } from "@/lib/firebase/store/top";
+import Loading from "@/components/elements/Loading";
 
 const TopSection = () => {
 	const [isLoading, setIsLoading] = React.useState(true);
@@ -26,9 +27,7 @@ const TopSection = () => {
 	// ローディング中の表示
 	if (isLoading) {
 		return (
-			<div className="flex h-64 items-center justify-center">
-				<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-			</div>
+			<Loading />
 		);
 	}
 

@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../../app/globals.css";
 import React from "react";
+import type { Metadata } from "next";
+import "../../app/globals.css";
+import { Geist, Geist_Mono } from "next/font/google";
 import AuthProvider from "@/components/auth/AuthProvider";
-import Link from "next/link";
 import { Footer } from "./Footer";
 import Header from "./Header";
 
@@ -18,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Itのホームページ",
-	description: "Itのホームページへようこそ",
+	title: "It.dev",
+	description: "Itのポートフォリオサイト",
 };
 
 export interface RootLayoutProps {

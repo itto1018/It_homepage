@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { auth } from "@/lib/firebase";
 import React from "react";
+import Loading from "@/components/elements/Loading";
 
 interface Props {
 	initialServices: Service[];
@@ -173,6 +174,13 @@ export const ServicesEditor: React.FC<Props> = ({
 			setIsLoading(false);
 		}
 	};
+
+	// ローディング中の表示
+	if (isLoading) {
+		return (
+			<Loading />
+		);
+	}
 
 	return (
 		<div className="space-y-8">

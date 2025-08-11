@@ -6,7 +6,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { ProfileLink } from "@/types/profile";
 import toast from "react-hot-toast";
 import { getCurrentUser } from "@/lib/firebase/auth";
-import { AdminLayout } from "../layout/AdminLayout";
+import Loading from "@/components/elements/Loading";
 
 interface Props {
 	initialProfileLink: ProfileLink;
@@ -66,14 +66,10 @@ export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
 		setEditValue(value);
 	};
 
-	// ローディング画面
+	// ローディング中の表示
 	if (isLoading) {
 		return (
-			<AdminLayout>
-				<div className="flex h-64 items-center justify-center">
-					<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-				</div>
-			</AdminLayout>
+			<Loading />
 		);
 	}
 

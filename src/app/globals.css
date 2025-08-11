@@ -12,7 +12,7 @@ body {
 
 /* LP */
 .container-section {
-  @apply w-4/5 mx-auto px-5 py-10 lg:px-10 lg:py-15;
+  @apply w-4/5 mx-auto py-10 lg:px-10 lg:py-15;
 }
 
 .section-title {

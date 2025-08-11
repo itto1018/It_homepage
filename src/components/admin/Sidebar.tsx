@@ -61,11 +61,7 @@ export const Sidebar = () => {
 			>
 				<div className="flex h-full flex-col justify-between">
 					<div>
-						{/* ヘッダー部分 */}
-						<div className="h-16"></div>
-
-						{/* ナビゲーション */}
-						<nav className="p-6">
+						<nav className="mt-16 p-6">
 							<ul className="space-y-3">
 								{navigation.map((item) => {
 									const isActive = pathname === item.href;
