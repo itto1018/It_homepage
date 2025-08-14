@@ -1,4 +1,4 @@
-import { Profile, Career, PROFILE_CONSTRAINTS } from "@/types/profile";
+import { Career, PROFILE_CONSTRAINTS } from "@/types/profile";
 
 // バリデーション用の型
 interface ValidationError {

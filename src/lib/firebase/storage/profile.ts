@@ -1,4 +1,5 @@
 import { storage } from "@/lib/firebase/client";
+import { FirebaseError } from "firebase/app";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const uploadProfileImage = async (
@@ -18,8 +19,11 @@ export const uploadProfileImage = async (
 		const downloadURL = await getDownloadURL(snapshot.ref);
 
 		return downloadURL;
-	} catch (error: any) {
-		console.error("Error uploading profile image:", error);
-		throw new Error(`画像のアップロードに失敗しました: ${error.message}`);
+	} catch (error: unknown) {
+		if (error instanceof FirebaseError) {
+			console.error("Error uploading profile image:", error);
+			throw new Error(`画像のアップロードに失敗しました: ${error.message}`);
+		}
+		throw new Error("予期せぬエラーが発生しました");
 	}
 };

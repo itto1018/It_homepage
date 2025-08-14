@@ -4,7 +4,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { useRouter } from "next/navigation";
-import { onAuthStateChanged } from "@/lib/firebase/auth";
+import { onAuthStateChanged } from "@/lib/auth";
 import { useEffect } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import Loading from "@/components/elements/Loading";

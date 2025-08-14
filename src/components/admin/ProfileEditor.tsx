@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { Profile, Career, PROFILE_CONSTRAINTS } from "@/types/profile";
 import { uploadProfileImage } from "@/lib/firebase/storage/profile";
 import { validateProfile } from "@/utils/validateProfile";
-import { getCurrentUser } from "@/lib/firebase/auth";
+import { getCurrentUser } from "@/lib/auth";
 import Loading from "@/components/elements/Loading";
 
 interface Props {

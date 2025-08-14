@@ -16,16 +16,15 @@ export const getWorks = async (): Promise<Works[]> => {
 		const docSnap = await getDoc(worksRef);
 
 		if (!docSnap.exists()) {
-			// 存在しない場合は空配列を返す
 			await setDoc(worksRef, { works: [] });
 			return [];
 		}
 
 		// Timestampを Date に変換
-		return docSnap.data().works.map((work: any) => ({
-			...work,
-			createdAt: work.createdAt?.toDate() || new Date(),
-		}));
+        return (docSnap.data().works as Array<Works & { createdAt: Timestamp }>).map((work) => ({
+            ...work,
+            createdAt: work.createdAt?.toDate() || new Date(),
+        }));
 	} catch (error) {
 		console.error("Error fetching works:", error);
 		throw new Error("作品情報の取得に失敗しました");

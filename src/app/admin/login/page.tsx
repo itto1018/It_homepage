@@ -1,13 +1,13 @@
 "use client";
 
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/auth/firebase";
 import {
 	onAuthStateChanged,
 	GoogleAuthProvider,
 	signInWithPopup,
 	User,
 } from "firebase/auth";
-import { useSearchParams, redirect, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-hot-toast";
@@ -17,7 +17,7 @@ export default function LoginPage() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const error = searchParams.get("error");
-	const [user, setUser] = useState<User | null>(null);
+	const [, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {

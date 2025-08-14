@@ -1,8 +1,6 @@
-import { Service } from "@/types/services";
-import { FaDatabase, FaLaptopCode } from "react-icons/fa";
-import { IoAnalyticsSharp } from "react-icons/io5";
+import { FirestoreService } from "@/types/services";
 
-export const DEFAULT_SERVICES: Service[] = [
+export const DEFAULT_SERVICES: FirestoreService[] = [
 	{
 		id: "data-infrastructure",
 		title: "データ基盤構築",

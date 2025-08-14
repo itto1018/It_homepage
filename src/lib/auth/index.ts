@@ -3,8 +3,10 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	signOut,
+	NextOrObserver,
+	User,
 } from "firebase/auth";
-import { app } from "./client";
+import { app } from "../firebase/client";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -36,6 +38,6 @@ export const getCurrentUser = () => {
 };
 
 // 認証状態の監視
-export const onAuthStateChanged = (callback: (user: any) => void) => {
+export const onAuthStateChanged = (callback: NextOrObserver<User>) => {
 	return auth.onAuthStateChanged(callback);
 };

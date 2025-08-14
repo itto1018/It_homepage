@@ -1,7 +1,5 @@
-import { db, storage } from "@/lib/firebase/client";
+import { db } from "@/lib/firebase/client";
 import { doc, getDoc } from "firebase/firestore";
-import { ref, getDownloadURL } from "firebase/storage";
-import type { Profile, ProfileLink } from "@/types/profile";
 import { Top } from "@/types/top";
 
 // トップセクションを取得する関数

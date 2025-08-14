@@ -4,6 +4,11 @@ export type Service = {
 	items: string[];
 };
 
+export type FirestoreService = Service & {
+	createdAt: Date;
+	updatedAt: Date;
+};
+
 export interface Skill {
 	skillId: string;
 	serviceId: string;
