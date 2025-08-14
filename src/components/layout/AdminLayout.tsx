@@ -15,25 +15,25 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
 
 	useEffect(() => {
-		try {
-			const unsubscribe = onAuthStateChanged((user) => {
+		const unsubscribe = onAuthStateChanged((user) => {
+			try {
 				if (!loading && !user) {
 					router.push("/admin/login");
 				}
-			});
-
-			return () => unsubscribe();
-		} catch (error) {
-			if (error instanceof FirebaseError) {
-				if (error.code === "auth/popup-closed-by-user") {
-					toast.error("ログインがキャンセルされました。再度お試しください。");
+			} catch (error) {
+				if (error instanceof FirebaseError) {
+					if (error.code === "auth/popup-closed-by-user") {
+						toast.error("ログインがキャンセルされました。再度お試しください。");
+					}
+				} else {
+					toast.error("認証エラーが発生しました。");
+					console.error("認証エラー:", error);
 				}
-			} else {
-				toast.error("認証エラーが発生しました。");
-				console.error("認証エラー:", error);
 			}
-		}
+		});
+		return () => unsubscribe();
 	}, [user, loading, router]);
+	
 	if (loading) {
 		return <Loading />;
 	}
