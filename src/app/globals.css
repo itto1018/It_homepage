@@ -31,7 +31,15 @@ body {
 	@apply text-2xl font-bold sm:text-3xl lg:text-4xl bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent;
 }
 
-/* 共通コンポーネント */
+/* admin */
+.admin-title-text {
+	@apply text-3xl font-bold bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent;
+}
+
+.admin-title-container {
+	@apply my-8;
+}
+
 .editor-container {
 	@apply rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm;
 }

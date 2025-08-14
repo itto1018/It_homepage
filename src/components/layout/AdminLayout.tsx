@@ -33,7 +33,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
 		});
 		return () => unsubscribe();
 	}, [user, loading, router]);
-	
+
 	if (loading) {
 		return <Loading />;
 	}

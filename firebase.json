@@ -9,14 +9,10 @@
 		"rules": ".config/firebase/storage.rules"
 	},
 	"hosting": {
-    	"source": ".",
-    	"ignore": [
-    	  "firebase.json",
-    	  "**/.*",
-    	  "**/node_modules/**"
-    	],
-    	"frameworksBackend": {
-    	  "region": "asia-east1"
-    	}
-  	}
+		"source": ".",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"frameworksBackend": {
+			"region": "asia-east1"
+		}
+	}
 }

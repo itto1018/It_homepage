@@ -10,15 +10,15 @@ export default async function ProfilePage() {
 	return (
 		<AdminLayout>
 			<div className="mx-auto max-w-3xl mb-16">
-				<h1 className="mb-6 sm:mb-8 text-xl sm:text-2xl font-bold text-gray-800">
-					プロフィール編集
-				</h1>
+				<div className="admin-title-container">
+					<h1 className="admin-title-text">プロフィール編集</h1>
+				</div>
 				<ProfileEditor initialProfile={profile} />
 			</div>
 			<div className="mx-auto max-w-3xl">
-				<h1 className="mb-6 sm:mb-8 text-xl sm:text-2xl font-bold text-gray-800">
-					プロフィールリンク編集
-				</h1>
+				<div className="admin-title-container">
+					<h1 className="admin-title-text">プロフィールリンク編集</h1>
+				</div>
 				<ProfileLinkEditor initialProfileLink={profileLinks} />
 			</div>
 		</AdminLayout>

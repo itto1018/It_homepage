@@ -96,7 +96,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 				createdAt: workForm.id ? workForm.createdAt : new Date(),
 			};
 
-			// 作品の更新(Update)			
+			// 作品の更新(Update)
 			const updatedWorks = workForm.id
 				? works.map((work) => (work.id === workId ? newWork : work))
 				: [...works, newWork];
