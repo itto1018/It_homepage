@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/components/auth/AuthProvider";
 import { redirect } from "next/navigation";
+import Loading from "@/components/elements/Loading";
 
 interface AuthGuardProps {
 	children: React.ReactNode;
@@ -9,12 +10,9 @@ interface AuthGuardProps {
 
 export function AuthGuard({ children }: AuthGuardProps) {
 	const { user, loading } = useAuth();
+	// ローディング中の表示
 	if (loading) {
-		return (
-			<div className="flex min-h-screen items-center justify-center">
-				<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-			</div>
-		);
+		return <Loading />;
 	}
 
 	if (!user) {

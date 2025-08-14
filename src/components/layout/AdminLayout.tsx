@@ -1,29 +1,41 @@
 "use client";
 
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "@/lib/firebase/auth";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useAuth } from "@/components/auth/AuthProvider";
+import Loading from "@/components/elements/Loading";
+import { FirebaseError } from "firebase/app";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
-	const [isLoading, setIsLoading] = useState(true);
+	const { user, loading } = useAuth();
 	const router = useRouter();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged((user) => {
-			if (!user) {
-				router.push("/auth/signin");
+			try {
+				if (!loading && !user) {
+					router.push("/admin/login");
+				}
+			} catch (error) {
+				if (error instanceof FirebaseError) {
+					if (error.code === "auth/popup-closed-by-user") {
+						toast.error("ログインがキャンセルされました。再度お試しください。");
+					}
+				} else {
+					toast.error("認証エラーが発生しました。");
+					console.error("認証エラー:", error);
+				}
 			}
-			setIsLoading(false);
 		});
-
 		return () => unsubscribe();
-	}, [router]);
-
-	if (isLoading) {
-		return <div>Loading...</div>;
+	}, [user, loading, router]);
+	
+	if (loading) {
+		return <Loading />;
 	}
 
 	return (

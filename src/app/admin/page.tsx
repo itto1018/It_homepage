@@ -7,6 +7,8 @@ import { FaUser, FaClipboard, FaToolbox } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { BsChatLeftTextFill } from "react-icons/bs";
 import { useAuth } from "@/components/auth/AuthProvider";
+import Loading from "@/components/elements/Loading";
+import { useEffect } from "react";
 
 interface AdminMenu {
 	id: string;
@@ -51,28 +53,25 @@ export default function AdminPage() {
 	// サーバーサイドで認証チェック
 	const router = useRouter();
 	const { user, loading } = useAuth();
+
+	// 未認証の場合はログインページへリダイレクト
+	useEffect(() => {
+		if (loading) return;
+		if (!user) {
+			router.replace("/admin/login");
+			return;
+		}
+	}, [loading, user, router]);
+
 	// 認証状態をチェック
 	if (loading) {
-		return (
-			<AdminLayout>
-				<div className="flex min-h-screen items-center justify-center">
-					<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
-				</div>
-			</AdminLayout>
-		);
-	}
-	// 未認証の場合はログインページへリダイレクト
-	if (!user) {
-		router.replace("/admin/login");
-		return null;
+		return <Loading />;
 	}
 
 	return (
 		<AdminLayout>
 			<div className="p-6 md:p-10">
-				{" "}
-				{/* マージンをパディングに変更 */}
-				<h1 className="mb-8 text-2xl font-bold text-gray-800">管理画面</h1>
+				<h1 className="title-h2 mb-10">管理画面</h1>
 				<div className="grid grid-cols-1 gap-8">
 					{ADMIN_MENUS.map((menu) => (
 						<Link

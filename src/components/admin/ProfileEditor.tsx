@@ -7,8 +7,8 @@ import { toast } from "react-hot-toast";
 import { Profile, Career, PROFILE_CONSTRAINTS } from "@/types/profile";
 import { uploadProfileImage } from "@/lib/firebase/storage/profile";
 import { validateProfile } from "@/utils/validateProfile";
-import { AdminLayout } from "@/components/layout/AdminLayout";
 import { getCurrentUser } from "@/lib/firebase/auth";
+import Loading from "@/components/elements/Loading";
 
 interface Props {
 	initialProfile: Profile;
@@ -153,20 +153,14 @@ export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
 		}
 	};
 
-	// ローディング画面
+	// ローディング中の表示
 	if (isLoading) {
-		return (
-			<AdminLayout>
-				<div className="flex h-64 items-center justify-center">
-					<div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-				</div>
-			</AdminLayout>
-		);
+		return <Loading />;
 	}
 
 	return (
 		<>
-			<div className="rounded-xl border border-gray-100 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
+			<div className="editor-container">
 				<form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
 					<div id="profile-image" className="rounded-lg bg-gray-50 p-4 sm:p-6">
 						<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
