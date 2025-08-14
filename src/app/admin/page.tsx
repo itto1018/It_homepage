@@ -71,7 +71,7 @@ export default function AdminPage() {
 	return (
 		<AdminLayout>
 			<div className="p-6 md:p-10">
-				<h1 className="title-h2 mb-10">管理画面</h1>
+				<h1 className="admin-h1">管理画面</h1>
 				<div className="grid grid-cols-1 gap-8">
 					{ADMIN_MENUS.map((menu) => (
 						<Link

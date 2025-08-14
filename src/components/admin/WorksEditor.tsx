@@ -58,25 +58,64 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		handleReadWorks();
 	}, []);
 
-	// 作品の追加(Create)
-	const handleAddWork = (workId: string) => {
-		const newWork = {
-			...workForm,
-			id: workId,
-			createdAt: new Date(),
-		};
-		setWorks((prevWorks) => [...prevWorks, newWork]);
+	// モーダルのタイトルを動的に設定
+	const modalTitle = workForm.id ? "作品を編集" : "作品を追加";
+
+	const getCurrentWorks = () => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return works.slice(startIndex, endIndex);
 	};
 
-	// 作品の更新(Update)
-	const handleUpdateWork = (updatedWork: Works) => {
-		const newWork = {
-			...updatedWork,
-			imageUrl: workForm.imageUrl || updatedWork.imageUrl,
-		};
-		setWorks((prevWorks) =>
-			prevWorks.map((work) => (work.id === newWork.id ? newWork : work))
-		);
+	// フォーム送信処理
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		if (isLoading) return;
+
+		// バリデーション
+		if (!workForm.title || !workForm.description) {
+			toast.error("必須項目を入力してください");
+			return;
+		}
+
+		try {
+			setIsLoading(true);
+			const workId = workForm.id || crypto.randomUUID();
+
+			// 画像がある場合はアップロード
+			let imageUrl = workForm.imageUrl;
+			if (tempFile) {
+				imageUrl = await uploadImage(tempFile, workId);
+			}
+
+			// 作品の追加(Create)
+			const newWork = {
+				...workForm,
+				id: workId,
+				imageUrl,
+				createdAt: workForm.id ? workForm.createdAt : new Date(),
+			};
+
+			// 作品の更新(Update)
+			const updatedWorks = workForm.id
+				? works.map((work) => (work.id === workId ? newWork : work))
+				: [...works, newWork];
+
+			await updateWorks(updatedWorks);
+			setWorks(updatedWorks);
+
+			toast.success("作品情報を保存しました");
+			setIsModalOpen(false);
+
+			// リセット
+			setTempFile(null);
+			setTempImagePreview(null);
+		} catch (error) {
+			console.error("Error saving work:", error);
+			toast.error("作品情報の保存に失敗しました");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	// 作品の削除(Delete)
@@ -155,63 +194,6 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			setIsDeleteModalOpen(false);
 			setSelectedWorkId(null);
 		}
-	};
-
-	// モーダルのタイトルを動的に設定
-	const modalTitle = workForm.id ? "作品を編集" : "作品を追加";
-
-	// フォーム送信処理
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		if (isLoading) return;
-
-		// バリデーション
-		if (!workForm.title || !workForm.description) {
-			toast.error("必須項目を入力してください");
-			return;
-		}
-
-		try {
-			setIsLoading(true);
-			const workId = workForm.id || crypto.randomUUID();
-
-			// 画像がある場合はアップロード
-			let imageUrl = workForm.imageUrl;
-			if (tempFile) {
-				imageUrl = await uploadImage(tempFile, workId);
-			}
-
-			const newWork = {
-				...workForm,
-				id: workId,
-				imageUrl,
-				createdAt: workForm.id ? workForm.createdAt : new Date(),
-			};
-
-			const updatedWorks = workForm.id
-				? works.map((work) => (work.id === workId ? newWork : work))
-				: [...works, newWork];
-
-			await updateWorks(updatedWorks);
-			setWorks(updatedWorks);
-			toast.success("作品情報を保存しました");
-			setIsModalOpen(false);
-
-			// リセット
-			setTempFile(null);
-			setTempImagePreview(null);
-		} catch (error) {
-			console.error("Error saving work:", error);
-			toast.error("作品情報の保存に失敗しました");
-		} finally {
-			setIsLoading(false);
-		}
-	};
-
-	const getCurrentWorks = () => {
-		const startIndex = (currentPage - 1) * itemsPerPage;
-		const endIndex = startIndex + itemsPerPage;
-		return works.slice(startIndex, endIndex);
 	};
 
 	// 総ページ数を計算

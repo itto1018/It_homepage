@@ -16,13 +16,14 @@ export const getWorks = async (): Promise<Works[]> => {
 		const docSnap = await getDoc(worksRef);
 
 		if (!docSnap.exists()) {
-			// 存在しない場合は空配列を返す
 			await setDoc(worksRef, { works: [] });
 			return [];
 		}
 
 		// Timestampを Date に変換
-		return docSnap.data().works.map((work: any) => ({
+		return (
+			docSnap.data().works as Array<Works & { createdAt: Timestamp }>
+		).map((work) => ({
 			...work,
 			createdAt: work.createdAt?.toDate() || new Date(),
 		}));

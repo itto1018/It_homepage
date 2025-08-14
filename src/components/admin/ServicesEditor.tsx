@@ -6,7 +6,7 @@ import { Skill } from "@/types/services";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/auth/firebase";
 import React from "react";
 import Loading from "@/components/elements/Loading";
 

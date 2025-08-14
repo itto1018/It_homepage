@@ -10,9 +10,9 @@ export default async function EditServicesPage() {
 	return (
 		<AdminLayout>
 			<div className="mx-auto max-w-4xl p-6">
-				<h1 className="mb-8 text-2xl font-bold bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
-					サービス編集
-				</h1>
+				<div className="admin-title-container">
+					<h1 className="admin-title-text">サービス編集</h1>
+				</div>
 				<ServicesEditor initialServices={services} initialSkills={skills} />
 			</div>
 		</AdminLayout>

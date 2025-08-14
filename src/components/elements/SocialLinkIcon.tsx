@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { BiLogoGmail } from "react-icons/bi";
-import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiWantedly, SiZenn } from "react-icons/si";
 

@@ -3,7 +3,7 @@
 import { Top } from "@/types/top";
 import Link from "next/link";
 import React, { useState } from "react";
-import { getCurrentUser } from "@/lib/firebase/auth";
+import { getCurrentUser } from "@/lib/auth";
 import toast from "react-hot-toast";
 import Loading from "@/components/elements/Loading";
 

@@ -1,6 +1,7 @@
 import { db, storage } from "@/lib/firebase/client";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
+import { FirebaseError } from "firebase/app";
 import type { Profile, ProfileLink } from "@/types/profile";
 
 // プロフィールを取得する関数
@@ -62,11 +63,15 @@ export const getProfileImageUrl = async (): Promise<string | null> => {
 			"it_homepage/profile/image/profile_image.jpg"
 		);
 		return await getDownloadURL(imageRef);
-	} catch (error: any) {
-		if (error.code === "storage/object-not-found") {
-			return null;
+	} catch (error: unknown) {
+		if (error instanceof FirebaseError) {
+			if (error.code === "storage/object-not-found") {
+				return null;
+			}
+			console.error("Error fetching profile image:", error);
+			throw new Error(`プロフィール画像の取得に失敗しました: ${error.message}`);
 		}
-		console.error("Error fetching profile image:", error);
-		return null;
+		console.error("Unknown error occurred:", error);
+		throw new Error("予期せぬエラーが発生しました");
 	}
 };

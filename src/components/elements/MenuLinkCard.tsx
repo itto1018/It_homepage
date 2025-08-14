@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FaLaptopCode, FaRss } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
 import { RiUser3Fill } from "react-icons/ri";
 
 export type Props = {

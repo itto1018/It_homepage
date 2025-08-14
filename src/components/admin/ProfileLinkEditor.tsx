@@ -5,7 +5,7 @@ import { db } from "@/lib/firebase/client";
 import { doc, updateDoc } from "firebase/firestore";
 import { ProfileLink } from "@/types/profile";
 import toast from "react-hot-toast";
-import { getCurrentUser } from "@/lib/firebase/auth";
+import { getCurrentUser } from "@/lib/auth";
 import Loading from "@/components/elements/Loading";
 
 interface Props {

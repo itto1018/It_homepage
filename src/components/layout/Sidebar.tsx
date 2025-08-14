@@ -14,7 +14,7 @@ import {
 	FaTimes,
 } from "react-icons/fa";
 import { BsChatLeftTextFill } from "react-icons/bs";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/auth/firebase";
 import { signOut } from "firebase/auth";
 import { useAuth } from "@/components/auth/AuthProvider";
 

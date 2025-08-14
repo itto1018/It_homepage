@@ -1,12 +1,12 @@
 "use client";
 
-import { auth } from "@/lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/auth/firebase";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
 // 認証コンテキストの型定義
 type AuthContextType = {
-	user: any | null;
+	user: User | null;
 	loading: boolean;
 };
 
@@ -25,7 +25,7 @@ export default function AuthProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [user, setUser] = useState<any | null>(null);
+	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
