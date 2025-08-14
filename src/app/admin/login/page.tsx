@@ -17,15 +17,11 @@ export default function LoginPage() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const error = searchParams.get("error");
-	const [, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			if (user) {
-				setUser(user);
 				router.push("/admin");
-			} else {
-				setUser(null);
 			}
 		});
 
