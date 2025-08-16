@@ -1,8 +1,8 @@
 "use client";
 
+import Loading from "@/components/common/Loading";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { redirect } from "next/navigation";
-import Loading from "@/components/elements/Loading";
 
 interface AuthGuardProps {
 	children: React.ReactNode;

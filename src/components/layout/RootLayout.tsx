@@ -1,5 +1,4 @@
 import React from "react";
-import type { Metadata } from "next";
 import "../../app/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import AuthProvider from "@/components/auth/AuthProvider";
@@ -16,16 +15,11 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "It.dev",
-	description: "Itのポートフォリオサイト",
-};
-
-export interface RootLayoutProps {
+interface RootLayoutProps {
 	children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const RootLayout = ({ children }: RootLayoutProps) => {
 	return (
 		<>
 			<Header />
@@ -39,4 +33,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			<Footer />
 		</>
 	);
-}
+};
+
+export default RootLayout;

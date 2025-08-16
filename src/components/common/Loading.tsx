@@ -1,5 +1,3 @@
-import React from "react";
-
 const Loading = () => {
 	return (
 		<div className="flex h-64 items-center justify-center">

@@ -1,26 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ServiceCard } from "@/components/elements/ServiceCard";
+import Loading from "@/components/common/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { ServiceCard } from "@/components/client/ServiceCard";
+import { getServices, getSkills } from "@/lib/firebase/store/services";
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 import { IoAnalyticsSharp } from "react-icons/io5";
 import { RxReload } from "react-icons/rx";
-
-import { getServices, getSkills } from "@/lib/firebase/store/services";
-
 import type { Service, Skill } from "@/types/services";
-import Loading from "@/components/elements/Loading";
 
-interface Props {
-	initialServices: Service[];
-	initialSkills: Skill[];
-}
-
-const ServiceSection: React.FC<Props> = () => {
+const ServiceSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
+	const [services, setServices] = useState<Service[]>([]);
+	const [skills, setSkills] = useState<Skill[]>([]);
 
 	// サービスを取得(Read)
-	const [services, setServices] = React.useState<Service[]>([]);
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
@@ -28,6 +23,7 @@ const ServiceSection: React.FC<Props> = () => {
 				setServices(data);
 			} catch (error) {
 				console.error("サービス情報取得エラー:", error);
+				toast.error("サービス情報の取得に失敗しました");
 			} finally {
 				setIsLoading(false);
 			}
@@ -36,7 +32,6 @@ const ServiceSection: React.FC<Props> = () => {
 	}, []);
 
 	// スキルを取得(Read)
-	const [skills, setSkills] = React.useState<Skill[]>([]);
 	useEffect(() => {
 		const fetchSkills = async () => {
 			try {
@@ -44,6 +39,7 @@ const ServiceSection: React.FC<Props> = () => {
 				setSkills(data);
 			} catch (error) {
 				console.error("スキル情報取得エラー:", error);
+				toast.error("スキル情報の取得に失敗しました");
 			} finally {
 				setIsLoading(false);
 			}

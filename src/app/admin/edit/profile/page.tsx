@@ -1,11 +1,11 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { ProfileEditor } from "@/components/admin/ProfileEditor";
-import { getProfile, getProfileLink } from "@/lib/firebase/store/profile";
+import { getProfile, getProfileSocialLink } from "@/lib/firebase/store/profile";
 import { ProfileLinkEditor } from "@/components/admin/ProfileLinkEditor";
 
 export default async function ProfilePage() {
 	const profile = await getProfile();
-	const profileLinks = await getProfileLink();
+	const profileLinks = await getProfileSocialLink();
 
 	return (
 		<AdminLayout>

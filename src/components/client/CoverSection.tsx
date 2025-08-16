@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
+import Loading from "@/components/common/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import type { Top } from "@/types/top";
 import { getTop } from "@/lib/firebase/store/top";
-import Loading from "@/components/elements/Loading";
 
 const Cover = () => {
-	const [isLoading, setIsLoading] = React.useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 
 	// トップセクションのデータ取得(Read)
-	const [top, setTop] = React.useState<Top | null>(null);
+	const [top, setTop] = useState<Top>();
 	useEffect(() => {
 		const fetchTop = async () => {
 			try {
@@ -17,6 +18,7 @@ const Cover = () => {
 				setTop(data);
 			} catch (error) {
 				console.error("プロフィール取得エラー:", error);
+				toast.error("プロフィールの取得に失敗しました");
 			} finally {
 				setIsLoading(false);
 			}

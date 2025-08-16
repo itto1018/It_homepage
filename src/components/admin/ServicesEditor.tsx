@@ -1,14 +1,13 @@
 "use client";
 
+import Loading from "@/components/common/Loading";
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Service } from "@/types/services";
 import { Skill } from "@/types/services";
-import { FaPlus, FaTrash } from "react-icons/fa";
-import toast from "react-hot-toast";
-import Link from "next/link";
 import { auth } from "@/lib/auth/firebase";
-import React from "react";
-import Loading from "@/components/elements/Loading";
+import Link from "next/link";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 interface Props {
 	initialServices: Service[];
@@ -16,10 +15,7 @@ interface Props {
 	deletedSkillIds?: string[];
 }
 
-export const ServicesEditor: React.FC<Props> = ({
-	initialServices,
-	initialSkills,
-}) => {
+export const ServicesEditor = ({ initialServices, initialSkills }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// サービスの状態取得（Read)

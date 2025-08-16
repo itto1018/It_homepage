@@ -1,14 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import Loading from "@/components/common/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import type { Works } from "@/types/works";
 import { getWorks } from "@/lib/firebase/store/works";
-import React, { useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export const WorksSection = () => {
-	const [works, setWorks] = React.useState<Works[]>([]);
-	const [isLoading, setIsLoading] = React.useState(true);
+	const [isLoading, setIsLoading] = useState(true);
+	const [works, setWorks] = useState<Works[]>([]);
 
 	// データの取得(Read)
 	const handleReadWorks = async () => {
@@ -23,6 +25,7 @@ export const WorksSection = () => {
 			}
 		} catch (error) {
 			console.error("Error fetching works:", error);
+			toast.error("作品の取得に失敗しました");
 		} finally {
 			setIsLoading(false);
 		}
@@ -32,8 +35,9 @@ export const WorksSection = () => {
 		handleReadWorks();
 	}, []);
 
+	// ローディング中の表示
 	if (isLoading) {
-		return <div className="text-center">Loading...</div>;
+		return <Loading />;
 	}
 
 	return (

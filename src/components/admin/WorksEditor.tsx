@@ -1,18 +1,19 @@
 "use client";
 
+import Loading from "@/components/common/Loading";
+import { toast } from "react-hot-toast";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { FaPlus, FaEdit, FaTrash, FaUpload } from "react-icons/fa";
-import type { Works } from "@/types/works";
 import { uploadImage, deleteImage } from "@/lib/firebase/storage/works";
 import { getWorks, updateWorks, deleteWork } from "@/lib/firebase/store/works";
-import toast from "react-hot-toast";
+import { FaPlus, FaEdit, FaTrash, FaUpload } from "react-icons/fa";
+import type { Works } from "@/types/works";
 
 interface Props {
-	initialWorks: Works[] | null;
+	initialWorks: Works[];
 }
 
-export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
+export const WorksEditor = ({ initialWorks }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -29,10 +30,7 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 	const [tempFile, setTempFile] = useState<File | null>(null);
 	const [tempImagePreview, setTempImagePreview] = useState<string | null>(null);
 
-	const [works, setWorks] = useState<Works[]>(() => {
-		// 初期データがある場合はそれを使用
-		return initialWorks || [];
-	});
+	const [works, setWorks] = useState<Works[]>(initialWorks);
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 9;
 
@@ -147,22 +145,6 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 		setTempImagePreview(previewUrl);
 	};
 
-	//画像削除処理
-	const handleImageDelete = async (imageUrl: string) => {
-		if (imageUrl) return;
-		try {
-			setIsLoading(true);
-			await deleteImage(imageUrl);
-			setWorkForm({ ...workForm, imageUrl: null });
-			toast.success("画像を削除しました");
-		} catch (error) {
-			console.error("Error deleting image:", error);
-			toast.error("画像の削除に失敗しました");
-		} finally {
-			setIsLoading(false);
-		}
-	};
-
 	// 編集モーダルを開く
 	const handleEdit = (work: Works) => {
 		setWorkForm(work);
@@ -183,7 +165,10 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 			setIsLoading(true);
 			await deleteWork(selectedWorkId);
 			// 画像の削除
-			await handleImageDelete(selectedWorkId);
+			const workToDelete = works.find((work) => work.id === selectedWorkId);
+			if (workToDelete && workToDelete.imageUrl) {
+				await deleteImage(workToDelete.imageUrl);
+			}
 			handleDeleteWork(selectedWorkId);
 			toast.success("作品を削除しました");
 		} catch (error) {
@@ -198,6 +183,11 @@ export const WorksEditor: React.FC<Props> = ({ initialWorks }) => {
 
 	// 総ページ数を計算
 	const totalPages = Math.ceil(works.length / itemsPerPage);
+
+	// ローディング中の表示
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<div className="space-y-6">

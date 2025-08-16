@@ -31,12 +31,23 @@ export const uploadImage = async (
 };
 
 export const deleteImage = async (imageUrl: string): Promise<void> => {
+	// Validation
 	try {
-		// URLからworks/以降のパスを抽出
-		const fullPath = decodeURIComponent(imageUrl.split("/o/")[1].split("?")[0]);
-		const imageRef = ref(storage, fullPath);
+		if (!imageUrl || typeof imageUrl !== "string") {
+			throw new Error("無効な画像URLです");
+		}
 
-		// 画像を削除
+		const url = new URL(imageUrl);
+		if (!url.hostname.includes("firebasestorage.googleapis.com")) {
+			throw new Error("無効なFirebase Storage URLの形式です");
+		}
+
+		const fullPath = decodeURIComponent(imageUrl.split("/o/")[1].split("?")[0]);
+		if (!fullPath.startsWith("works/")) {
+			throw new Error("無効な画像パスです");
+		}
+
+		const imageRef = ref(storage, fullPath);
 		await deleteObject(imageRef);
 	} catch (error) {
 		console.error("Error deleting image:", error);

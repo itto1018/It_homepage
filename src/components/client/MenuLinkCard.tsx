@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { FaLaptopCode } from "react-icons/fa";
 import { RiUser3Fill } from "react-icons/ri";
 
@@ -13,8 +12,7 @@ const iconMap = {
 	works: <FaLaptopCode className="h-5 w-5 md:h-8 md:w-8" />,
 };
 
-export const MenuLinkCard: FC<Props> = (props) => {
-	const { title, discript, url } = props;
+export const MenuLinkCard = ({ title, discript, url }: Props) => {
 	const icon = iconMap[title.toLowerCase() as keyof typeof iconMap];
 
 	return (
