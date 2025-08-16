@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 import { toast } from "react-hot-toast";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";

@@ -8,7 +8,7 @@ import { Profile, Career, PROFILE_CONSTRAINTS } from "@/types/profile";
 import { uploadProfileImage } from "@/lib/firebase/storage/profile";
 import { validateProfile } from "@/utils/validateProfile";
 import { getCurrentUser } from "@/lib/auth";
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 
 interface Props {
 	initialProfile: Profile;

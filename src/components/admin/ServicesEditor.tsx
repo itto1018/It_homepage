@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Service } from "@/types/services";

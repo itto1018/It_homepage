@@ -7,7 +7,7 @@ import { FaUser, FaClipboard, FaToolbox } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { BsChatLeftTextFill } from "react-icons/bs";
 import { useAuth } from "@/components/auth/AuthProvider";
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 import { useEffect } from "react";
 
 interface AdminMenu {

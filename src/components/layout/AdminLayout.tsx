@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
