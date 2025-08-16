@@ -38,7 +38,7 @@ export const deleteImage = async (imageUrl: string): Promise<void> => {
 		}
 
 		const url = new URL(imageUrl);
-		if (!url.pathname.includes("firebasestorage.googleapis.com")) {
+		if (!url.hostname.includes("firebasestorage.googleapis.com")) {
 			throw new Error("無効なFirebase Storage URLの形式です");
 		}
 
