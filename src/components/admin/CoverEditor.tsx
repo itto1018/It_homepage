@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { getCurrentUser } from "@/lib/auth";
 import toast from "react-hot-toast";
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
+
 
 interface Props {
 	initialTop: Top;
 }
 
-export const TopSectionEditor = ({ initialTop }: Props) => {
+export const CoverEditor = ({ initialTop }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// 文字数制限（バリデーション）

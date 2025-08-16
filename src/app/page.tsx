@@ -1,7 +1,8 @@
-import Cover from "@/components/elements/TopSection";
-import ProfileSection from "@/components/elements/ProfileSection";
-import ServiceSection from "@/components/elements/ServiceSection";
-import WorksSection from "@/components/elements/WorksSection";
+import CoverSection from "@/components/client/CoverSection";
+import ProfileSection from "@/components/client/ProfileSection";
+import ServiceSection from "@/components/client/ServiceSection";
+import WorksSection from "@/components/client/WorksSection";
+
 
 export default function Home() {
 	return (
@@ -9,7 +10,7 @@ export default function Home() {
 			<main className="w-full">
 				<div id="cover">
 					<div className="absolute w-full inset-0 bg-gradient-to-br from-[#00a497]/5 to-transparent" />
-					<Cover />
+					<CoverSection />
 				</div>
 				<div id="contents" className="lp-contents-container">
 					<div className="flex flex-col items-center gap-2 lg:gap-7">

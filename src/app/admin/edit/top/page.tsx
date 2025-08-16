@@ -1,4 +1,4 @@
-import { TopSectionEditor } from "@/components/admin/TopSectionEditor";
+import { CoverEditor } from "@/components/admin/CoverEditor";
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { getTop } from "@/lib/firebase/store/top";
 
@@ -11,7 +11,7 @@ export default async function EditTopPage() {
 				<div className="admin-title-container">
 					<h1 className="admin-title-text">トップページ管理</h1>
 				</div>
-				<TopSectionEditor initialTop={top} />
+				<CoverEditor initialTop={top} />
 			</div>
 		</AdminLayout>
 	);

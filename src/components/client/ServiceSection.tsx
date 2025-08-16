@@ -1,9 +1,9 @@
 "use client";
 
-import Loading from "@/components/elements/Loading";
+import Loading from "@/components/common/Loading";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { ServiceCard } from "@/components/elements/ServiceCard";
+import { ServiceCard } from "@/components/client/ServiceCard";
 import { getServices, getSkills } from "@/lib/firebase/store/services";
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 import { IoAnalyticsSharp } from "react-icons/io5";

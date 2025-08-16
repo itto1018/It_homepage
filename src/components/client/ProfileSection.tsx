@@ -1,12 +1,12 @@
 "use client";
 
-import Loading from "@/components/elements/Loading";
+import Loading from "../common/Loading";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
 import { getProfile, getProfileSocialLink } from "@/lib/firebase/store/profile";
 import type { Profile, ProfileLink } from "@/types/profile";
 import Image from "next/image";
+import SocialLinkIcon from "./SocialLinkIcon";
 
 export const ProfileSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
