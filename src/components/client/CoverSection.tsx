@@ -1,0 +1,59 @@
+"use client";
+
+import Loading from "@/components/common/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import type { Top } from "@/types/top";
+import { getTop } from "@/lib/firebase/store/top";
+
+const Cover = () => {
+	const [isLoading, setIsLoading] = useState(true);
+
+	// トップセクションのデータ取得(Read)
+	const [top, setTop] = useState<Top>();
+	useEffect(() => {
+		const fetchTop = async () => {
+			try {
+				const data = await getTop();
+				setTop(data);
+			} catch (error) {
+				console.error("プロフィール取得エラー:", error);
+				toast.error("プロフィールの取得に失敗しました");
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		fetchTop();
+	}, []);
+
+	// ローディング中の表示
+	if (isLoading) {
+		return <Loading />;
+	}
+
+	return (
+		<>
+			<div className="w-full flex items-center justify-center min-h-[50vh] md:min-h-[75vh] lg:min-h-[100vh] overflow-hidden">
+				<div className="flex flex-col items-center text-center">
+					<h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5">
+						<span className="bg-gradient-to-r from-[#00a497] to-[#45b7af] bg-clip-text text-transparent">
+							Welcome to
+						</span>
+						<br />
+						<span className="mt-2 inline-block">It.dev</span>
+					</h1>
+					<div className="w-4/5 mt-8 relative">
+						<div className="absolute -inset-1 bg-gradient-to-r from-[#00a497] to-[#45b7af] rounded-lg blur opacity-20"></div>
+						<article className="relative bg-white/80 backdrop-blur-sm rounded-lg px-6 py-4 text-gray-600 text-sm md:text-base lg:text-xl">
+							{top?.article}{" "}
+							<span className="text-[#00a497] font-medium">It（イット）</span>{" "}
+							です。
+						</article>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+};
+
+export default Cover;
