@@ -1,17 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { getProfile, getProfileLink } from "@/lib/firebase/store/profile";
-import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
-import type { Profile, ProfileLink } from "@/types/profile";
 import Loading from "@/components/elements/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import SocialLinkIcon from "@/components/elements/SocialLinkIcon";
+import { getProfile, getProfileSocialLink } from "@/lib/firebase/store/profile";
+import type { Profile, ProfileLink } from "@/types/profile";
+import Image from "next/image";
 
 export const ProfileSection = () => {
 	const [isLoading, setIsLoading] = useState(true);
+	const [profile, setProfile] = useState<Profile>();
+	const [profileLink, setProfileLink] = useState<ProfileLink>();
 
-	// プロフィールの状態
-	const [profile, setProfile] = useState<Profile | null>(null);
+	// プロフィールの取得(Read)
 	useEffect(() => {
 		const fetchProfile = async () => {
 			try {
@@ -19,6 +21,7 @@ export const ProfileSection = () => {
 				setProfile(data);
 			} catch (error) {
 				console.error("プロフィール取得エラー:", error);
+				toast.error("プロフィールの取得に失敗しました");
 			} finally {
 				setIsLoading(false);
 			}
@@ -26,15 +29,15 @@ export const ProfileSection = () => {
 		fetchProfile();
 	}, []);
 
-	// プロフィールリンクの状態
-	const [profileLink, setProfileLink] = useState<ProfileLink | null>(null);
+	// SNS等リンクの取得(Read)
 	useEffect(() => {
 		const fetchProfileLink = async () => {
 			try {
-				const data = await getProfileLink();
+				const data = await getProfileSocialLink();
 				setProfileLink(data);
 			} catch (error) {
-				console.error("プロフィールリンク取得エラー:", error);
+				console.error("SNSリンク取得エラー:", error);
+				toast.error("SNSリンクの取得に失敗しました");
 			} finally {
 				setIsLoading(false);
 			}

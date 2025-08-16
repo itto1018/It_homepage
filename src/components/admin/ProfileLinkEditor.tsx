@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { db } from "@/lib/firebase/client";
-import { doc, updateDoc } from "firebase/firestore";
-import { ProfileLink } from "@/types/profile";
-import toast from "react-hot-toast";
-import { getCurrentUser } from "@/lib/auth";
 import Loading from "@/components/elements/Loading";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { ProfileLink } from "@/types/profile";
+import { db } from "@/lib/firebase/client";
+import { getCurrentUser } from "@/lib/auth";
+import { doc, updateDoc } from "firebase/firestore";
 
 interface Props {
 	initialProfileLink: ProfileLink;
 }
 
-export const ProfileLinkEditor: React.FC<Props> = ({ initialProfileLink }) => {
+export const ProfileLinkEditor = ({ initialProfileLink }: Props) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	// SNSリンクの状態

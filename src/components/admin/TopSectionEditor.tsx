@@ -2,7 +2,7 @@
 
 import { Top } from "@/types/top";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { getCurrentUser } from "@/lib/auth";
 import toast from "react-hot-toast";
 import Loading from "@/components/elements/Loading";
@@ -11,7 +11,7 @@ interface Props {
 	initialTop: Top;
 }
 
-export const TopSectionEditor: React.FC<Props> = ({ initialTop }) => {
+export const TopSectionEditor = ({ initialTop }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// 文字数制限（バリデーション）

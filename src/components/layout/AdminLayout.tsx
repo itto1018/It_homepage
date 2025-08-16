@@ -1,13 +1,13 @@
 "use client";
 
+import Loading from "@/components/elements/Loading";
+import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthGuard } from "../admin/AuthGuard";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "@/lib/auth";
-import { useEffect } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
-import Loading from "@/components/elements/Loading";
+import { useRouter } from "next/navigation";
 import { FirebaseError } from "firebase/app";
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {

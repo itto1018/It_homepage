@@ -16,16 +16,11 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "It.dev",
-	description: "Itのポートフォリオサイト",
-};
-
-export interface RootLayoutProps {
+interface RootLayoutProps {
 	children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const RootLayout = ({ children }: RootLayoutProps) => {
 	return (
 		<>
 			<Header />
@@ -39,4 +34,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			<Footer />
 		</>
 	);
-}
+};
+
+export default RootLayout;

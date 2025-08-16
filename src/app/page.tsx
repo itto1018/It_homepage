@@ -1,7 +1,7 @@
+import Cover from "@/components/elements/TopSection";
 import ProfileSection from "@/components/elements/ProfileSection";
 import ServiceSection from "@/components/elements/ServiceSection";
 import WorksSection from "@/components/elements/WorksSection";
-import Cover from "@/components/elements/TopSection";
 
 export default function Home() {
 	return (
@@ -26,7 +26,7 @@ export default function Home() {
 							<h1 className="title-h1">Services</h1>
 						</div>
 						<div className="lp-section-container">
-							<ServiceSection initialServices={[]} initialSkills={[]} />
+							<ServiceSection />
 						</div>
 
 						{/* Works */}

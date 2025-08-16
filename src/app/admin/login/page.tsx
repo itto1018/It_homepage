@@ -5,10 +5,9 @@ import {
 	onAuthStateChanged,
 	GoogleAuthProvider,
 	signInWithPopup,
-	User,
 } from "firebase/auth";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { FirebaseError } from "firebase/app";

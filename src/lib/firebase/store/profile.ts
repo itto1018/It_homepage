@@ -31,7 +31,7 @@ export const getProfile = async (): Promise<Profile> => {
 };
 
 // プロフィールリンクを取得する関数
-export const getProfileLink = async (): Promise<ProfileLink> => {
+export const getProfileSocialLink = async (): Promise<ProfileLink> => {
 	try {
 		const docRef = doc(db, "profiles", "link");
 		const docSnap = await getDoc(docRef);

@@ -14,7 +14,7 @@ interface Props {
 	initialProfile: Profile;
 }
 
-export const ProfileEditor: React.FC<Props> = ({ initialProfile }) => {
+export const ProfileEditor = ({ initialProfile }: Props) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	// プロフィールの状態
