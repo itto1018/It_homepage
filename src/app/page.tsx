@@ -3,7 +3,6 @@ import ProfileSection from "@/components/client/ProfileSection";
 import ServiceSection from "@/components/client/ServiceSection";
 import WorksSection from "@/components/client/WorksSection";
 
-
 export default function Home() {
 	return (
 		<>

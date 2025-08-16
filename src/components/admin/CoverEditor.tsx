@@ -7,7 +7,6 @@ import { getCurrentUser } from "@/lib/auth";
 import toast from "react-hot-toast";
 import Loading from "@/components/common/Loading";
 
-
 interface Props {
 	initialTop: Top;
 }
