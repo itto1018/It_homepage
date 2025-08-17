@@ -9,7 +9,7 @@
 		"lint": "next lint",
 		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\"",
 		"format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\"",
-		"format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\" && eslint --fix \"src/**/*.{ts,tsx}\"",
+		"format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}\" && eslint --fix \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
 		"firebase": "^11.8.1",
