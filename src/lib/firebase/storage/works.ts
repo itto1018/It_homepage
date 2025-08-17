@@ -22,7 +22,10 @@ export const uploadImage = async (
 
 		// ダウンロードURLを取得
 		const downloadUrl = await getDownloadURL(snapshot.ref);
-
+		// 誤ったパターンを検出
+		if (downloadUrl.includes(".firebasestorage.app")) {
+			throw new Error("異常な Storage URL が生成されました");
+		}
 		return downloadUrl;
 	} catch (error) {
 		console.error("Error uploading image:", error);
