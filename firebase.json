@@ -13,6 +13,12 @@
 		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
 		"frameworksBackend": {
 			"region": "asia-east1"
-		}
+		},
+		"rewrites": [
+          {
+            "source": "**",
+            "function": "ssrcentrallist461606e7"
+          }
+        ]
 	}
 }
