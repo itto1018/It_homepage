@@ -15,15 +15,17 @@ export const ProfileSection = () => {
 
 	// プロフィールの取得(Read)
 	useEffect(() => {
+		let mounted = true;
 		const fetchProfile = async () => {
 			try {
 				const data = await getProfile();
+				if (!mounted) return;
 				setProfile(data);
 			} catch (error) {
 				console.error("プロフィール取得エラー:", error);
 				toast.error("プロフィールの取得に失敗しました");
 			} finally {
-				setIsLoading(false);
+				if (mounted) setIsLoading(false);
 			}
 		};
 		fetchProfile();
