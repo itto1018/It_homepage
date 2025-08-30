@@ -15,7 +15,7 @@ export const ProfileSection = () => {
 
 	// プロフィールの取得(Read)
 	useEffect(() => {
-		let mounted = true;
+		const mounted = true;
 		const fetchProfile = async () => {
 			try {
 				const data = await getProfile();

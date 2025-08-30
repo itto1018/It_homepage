@@ -17,7 +17,7 @@ const ServiceSection = () => {
 
 	// サービスを取得(Read)
 	useEffect(() => {
-		let mounted = true;
+		const mounted = true;
 		const fetchServices = async () => {
 			try {
 				const data = await getServices();
