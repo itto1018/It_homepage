@@ -15,7 +15,7 @@ export const ProfileSection = () => {
 
 	// プロフィールの取得(Read)
 	useEffect(() => {
-		const mounted = true;
+		let mounted = true;
 		const fetchProfile = async () => {
 			try {
 				const data = await getProfile();
@@ -29,6 +29,9 @@ export const ProfileSection = () => {
 			}
 		};
 		fetchProfile();
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	// SNS等リンクの取得(Read)

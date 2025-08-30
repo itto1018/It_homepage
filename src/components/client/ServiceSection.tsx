@@ -17,7 +17,7 @@ const ServiceSection = () => {
 
 	// サービスを取得(Read)
 	useEffect(() => {
-		const mounted = true;
+		let mounted = true;
 		const fetchServices = async () => {
 			try {
 				const data = await getServices();
@@ -31,6 +31,9 @@ const ServiceSection = () => {
 			}
 		};
 		fetchServices();
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	// スキルを取得(Read)
