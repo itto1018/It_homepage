@@ -17,18 +17,23 @@ const ServiceSection = () => {
 
 	// サービスを取得(Read)
 	useEffect(() => {
+		let mounted = true;
 		const fetchServices = async () => {
 			try {
 				const data = await getServices();
 				setServices(data);
+				if (!mounted) return;
 			} catch (error) {
 				console.error("サービス情報取得エラー:", error);
 				toast.error("サービス情報の取得に失敗しました");
 			} finally {
-				setIsLoading(false);
+				if (mounted) setIsLoading(false);
 			}
 		};
 		fetchServices();
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	// スキルを取得(Read)
