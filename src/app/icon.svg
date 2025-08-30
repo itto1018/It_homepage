@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>it favicon - analytics</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#cfeec2"/>
+      <stop offset="100%" stop-color="#00a497"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 角丸背景 -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)"/>
+
+  <!-- 背景のデータ分析モチーフ -->
+  <!-- グリッド -->
+  <g stroke="#ffffff" stroke-opacity="0.18" stroke-width="1" shape-rendering="crispEdges">
+    <path d="M12 20 H52 M12 32 H52 M12 44 H52"/>
+    <path d="M16 16 V48 M32 16 V48 M48 16 V48"/>
+  </g>
+  <!-- スパークライン -->
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 42 L18 36 L26 44 L34 28 L42 36 L50 24"/>
+    <g fill="#ffffff" stroke="none">
+      <circle cx="10" cy="42" r="1.6"/>
+      <circle cx="18" cy="36" r="1.6"/>
+      <circle cx="26" cy="44" r="1.6"/>
+      <circle cx="34" cy="28" r="1.6"/>
+      <circle cx="42" cy="36" r="1.6"/>
+      <circle cx="50" cy="24" r="1.6"/>
+    </g>
+  </g>
+  <!-- バーチャート（全幅に展開） -->
+  <g fill="#ffffff" opacity="0.78">
+    <rect x="10" y="46" width="4" height="6"  rx="1.2"/>
+    <rect x="16" y="40" width="4" height="12" rx="1.2"/>
+    <rect x="22" y="34" width="4" height="18" rx="1.2"/>
+    <rect x="28" y="42" width="4" height="10" rx="1.2"/>
+    <rect x="34" y="38" width="4" height="14" rx="1.2"/>
+    <rect x="40" y="44" width="4" height="8"  rx="1.2"/>
+    <rect x="46" y="30" width="4" height="22" rx="1.2"/>
+    <rect x="52" y="36" width="4" height="16" rx="1.2"/>
+  </g>
+
+  <!-- 中央の円盤＋リング（半透明） -->
+  <circle cx="32" cy="32" r="16.5" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.95"/>
+  <circle cx="32" cy="32" r="14.5" fill="#ffffff" fill-opacity="0.88"/>
+
+  <!-- it -->
+  <!-- 中心へ微調整: 下へ0.8px -->
+  <g fill="#00a497" aria-label="it" transform="translate(0 1.2) translate(32 32) scale(1.12) translate(-32 -32)">
+    <!-- i -->
+    <rect x="25.5" y="28" width="3" height="10" rx="1.5"/>
+    <circle cx="27" cy="24" r="1.5"/>
+    <!-- t -->
+    <rect x="33.5" y="22.5" width="3" height="15.5" rx="1.5"/>
+    <rect x="29.5" y="28" width="11" height="3" rx="1.5"/>
+  </g>
+</svg>
