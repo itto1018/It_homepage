@@ -21,17 +21,12 @@ export const getWorks = async (): Promise<Works[]> => {
 		}
 
 		// Timestampを Date に変換
-		return (
-			docSnap.data().works as Array<Works & { createdAt: Timestamp }>
-		)
+		return (docSnap.data().works as Array<Works & { createdAt: Timestamp }>)
 			.map((work) => ({
 				...work,
 				createdAt: work.createdAt?.toDate() || new Date(),
 			}))
-			.sort(
-				(a, b) =>
-					new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-			);
+			.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 	} catch (error) {
 		console.error("Error fetching works:", error);
 		throw new Error("作品情報の取得に失敗しました");

@@ -2,7 +2,7 @@ name: Prettier Format Check
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   prettier:
@@ -26,3 +26,6 @@ jobs:
         run: |
           echo "Some files are not formatted. Please run 'yarn format' to fix."
           exit 1
+      
+      - name: Run Build
+        run: yarn build
